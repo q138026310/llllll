@@ -545,7 +545,6 @@
 	
 	
   <build>
-		<outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/classes/</outputDirectory>
 		<plugins>
 			<!-- Compiler 插件, 设定JDK版本 -->
 			<plugin>
