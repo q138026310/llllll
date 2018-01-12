@@ -1,17 +1,21 @@
 package com.dlts.hrms.gen;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
+
 public class GenXml {
-	public static void init() {
+	public static void init() throws IOException {
 		List<Table> tables = DbUtils.getTables();
 		for (Table t : tables) {
-			if (!t.name.equals("sys_user_role")) {
-				continue;
-			}
 
-			String xml = initTable(t);
-			System.out.println(xml);
+			String text = initTable(t);
+
+			String key = getEntityName(t.name) + "Mapper.xml";
+
+			FileUtils.write(new File(MybatisGenerator.baseCodePath() + "entity\\" + key), text);
 		}
 	}
 
