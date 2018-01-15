@@ -18,6 +18,10 @@
     select <include refid="Base_Column_List" /> from ${tableName} ${where}
   </select>
   
+  <select id="count" parameterType="com.dlts.hrms.entity.${entityName}" resultType="java.lang.Integer">
+    select count(1) from ${tableName} ${where}
+  </select>
+  
   <delete id="delete" parameterType="java.lang.String">
     delete from ${tableName} where id = #{id}
   </delete>
@@ -37,5 +41,9 @@
   <update id="update" parameterType="com.dlts.hrms.entity.${entityName}">
     update ${tableName} set ${updateSet} where id = #{id}
   </update>
+  
+  <!--gen-e-1-w-0-->
+  ${gen}
+  <!--gen-e-1-w-1-->
   
 </mapper>

@@ -7,43 +7,66 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 
 public class GenMapper {
-	public static void init() throws IOException {
-		List<Table> tables = DbUtils.getTables();
-		for (Table t : tables) {
+    public static void init() throws IOException {
+        List<Table> tables = DbUtils.getTables();
+        for (Table t : tables) {
 
-			String text = initTable(t);
+            String text = initTable(t);
 
-			String key = getEntityName(t.name) + "Mapper.java";
+            String key = getEntityName(t.name) + "Mapper.java";
 
-			FileUtils.write(new File(MybatisGenerator.baseCodePath() + "mapper\\" + key), text);
-		}
-	}
+            String path = MybatisGenerator.baseCodePath() + "mapper\\" + key;
 
-	public static String initTable(Table table) {
+            FileUtils.write(new File(path), existsCode(text, path));
+        }
+    }
 
-		String template = MybatisGenerator.getMapperTemplate();
+    public static String existsCode(String template, String path) throws IOException {
 
-		template = template.replace("${entityName}", getEntityName(table.name));
+        File f = new File(path);
+        if (f.exists()) {
+            String content = FileUtils.readFileToString(f);
 
-		return template;
-	}
+            String startStr = "{";
+            String endStr = "}";
 
-	/**
-	 * @param tableName
-	 *            user_role
-	 * @return UserRole
-	 */
-	private static String getEntityName(String tableName) {
-		String[] arr = tableName.split("_");
-		String entityName = "";
-		for (int i = 0; i < arr.length; i++) {
-			entityName += upperFisrtChar(arr[i]);
-		}
-		return entityName;
-	}
+            int start = content.indexOf(startStr) + startStr.length();
+            int end = content.indexOf(endStr);
 
-	private static String upperFisrtChar(String value) {
-		return Character.toUpperCase(value.charAt(0)) + value.substring(1);
-	}
+            template = template.replace("${gen}", content.substring(start, end));
+        } else {
+            template = template.replace("${gen}", "");
+        }
+
+
+
+        return template;
+    }
+
+    public static String initTable(Table table) {
+
+        String template = MybatisGenerator.getMapperTemplate();
+
+        template = template.replace("${entityName}", getEntityName(table.name));
+
+        return template;
+    }
+
+    /**
+     * @param tableName user_role
+     * @return UserRole
+     */
+    private static String getEntityName(String tableName) {
+        String[] arr = tableName.split("_");
+        String entityName = "";
+        for (int i = 0; i < arr.length; i++) {
+            entityName += upperFisrtChar(arr[i]);
+        }
+        return entityName;
+    }
+
+    private static String upperFisrtChar(String value) {
+        return Character.toUpperCase(value.charAt(0)) + value.substring(1);
+    }
 
 }
