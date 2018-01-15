@@ -55,6 +55,8 @@ public class GenXml {
         template = template.replace("${updateSelectiveSet}", getUpdateSelectiveSet(columns));
         template = template.replace("${updateSet}", getUpdateSet(columns));
         template = template.replace("${where}", getWhere(columns));
+        template = template.replace("<!--${dtd}-->",
+                "<!DOCTYPE mapper PUBLIC \"-//mybatis.org//DTD Mapper 3.0//EN\" \"http://mybatis.org/dtd/mybatis-3-mapper.dtd\">");
 
         return template;
     }

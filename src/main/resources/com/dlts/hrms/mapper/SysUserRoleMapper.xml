@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlts.hrms.mapper.SysUserRoleMapper">
+
+  <sql id="Base_Column_List">
+    user_id,role_id
+  </sql>
+  
+  <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysUserRole">
+    select <include refid="Base_Column_List" /> from sys_user_role where id = #{id}
+  </select>
+  
+  <select id="get" parameterType="com.dlts.hrms.entity.SysUserRole" resultType="com.dlts.hrms.entity.SysUserRole">
+    select <include refid="Base_Column_List" /> from sys_user_role  where 1=1 <if test="userId!=null">and user_id=#{userId}</if><if test="roleId!=null">and role_id=#{roleId}</if>
+  </select>
+  
+  <select id="select" parameterType="com.dlts.hrms.entity.SysUserRole" resultType="com.dlts.hrms.entity.SysUserRole">
+    select <include refid="Base_Column_List" /> from sys_user_role  where 1=1 <if test="userId!=null">and user_id=#{userId}</if><if test="roleId!=null">and role_id=#{roleId}</if>
+  </select>
+  
+  <select id="count" parameterType="com.dlts.hrms.entity.SysUserRole" resultType="java.lang.Integer">
+    select count(1) from sys_user_role  where 1=1 <if test="userId!=null">and user_id=#{userId}</if><if test="roleId!=null">and role_id=#{roleId}</if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_user_role where id = #{id}
+  </delete>
+  
+  <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysUserRole">
+    delete from sys_user_role  where 1=1 <if test="userId!=null">and user_id=#{userId}</if><if test="roleId!=null">and role_id=#{roleId}</if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.dlts.hrms.entity.SysUserRole">
+    insert into sys_area (user_id,role_id) values (#{user_id},#{role_id})
+  </insert>
+  
+  <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysUserRole">
+    update sys_user_role <set><if test="userId != null">user_id = #{userId},</if><if test="roleId != null">role_id = #{roleId},</if></set> where id = #{id}
+  </update>
+  
+  <update id="update" parameterType="com.dlts.hrms.entity.SysUserRole">
+    update sys_user_role set user_id=#{userId},role_id=#{roleId} where id = #{id}
+  </update>
+  
+  <!--gen-e-1-w-0-->
+  
+  
+  
+  <!--gen-e-1-w-1-->
+  
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlts.hrms.mapper.SysRoleOfficeMapper">
+
+  <sql id="Base_Column_List">
+    role_id,office_id
+  </sql>
+  
+  <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysRoleOffice">
+    select <include refid="Base_Column_List" /> from sys_role_office where id = #{id}
+  </select>
+  
+  <select id="get" parameterType="com.dlts.hrms.entity.SysRoleOffice" resultType="com.dlts.hrms.entity.SysRoleOffice">
+    select <include refid="Base_Column_List" /> from sys_role_office  where 1=1 <if test="roleId!=null">and role_id=#{roleId}</if><if test="officeId!=null">and office_id=#{officeId}</if>
+  </select>
+  
+  <select id="select" parameterType="com.dlts.hrms.entity.SysRoleOffice" resultType="com.dlts.hrms.entity.SysRoleOffice">
+    select <include refid="Base_Column_List" /> from sys_role_office  where 1=1 <if test="roleId!=null">and role_id=#{roleId}</if><if test="officeId!=null">and office_id=#{officeId}</if>
+  </select>
+  
+  <select id="count" parameterType="com.dlts.hrms.entity.SysRoleOffice" resultType="java.lang.Integer">
+    select count(1) from sys_role_office  where 1=1 <if test="roleId!=null">and role_id=#{roleId}</if><if test="officeId!=null">and office_id=#{officeId}</if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_role_office where id = #{id}
+  </delete>
+  
+  <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysRoleOffice">
+    delete from sys_role_office  where 1=1 <if test="roleId!=null">and role_id=#{roleId}</if><if test="officeId!=null">and office_id=#{officeId}</if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.dlts.hrms.entity.SysRoleOffice">
+    insert into sys_area (role_id,office_id) values (#{role_id},#{office_id})
+  </insert>
+  
+  <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysRoleOffice">
+    update sys_role_office <set><if test="roleId != null">role_id = #{roleId},</if><if test="officeId != null">office_id = #{officeId},</if></set> where id = #{id}
+  </update>
+  
+  <update id="update" parameterType="com.dlts.hrms.entity.SysRoleOffice">
+    update sys_role_office set role_id=#{roleId},office_id=#{officeId} where id = #{id}
+  </update>
+  
+  <!--gen-e-1-w-0-->
+  
+  
+  
+  <!--gen-e-1-w-1-->
+  
+</mapper>
