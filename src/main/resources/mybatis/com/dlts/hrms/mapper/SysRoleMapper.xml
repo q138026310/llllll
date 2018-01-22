@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dlts.hrms.mapper.SysRoleMapper">
+
+  <sql id="Base_Column_List">
+    id,office_id,name,enname,role_type,data_scope,is_sys,useable,create_by,create_date,update_by,update_date,remarks,del_flag
+  </sql>
+  
+  <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysRole">
+    select <include refid="Base_Column_List" /> from sys_role where id = #{id}
+  </select>
+  
+  <select id="get" parameterType="com.dlts.hrms.entity.SysRole" resultType="com.dlts.hrms.entity.SysRole">
+    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="officeId!=null">and office_id=#{officeId}</if><if test="name!=null">and name=#{name}</if><if test="enname!=null">and enname=#{enname}</if><if test="roleType!=null">and role_type=#{roleType}</if><if test="dataScope!=null">and data_scope=#{dataScope}</if><if test="isSys!=null">and is_sys=#{isSys}</if><if test="useable!=null">and useable=#{useable}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
+  </select>
+  
+  <select id="select" parameterType="com.dlts.hrms.entity.SysRole" resultType="com.dlts.hrms.entity.SysRole">
+    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="officeId!=null">and office_id=#{officeId}</if><if test="name!=null">and name=#{name}</if><if test="enname!=null">and enname=#{enname}</if><if test="roleType!=null">and role_type=#{roleType}</if><if test="dataScope!=null">and data_scope=#{dataScope}</if><if test="isSys!=null">and is_sys=#{isSys}</if><if test="useable!=null">and useable=#{useable}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
+  </select>
+  
+  <delete id="delete" parameterType="java.lang.String">
+    delete from sys_role where id = #{id}
+  </delete>
+  
+  <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysRole">
+    delete from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="officeId!=null">and office_id=#{officeId}</if><if test="name!=null">and name=#{name}</if><if test="enname!=null">and enname=#{enname}</if><if test="roleType!=null">and role_type=#{roleType}</if><if test="dataScope!=null">and data_scope=#{dataScope}</if><if test="isSys!=null">and is_sys=#{isSys}</if><if test="useable!=null">and useable=#{useable}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
+  </delete>
+  
+  <insert id="insert" parameterType="com.dlts.hrms.entity.SysRole">
+    insert into sys_area (id,office_id,name,enname,role_type,data_scope,is_sys,useable,create_by,create_date,update_by,update_date,remarks,del_flag) values (#{id},#{office_id},#{name},#{enname},#{role_type},#{data_scope},#{is_sys},#{useable},#{create_by},#{create_date},#{update_by},#{update_date},#{remarks},#{del_flag})
+  </insert>
+  
+  <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysRole">
+    update sys_role <set><if test="id != null">id = #{id},</if><if test="officeId != null">office_id = #{officeId},</if><if test="name != null">name = #{name},</if><if test="enname != null">enname = #{enname},</if><if test="roleType != null">role_type = #{roleType},</if><if test="dataScope != null">data_scope = #{dataScope},</if><if test="isSys != null">is_sys = #{isSys},</if><if test="useable != null">useable = #{useable},</if><if test="createBy != null">create_by = #{createBy},</if><if test="createDate != null">create_date = #{createDate},</if><if test="updateBy != null">update_by = #{updateBy},</if><if test="updateDate != null">update_date = #{updateDate},</if><if test="remarks != null">remarks = #{remarks},</if><if test="delFlag != null">del_flag = #{delFlag},</if></set> where id = #{id}
+  </update>
+  
+  <update id="update" parameterType="com.dlts.hrms.entity.SysRole">
+    update sys_role set id=#{id},office_id=#{officeId},name=#{name},enname=#{enname},role_type=#{roleType},data_scope=#{dataScope},is_sys=#{isSys},useable=#{useable},create_by=#{createBy},create_date=#{createDate},update_by=#{updateBy},update_date=#{updateDate},remarks=#{remarks},del_flag=#{delFlag} where id = #{id}
+  </update>
+  
+</mapper>

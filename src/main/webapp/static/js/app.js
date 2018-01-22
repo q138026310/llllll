@@ -14,11 +14,16 @@ var app={
 			data:requestData,
 			async:async,
 			type:'POST',
-			success:function(responseData){
-				var dd = responseData.replace(/\+/g,'%20');
-				responseData = app.json(decodeURIComponent(dd));
+			dataType:'json',
+			success:function(resp){
+				//var dd = responseData.replace(/\+/g,'%20');
+				//responseData = app.json(decodeURIComponent(dd));
 				
-				callback(responseData);
+				console.log("----------"+url+"---------");
+				console.log(resp);
+				console.log("----------"+url+"---------");
+				
+				callback(resp);
 			},
 			error:function(e){
 				if(errorfn){
