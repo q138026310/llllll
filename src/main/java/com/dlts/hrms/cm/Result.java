@@ -1,13 +1,13 @@
 package com.dlts.hrms.cm;
 
-public class ServiceBean {
+public class Result {
 
 	private int result = 0;
 
 	private Object data;
 
-	public static ServiceBean newBean() {
-		ServiceBean b = new ServiceBean();
+	public static Result newResult() {
+		Result b = new Result();
 		return b;
 	}
 
