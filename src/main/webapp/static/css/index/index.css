@@ -27,7 +27,7 @@
 
 .left .in{
 	width:100%;height:100%;min-width: 150px;/* 190 */
-	padding: 15px;box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 .right{
@@ -75,4 +75,25 @@
 	height: 60px;
     width: 45px;
     text-align: center;
+}
+
+
+.hrms-submenu{
+	
+}
+
+.hrms-submenu .hrms-submenu-item{
+	
+}
+
+.hrms-submenu .hrms-submenu-item > div{
+	float: left;
+}
+
+.hrms-submenu .hrms-submenu-item img{
+	
+}
+
+.hrms-submenu .hrms-submenu-itemselected{
+	
 }
