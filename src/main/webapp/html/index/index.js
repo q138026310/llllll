@@ -1,10 +1,5 @@
 $(function(){
 	
-	$('.hrms-submenu li').click(function(){
-		$('.hrms-submenu-itemselected').removeClass("hrms-submenu-itemselected");
-		$(this).addClass('hrms-submenu-itemselected');
-	});
-	
 	app.request('menu/findUserMenu',{},function(resp){
 		
 		$.each(resp.data,function(i,menu){
@@ -14,6 +9,10 @@ $(function(){
 			}
 			
 			$('.hrms-menu > li').click(function(){
+				
+				$('.hrms-menu-item-selected').removeClass('hrms-menu-item-selected');
+				$(this).addClass('hrms-menu-item-selected');
+				
 				$('.hrms-submenu').empty();
 				
 				var menuId = $(this).attr('id').replace('menu','');
@@ -23,6 +22,11 @@ $(function(){
 					if( m.parentId == menuId ){
 						$('.hrms-submenu').append('<li class="hrms-submenu-item "><div class="icon"><img src="/hrms/static/images/order.png"></div><div class="text">'+m.name+'</div></li>');
 					}
+					
+					$('.hrms-submenu li').click(function(){
+						$('.hrms-submenu-itemselected').removeClass("hrms-submenu-itemselected");
+						$(this).addClass('hrms-submenu-itemselected');
+					});
 				});
 			});
 		});
