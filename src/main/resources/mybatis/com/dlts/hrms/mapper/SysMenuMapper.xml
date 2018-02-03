@@ -1,41 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--${dtd}-->
 <mapper namespace="com.dlts.hrms.mapper.SysMenuMapper">
 
   <sql id="Base_Column_List">
-    id,parent_id,parent_ids,name,sort,href,target,icon,is_show,permission,create_by,create_date,update_by,update_date,remarks,del_flag
+    id,parent_id,name,sort,href,icon
   </sql>
   
-  <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysMenu">
-    select <include refid="Base_Column_List" /> from sys_menu where id = #{id}
-  </select>
+  <insert id="insert" parameterType="com.dlts.hrms.entity.SysMenu">
+    insert into sys_area (id,parent_id,name,sort,href,icon) values (#{id},#{parent_id},#{name},#{sort},#{href},#{icon})
+  </insert>
   
-  <select id="get" parameterType="com.dlts.hrms.entity.SysMenu" resultType="com.dlts.hrms.entity.SysMenu">
-    select <include refid="Base_Column_List" /> from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="parentIds!=null">and parent_ids=#{parentIds}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="target!=null">and target=#{target}</if><if test="icon!=null">and icon=#{icon}</if><if test="isShow!=null">and is_show=#{isShow}</if><if test="permission!=null">and permission=#{permission}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
-  </select>
+  <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysMenu">
+    update sys_menu <set><if test="id != null">id = #{id},</if><if test="parentId != null">parent_id = #{parentId},</if><if test="name != null">name = #{name},</if><if test="sort != null">sort = #{sort},</if><if test="href != null">href = #{href},</if><if test="icon != null">icon = #{icon},</if></set> where id = #{id}
+  </update>
   
-  <select id="select" parameterType="com.dlts.hrms.entity.SysMenu" resultType="com.dlts.hrms.entity.SysMenu">
-    select <include refid="Base_Column_List" /> from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="parentIds!=null">and parent_ids=#{parentIds}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="target!=null">and target=#{target}</if><if test="icon!=null">and icon=#{icon}</if><if test="isShow!=null">and is_show=#{isShow}</if><if test="permission!=null">and permission=#{permission}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
-  </select>
+  <update id="update" parameterType="com.dlts.hrms.entity.SysMenu">
+    update sys_menu set id=#{id},parent_id=#{parentId},name=#{name},sort=#{sort},href=#{href},icon=#{icon} where id = #{id}
+  </update>
   
   <delete id="delete" parameterType="java.lang.String">
     delete from sys_menu where id = #{id}
   </delete>
   
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysMenu">
-    delete from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="parentIds!=null">and parent_ids=#{parentIds}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="target!=null">and target=#{target}</if><if test="icon!=null">and icon=#{icon}</if><if test="isShow!=null">and is_show=#{isShow}</if><if test="permission!=null">and permission=#{permission}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if><if test="delFlag!=null">and del_flag=#{delFlag}</if>
+    delete from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="icon!=null">and icon=#{icon}</if>
   </delete>
   
-  <insert id="insert" parameterType="com.dlts.hrms.entity.SysMenu">
-    insert into sys_area (id,parent_id,parent_ids,name,sort,href,target,icon,is_show,permission,create_by,create_date,update_by,update_date,remarks,del_flag) values (#{id},#{parent_id},#{parent_ids},#{name},#{sort},#{href},#{target},#{icon},#{is_show},#{permission},#{create_by},#{create_date},#{update_by},#{update_date},#{remarks},#{del_flag})
-  </insert>
+  <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysMenu">
+    select <include refid="Base_Column_List" /> from sys_menu where id = #{id}
+  </select>
   
-  <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysMenu">
-    update sys_menu <set><if test="id != null">id = #{id},</if><if test="parentId != null">parent_id = #{parentId},</if><if test="parentIds != null">parent_ids = #{parentIds},</if><if test="name != null">name = #{name},</if><if test="sort != null">sort = #{sort},</if><if test="href != null">href = #{href},</if><if test="target != null">target = #{target},</if><if test="icon != null">icon = #{icon},</if><if test="isShow != null">is_show = #{isShow},</if><if test="permission != null">permission = #{permission},</if><if test="createBy != null">create_by = #{createBy},</if><if test="createDate != null">create_date = #{createDate},</if><if test="updateBy != null">update_by = #{updateBy},</if><if test="updateDate != null">update_date = #{updateDate},</if><if test="remarks != null">remarks = #{remarks},</if><if test="delFlag != null">del_flag = #{delFlag},</if></set> where id = #{id}
-  </update>
+  <select id="get" parameterType="com.dlts.hrms.entity.SysMenu" resultType="com.dlts.hrms.entity.SysMenu">
+    select <include refid="Base_Column_List" /> from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="icon!=null">and icon=#{icon}</if>
+  </select>
   
-  <update id="update" parameterType="com.dlts.hrms.entity.SysMenu">
-    update sys_menu set id=#{id},parent_id=#{parentId},parent_ids=#{parentIds},name=#{name},sort=#{sort},href=#{href},target=#{target},icon=#{icon},is_show=#{isShow},permission=#{permission},create_by=#{createBy},create_date=#{createDate},update_by=#{updateBy},update_date=#{updateDate},remarks=#{remarks},del_flag=#{delFlag} where id = #{id}
-  </update>
+  <select id="select" parameterType="com.dlts.hrms.entity.SysMenu" resultType="com.dlts.hrms.entity.SysMenu">
+    select <include refid="Base_Column_List" /> from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="icon!=null">and icon=#{icon}</if>
+  </select>
+  
+  <select id="count" parameterType="com.dlts.hrms.entity.SysMenu" resultType="java.lang.Integer">
+    select count(1) from sys_menu  where 1=1 <if test="id!=null">and id=#{id}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="name!=null">and name=#{name}</if><if test="sort!=null">and sort=#{sort}</if><if test="href!=null">and href=#{href}</if><if test="icon!=null">and icon=#{icon}</if>
+  </select>
+  
+  <!--gen-e-1-w-0-->
+  ${gen}
+  <!--gen-e-1-w-1-->
   
 </mapper>

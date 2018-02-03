@@ -4,6 +4,4 @@ import com.dlts.hrms.entity.SysMenu;
 
 public interface SysMenuMapper extends Mapper<SysMenu> {
 
-	
-	
 }
