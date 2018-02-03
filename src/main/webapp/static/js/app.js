@@ -14,16 +14,21 @@ var app={
 			data:requestData,
 			async:async,
 			type:'POST',
-			dataType:'json',
 			success:function(resp){
-				//var dd = responseData.replace(/\+/g,'%20');
-				//responseData = app.json(decodeURIComponent(dd));
+				var dd = resp.replace(/\+/g,'%20');
+				resp = app.json(decodeURIComponent(dd));
 				
 				console.log("----------"+url+"---------");
 				console.log(resp);
 				console.log("----------"+url+"---------");
 				
-				callback(resp);
+				if( resp.result==1 ){
+					app.alert('登陆失效，请重新登陆');
+					location.href = "/hrms";
+				}else{
+					callback(resp);
+				}
+				
 			},
 			error:function(e){
 				if(errorfn){
@@ -33,6 +38,15 @@ var app={
 				}
 			}
 		});
+	},
+	alert:function(message){
+		alert(message);
+	},
+	str:function(o){
+		return JSON.stringify(o);
+	},
+	json:function(value){
+		return $.parseJSON(value);
 	}
 		
 }

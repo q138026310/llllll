@@ -1,8 +1,8 @@
 package com.dlts.hrms.web;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,17 +17,17 @@ import com.dlts.hrms.web.base.BaseController;
 @RequestMapping("index")
 public class IndexController extends BaseController {
 
-	@Autowired
-	IUserService userService;
+    @Resource(name = "userService")
+    IUserService userService;
 
-	@ResponseBody
-	@RequestMapping("login")
-	public String login(HttpSession session, SysUser user) {
-		Result bean = userService.login(user);
-		if (bean.isSuccess()) {
-			session.setAttribute("user", bean.getData());
-		}
-		return Response.body(bean);
-	}
+    @ResponseBody
+    @RequestMapping("login")
+    public String login(HttpSession session, SysUser user) {
+        Result bean = userService.login(user);
+        if (bean.isSuccess()) {
+            session.setAttribute("user", bean.getData());
+        }
+        return Response.body(bean.getData());
+    }
 
 }

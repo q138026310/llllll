@@ -11,45 +11,45 @@ import com.dlts.hrms.service.IUserService;
 import com.dlts.hrms.service.base.BaseService;
 import com.dlts.hrms.utils.StringUtils;
 
-@Service
+@Service("userService")
 public class UserService extends BaseService implements IUserService {
 
-	@Autowired
-	SysUserMapper sysUserMapper;
+    @Autowired
+    SysUserMapper sysUserMapper;
 
-	@Override
-	public Result login(SysUser user) {
+    @Override
+    public Result login(SysUser user) {
 
-		Result bean = Result.newResult();
+        Result bean = Result.newResult();
 
-		if (StringUtils.isEmpty(user.getUsername())) {
-			bean.setResult(GlobalConstant.LOGIN_USERNAME_NULL.value);
-		}
+        if (StringUtils.isEmpty(user.getUsername())) {
+            bean.setResult(GlobalConstant.LOGIN_USERNAME_NULL.value);
+        }
 
-		if (StringUtils.isEmpty(user.getPassword())) {
-			bean.setResult(GlobalConstant.LOGIN_PASSWORD_NULL.value);
-		}
+        if (StringUtils.isEmpty(user.getPassword())) {
+            bean.setResult(GlobalConstant.LOGIN_PASSWORD_NULL.value);
+        }
 
-		if (bean.isSuccess()) {
+        if (bean.isSuccess()) {
 
-			SysUser queryUser = new SysUser();
-			queryUser.setUsername(user.getUsername());
-			SysUser dbUser = sysUserMapper.get(queryUser);
+            SysUser queryUser = new SysUser();
+            queryUser.setUsername(user.getUsername());
+            SysUser dbUser = sysUserMapper.get(queryUser);
 
-			if (dbUser == null) {
-				bean.setResult(GlobalConstant.LOGIN_USERNAME_ERROR.value);
-			} else {
-				if (StringUtils.equals(dbUser.getPassword(), user.getPassword())) {
-					dbUser.setPassword(null);
-					bean.setData(dbUser);
-				} else {
-					bean.setResult(GlobalConstant.LOGIN_PASSWORD_ERROR.value);
-				}
-			}
+            if (dbUser == null) {
+                bean.setResult(GlobalConstant.LOGIN_USERNAME_ERROR.value);
+            } else {
+                if (StringUtils.equals(dbUser.getPassword(), user.getPassword())) {
+                    dbUser.setPassword(null);
+                    bean.setData(dbUser);
+                } else {
+                    bean.setResult(GlobalConstant.LOGIN_PASSWORD_ERROR.value);
+                }
+            }
 
-		}
+        }
 
-		return bean;
-	}
+        return bean;
+    }
 
 }
