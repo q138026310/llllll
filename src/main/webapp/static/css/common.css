@@ -1,0 +1,40 @@
+*{
+	margin:0px;
+	padding: 0px;
+	border: 0px;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+
+html,body{
+	height: 100%;
+}
+
+body{
+	font-family: SF UI Display,PingFang SC,Neue Haas Grotesk Text Pro,Arial Nova,Segoe UI,Microsoft YaHei,Microsoft JhengHei,Helvetica,Hiragino Sans GB,Helvetica Neue,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,sans-serif!important;
+}
+
+ul,li {
+list-style:none; /* 将默认的列表符号去掉 */
+padding:0; /* 将默认的内边距去掉 */
+margin:0; /* 将默认的外边距去掉 */
+}
+
+.grid, .grid * {
+	margin: 0 auto; padding: 0;font-size: 14px;font-family: Arial, 宋体, Helvetica, sans-serif;
+}   
+.grid {
+	display: table; width: 90%; border-collapse: collapse;
+}   
+.grid-tr {display: table-row; height: 50px;}   
+.grid-th {
+	display: table-cell;font-weight: bold;height: 100%;
+	border: 1px solid gray;text-align: center;vertical-align: middle;
+}   
+.grid-td {
+	display: table-cell; height: 100%;border: 1px solid gray; 
+	text-align: center;vertical-align: middle;
+}   

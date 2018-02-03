@@ -11,10 +11,11 @@ import com.dlts.hrms.cm.Response;
 import com.dlts.hrms.cm.Result;
 import com.dlts.hrms.entity.SysUser;
 import com.dlts.hrms.service.IUserService;
+import com.dlts.hrms.web.base.BaseController;
 
 @Controller
 @RequestMapping("index")
-public class IndexController {
+public class IndexController extends BaseController {
 
 	@Autowired
 	IUserService userService;
