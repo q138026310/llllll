@@ -67,7 +67,8 @@
 	margin-right: 46px;
 	font-size: 13px;
 	color: #ddd;
-	cursor: pointer;
+	cursor: pointer;padding-left: 6px;
+    padding-right: 6px;height: 60px;
 }
 
 .hrms-menu-item:hover{
@@ -78,9 +79,6 @@
 	color:#fff;
 	border-bottom: 3px solid #fff!important;
 	box-sizing: border-box;
-	height: 60px;
-    width: 45px;
-    text-align: center;
 }
 
 
