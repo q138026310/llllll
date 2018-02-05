@@ -56,10 +56,10 @@ insert into sys_menu(id,parent_id,name,sort,href,icon) values(100,1,'销售订�
 insert into sys_menu(id,parent_id,name,sort,href,icon) values(101,1,'销售出库',2,'a/b','order');
 insert into sys_menu(id,parent_id,name,sort,href,icon) values(102,1,'销售退货',3,'a/b','order');
 
-insert into sys_menu(id,parent_id,name,sort,href,icon) values(700,7,'公司管理',1,'a/b','order');
-insert into sys_menu(id,parent_id,name,sort,href,icon) values(701,7,'部门管理',2,'a/b','order');
-insert into sys_menu(id,parent_id,name,sort,href,icon) values(702,7,'角色管理',3,'a/b','order');
-insert into sys_menu(id,parent_id,name,sort,href,icon) values(703,7,'用户管理',4,'a/b','order');
+insert into sys_menu(id,parent_id,name,sort,href,icon) values(700,7,'公司管理',1,'company/company_list','order');
+insert into sys_menu(id,parent_id,name,sort,href,icon) values(701,7,'部门管理',2,'department/department_list','order');
+insert into sys_menu(id,parent_id,name,sort,href,icon) values(702,7,'角色管理',3,'role/role_list','order');
+insert into sys_menu(id,parent_id,name,sort,href,icon) values(703,7,'用户管理',4,'user/user_list','order');
 
 
 DROP TABLE IF EXISTS sys_role;
