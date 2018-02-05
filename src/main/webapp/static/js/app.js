@@ -47,6 +47,19 @@ var app={
 	},
 	json:function(value){
 		return $.parseJSON(value);
+	},
+	getReqeustParams:function(){
+		var value = location.href;
+		var o = {};
+		if(value.indexOf('?')!=-1){
+			value = value.substr(value.indexOf('?')+1)
+			values = value.split('&');
+			for( var i=0 ; i < values.length ; i++ ){
+				var arr = values[i].split('=');
+				o[arr[0]] = arr[1];
+			}
+		}
+		return o;
 	}
 		
 }
