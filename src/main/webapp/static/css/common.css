@@ -27,14 +27,80 @@ margin:0; /* 将默认的外边距去掉 */
 	margin: 0 auto; padding: 0;font-size: 14px;font-family: Arial, 宋体, Helvetica, sans-serif;
 }   
 .grid {
-	display: table; width: 90%; border-collapse: collapse;
+	display: table; width: 100%; border-collapse: collapse;
 }   
-.grid-tr {display: table-row; height: 50px;}   
+.grid-tr {display: table-row;}   
 .grid-th {
 	display: table-cell;font-weight: bold;height: 100%;
-	border: 1px solid gray;text-align: center;vertical-align: middle;
+	border: 1px solid #fff;text-align: center;vertical-align: middle;
+	background-color: #dcdcdc;height: 40px;
 }   
 .grid-td {
 	display: table-cell; height: 100%;border: 1px solid gray; 
-	text-align: center;vertical-align: middle;
-}   
+	text-align: center;vertical-align: middle;height: 40px;
+}  
+
+.hrms-input{
+	border: 1px solid #dcdcdc;border-radius: 5px;outline:none;height: 32px;width: 100%;
+} 
+
+.hrms-input:hover,.hrms-input:focus{
+	    border: 1px solid #5bc4d1;
+}
+
+.center{
+	background-color: #fff;width:100%;height:100%;    border-radius: 4px;
+}
+
+.center .query{
+	margin:0px auto;width: 100%;padding: 15px;
+}
+.center .query .column{
+	width: 30%;height: 40px;
+    padding: 4px;float: left;
+}
+
+.center .query .column-btn{
+	width: 10%;height: 40px;
+    padding: 4px;float: left;
+    padding: 6px;
+    float: left;
+    padding-left: 34px;
+}
+
+.btn{
+	    height: 28px;
+    width: 60px;
+    background-color: #30acbb;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #fff;
+    text-align: center;
+    line-height: 28px;cursor: pointer;
+    -moz-user-select: none;
+-khtml-user-select: none;
+user-select: none;
+}
+
+.btn:hover{
+	background-color: #5bc4d1;
+}
+
+.btn:active{
+	box-shadow: 0 1px 10px #5bc4d1;
+}
+
+.center .query .column > div{
+	float: left;
+}
+
+.center .query .column .column-left{
+	width: 23%;    height: 32px;
+    padding: 7px;
+    text-align: right;
+    font-size: 13px;
+}
+
+.center .query .column .column-right{
+	width: 77%;
+}
