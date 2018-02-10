@@ -1,5 +1,10 @@
+
 var menus = null;
 var param = app.getReqeustParams();
+
+if(param.redirect && param.redirect.length>0){
+	document.write('<script type="text/javascript" src="/hrms/html/'+param.redirect+'.js"></script>');
+}
 
 $(function(){
 	
@@ -27,7 +32,7 @@ $(function(){
 	});
 	
 	if(param.redirect){
-		$('.right .in').load('/hrms/html/'+param.redirect+'.html');
+		$('.right .in').load('/hrms/html/'+param.redirect+'.html',null,init);
 	}
 	
 });

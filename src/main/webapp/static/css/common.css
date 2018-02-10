@@ -23,25 +23,33 @@ padding:0; /* 将默认的内边距去掉 */
 margin:0; /* 将默认的外边距去掉 */
 }
 
+.grid-out{
+	padding-top: 40px;
+}
 .grid, .grid * {
 	margin: 0 auto; padding: 0;font-size: 14px;font-family: Arial, 宋体, Helvetica, sans-serif;
 }   
 .grid {
 	display: table; width: 100%; border-collapse: collapse;
 }   
-.grid-tr {display: table-row;}   
+.grid-tr {display: table-row;}    
 .grid-th {
-	display: table-cell;font-weight: bold;height: 100%;
-	border: 1px solid #fff;text-align: center;vertical-align: middle;
-	background-color: #dcdcdc;height: 40px;
+	display: table-cell;font-weight: bold;
+	text-align: center;vertical-align: middle;
+	background-color: #f7f7f7;height: 40px;font-size: 13px;
 }   
+.grid-tr-ligh{
+	background-color: #f7f7f7;
+}
 .grid-td {
-	display: table-cell; height: 100%;border: 1px solid gray; 
+	display: table-cell; height: 100%;
 	text-align: center;vertical-align: middle;height: 40px;
+	font-size: 12px;
 }  
 
 .hrms-input{
 	border: 1px solid #dcdcdc;border-radius: 5px;outline:none;height: 32px;width: 100%;
+	padding-left: 10px;
 } 
 
 .hrms-input:hover,.hrms-input:focus{
