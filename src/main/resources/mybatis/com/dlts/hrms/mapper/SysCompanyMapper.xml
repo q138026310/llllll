@@ -43,7 +43,23 @@
   </select>
   
   <!--gen-e-1-w-0-->
-  
+  <select id="pageCount" parameterType="map" resultType="java.lang.Integer">
+    select count(1) from sys_company t where 1=1 
+    <include refid="pageWhere"></include>
+  </select>
+  <select id="pageSelect" parameterType="map" resultType="com.dlts.hrms.po.CompanyPo">
+    select t.*,(select name from sys_company a where a.code = t.parent_code) parentName
+    from sys_company t where 1=1 
+    <include refid="pageWhere"></include>
+  </select>
+  <sql id="pageWhere">
+  	<if test="name!=null and name!=''">
+    	and t.name LIKE CONCAT('%',#{name},'%')
+    </if>
+    <if test="code!=null and code!=''">
+    	and t.code = #{code}
+    </if>
+  </sql>
   <!--gen-e-1-w-1-->
   
 </mapper>

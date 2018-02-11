@@ -26,6 +26,11 @@ public class Gap {
         return p;
     }
 
+    public static Gap newMap(Object obj) {
+        Gap p = newMap();
+        return p;
+    }
+
     public Gap put(String key, Object value) {
         this.map.put(key, value);
         return this;

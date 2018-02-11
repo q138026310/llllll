@@ -1,15 +1,12 @@
 function init(){
-	$('.hrms-page').pagination({
-		totalData: 100,
-		showData: 10,
-		count:4,
-		mode: 'fixed',
-		coping: false,
-		keepShowPN:false,
-		callback:function(pagination){
-			console.log(pagination);
-			console.log(pagination.getCurrent());
-		}
+	
+	app.table({
+		id:'.grid',
+		url:'company/page',
+		queryParams:{},
+		columns:[{text:'公司名称',name:'name'},
+		         {text:'公司编号',name:'code'},
+		         {text:'上级公司',name:'parentName'}]
 	});
 	
 	$('#add').click(function(){

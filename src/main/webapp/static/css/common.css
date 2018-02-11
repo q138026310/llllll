@@ -27,6 +27,10 @@ padding:0; /* 将默认的内边距去掉 */
 margin:0; /* 将默认的外边距去掉 */
 }
 
+input{
+	vertical-align: middle;
+}
+
 .grid-out{
 	padding-top: 40px;
 }
@@ -40,7 +44,9 @@ margin:0; /* 将默认的外边距去掉 */
 .grid-th {
 	display: table-cell;font-weight: bold;
 	text-align: center;vertical-align: middle;
-	background-color: #f7f7f7;height: 24px;font-size: 13px;
+	background-color: #f7f7f7;height: 40px;font-size: 13px;
+    border-bottom: 1px solid #dcdcdc;
+    border-top: 1px solid #dcdcdc;box-sizing: border-box;
 }   
 .grid-tr-ligh{
 	background-color: #f6f8fa;
@@ -61,9 +67,9 @@ margin:0; /* 将默认的外边距去掉 */
 	text-decoration: none;
     float: left;
     margin: 0 5px;
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     background: #F7F8E7;
     border: 1px solid #F7F8E7;
     color: #000;
@@ -79,9 +85,9 @@ margin:0; /* 将默认的外边距去掉 */
 .hrms-page span {
     float: left;
     margin: 0 5px;
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     color: #000;
     font-size: 14px;border-radius: 4px;
 }
@@ -89,9 +95,9 @@ margin:0; /* 将默认的外边距去掉 */
 .hrms-page .active {
     float: left;
     margin: 0 5px;
-    width: 38px;
-    height: 38px;
-    line-height: 38px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
     background: #32b5c5;
     color: #fff;font-weight: 600;
     font-size: 14px;
@@ -109,6 +115,7 @@ margin:0; /* 将默认的外边距去掉 */
 
 .center{
 	background-color: #fff;width:100%;height:100%;    border-radius: 4px;
+	border:1px solid #e6e6e6;box-sizing: border-box;
 }
 
 .center .query{
@@ -175,5 +182,5 @@ user-select: none;    margin-left: 15px;
 }
 
 .center .query .column .column-right{
-	width: 77%;
+	width: 77%;line-height: 32px;
 }

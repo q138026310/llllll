@@ -64,6 +64,52 @@ var app={
 	load:function(url){
 		var param = app.getReqeustParams();
 		location.href = '/hrms/html/index/index.html?redirect='+url+'&rectmid='+param.rectmid+'&rectsmid='+param.rectsmid;
+	},
+	table:function(options){
+		
+		var id = options.id;
+		
+		app.request(options.url,options.queryParams,function(resp){
+			
+			$(id).empty();
+			
+			var firstTr = $('<div class="grid-tr"></div>');
+			
+			$.each(options.columns,function(i,column){
+				firstTr.append('<div class="grid-th">'+column.text+'</div>');
+			});
+			
+			$(id).append(firstTr);
+			
+			$.each(resp.data.list,function(i,row){
+				var bodyTr = $('<div class="grid-tr"></div>');
+
+				$.each(options.columns,function(i,column){
+					var value = row[column.name];
+					if(!value){
+						value = '';
+					}
+					bodyTr.append('<div class="grid-td">'+value+'</div>');
+				});
+
+				$(id).append(bodyTr);
+			});
+			
+			$('.hrms-page').pagination({
+				totalData: resp.data.count,
+				showData: 10,
+				count:4,
+				mode: 'fixed',
+				coping: false,
+				keepShowPN:false,
+				callback:function(pagination){
+					console.log(pagination);
+					console.log(pagination.getCurrent());
+				}
+			});
+			
+		});
+		
 	}
 }
 
