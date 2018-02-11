@@ -1,7 +1,7 @@
 package com.dlts.hrms.mapper;
 
-import com.dlts.hrms.entity.${entityName};
+${importGen}
 
 public interface ${entityName}Mapper extends Mapper<${entityName}> {
-
+${gen}
 }

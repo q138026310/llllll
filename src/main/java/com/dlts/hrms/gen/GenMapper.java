@@ -17,15 +17,15 @@ public class GenMapper {
 
             String path = MybatisGenerator.baseCodePath() + "mapper\\" + key;
 
-            FileUtils.write(new File(path), existsCode(text, path));
+            FileUtils.write(new File(path), existsCode(text, path, t));
         }
     }
 
-    public static String existsCode(String template, String path) throws IOException {
+    public static String existsCode(String template, String path, Table table) throws IOException {
 
         File f = new File(path);
         if (f.exists()) {
-            String content = FileUtils.readFileToString(f);
+            String content = FileUtils.readFileToString(f, "UTF-8");
 
             String startStr = "{";
             String endStr = "}";
@@ -33,9 +33,23 @@ public class GenMapper {
             int start = content.indexOf(startStr) + startStr.length();
             int end = content.indexOf(endStr);
 
-            template = template.replace("${gen}", content.substring(start, end));
+            template = template.replace("${gen}",
+                    content.substring(start, end).replaceFirst("\r\n", "").trim());
+
+
+            startStr = "package com.dlts.hrms.mapper;";
+            endStr = "public interface";
+            start = content.indexOf(startStr) + startStr.length();
+            end = content.indexOf(endStr);
+            template = template.replace("${importGen}",
+                    content.substring(start, end).replaceFirst("\r\n", "").trim());
+
+
         } else {
+            String entityName = getEntityName(table.name);
             template = template.replace("${gen}", "");
+            template = template.replace("${importGen}",
+                    "import com.dlts.hrms.entity." + entityName + ";");
         }
 
 
