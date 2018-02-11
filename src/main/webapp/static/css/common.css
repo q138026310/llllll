@@ -17,6 +17,10 @@ body{
 	font-family: SF UI Display,PingFang SC,Neue Haas Grotesk Text Pro,Arial Nova,Segoe UI,Microsoft YaHei,Microsoft JhengHei,Helvetica,Hiragino Sans GB,Helvetica Neue,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,sans-serif!important;
 }
 
+div{
+	font-size:13px;color:#545454;
+}
+
 ul,li {
 list-style:none; /* 将默认的列表符号去掉 */
 padding:0; /* 将默认的内边距去掉 */
@@ -36,16 +40,63 @@ margin:0; /* 将默认的外边距去掉 */
 .grid-th {
 	display: table-cell;font-weight: bold;
 	text-align: center;vertical-align: middle;
-	background-color: #f7f7f7;height: 40px;font-size: 13px;
+	background-color: #f7f7f7;height: 24px;font-size: 13px;
 }   
 .grid-tr-ligh{
-	background-color: #f7f7f7;
+	background-color: #f6f8fa;
 }
 .grid-td {
 	display: table-cell; height: 100%;
 	text-align: center;vertical-align: middle;height: 40px;
 	font-size: 12px;
 }  
+
+
+.hrms-page{
+	text-align: center;
+    float: right;
+    margin-right: 20px;
+}
+.hrms-page a{
+	text-decoration: none;
+    float: left;
+    margin: 0 5px;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    background: #F7F8E7;
+    border: 1px solid #F7F8E7;
+    color: #000;
+    font-size: 14px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+.page-out{
+	margin-top: 13px;
+}
+
+.hrms-page span {
+    float: left;
+    margin: 0 5px;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    color: #000;
+    font-size: 14px;border-radius: 4px;
+}
+
+.hrms-page .active {
+    float: left;
+    margin: 0 5px;
+    width: 38px;
+    height: 38px;
+    line-height: 38px;
+    background: #32b5c5;
+    color: #fff;font-weight: 600;
+    font-size: 14px;
+    border: 1px solid #32b5c5;border-radius: 4px;
+}
 
 .hrms-input{
 	border: 1px solid #dcdcdc;border-radius: 5px;outline:none;height: 32px;width: 100%;
@@ -63,6 +114,20 @@ margin:0; /* 将默认的外边距去掉 */
 .center .query{
 	margin:0px auto;width: 100%;padding: 15px;
 }
+.center .title{
+	    height: 50px;
+    line-height: 30px;
+	margin:0px auto;width: 100%;padding: 10px;border-bottom:1px solid #e6e6e6;display: inline-block;
+}
+
+.center .title > div{
+	float: left;
+}
+
+.center .title .btn{
+	float: right;
+}
+
 .center .query .column{
 	width: 30%;height: 40px;
     padding: 4px;float: left;
@@ -87,7 +152,7 @@ margin:0; /* 将默认的外边距去掉 */
     line-height: 28px;cursor: pointer;
     -moz-user-select: none;
 -khtml-user-select: none;
-user-select: none;
+user-select: none;    margin-left: 15px;
 }
 
 .btn:hover{

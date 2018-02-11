@@ -75,6 +75,10 @@
 	color: #fff;
 }
 
+.hrms-menu-item div{
+	color: #fff;
+}
+
 .hrms-menu-item-selected{
 	color:#fff;
 	border-bottom: 3px solid #fff!important;
@@ -100,6 +104,7 @@
     height: 36px;
     font-size: 13px;
     padding: 8px;
+    color:#fff;
 }
 
 .hrms-submenu .hrms-submenu-item .icon{

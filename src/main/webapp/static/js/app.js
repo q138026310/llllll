@@ -60,8 +60,11 @@ var app={
 			}
 		}
 		return o;
+	},
+	load:function(url){
+		var param = app.getReqeustParams();
+		location.href = '/hrms/html/index/index.html?redirect='+url+'&rectmid='+param.rectmid+'&rectsmid='+param.rectsmid;
 	}
-		
 }
 
 $.fn.tip = function(message,time){

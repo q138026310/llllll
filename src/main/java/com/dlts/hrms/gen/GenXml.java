@@ -11,15 +11,17 @@ public class GenXml {
         List<Table> tables = DbUtils.getTables();
         for (Table t : tables) {
 
-            String text = initTable(t);
-
             String key = getEntityName(t.name) + "Mapper.xml";
+            String targetUrl = MybatisGenerator.baseConfigPath() + key;
 
-            FileUtils.write(new File(MybatisGenerator.baseConfigPath() + key), text);
+            String text = initTable(t, targetUrl);
+
+
+            FileUtils.write(new File(targetUrl), text, "UTF-8");
         }
     }
 
-    public static String initTable(Table table) {
+    public static String initTable(Table table, String targetUrl) {
         List<Column> columns = DbUtils.getColumns(table.name);
 
         String template = MybatisGenerator.getXmlTemplate();
@@ -32,6 +34,23 @@ public class GenXml {
         template = template.replace("${updateSet}", getUpdateSet(columns));
         template = template.replace("${where}", getWhere(columns));
 
+        String existsCode = "";
+        try {
+            File file = new File(targetUrl);
+            if (file.exists()) {
+                String targetContent = FileUtils.readFileToString(file, "UTF-8");
+
+                int start =
+                        targetContent.indexOf("<!--gen-e-1-w-0-->") + "<!--gen-e-1-w-0-->".length();
+                int end = targetContent.indexOf("<!--gen-e-1-w-1-->");
+
+                existsCode = targetContent.substring(start, end).replaceFirst("\r\n", "").trim();
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        template = template.replace("${gen}", existsCode);
         return template;
     }
 

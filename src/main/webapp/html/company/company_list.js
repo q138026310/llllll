@@ -1,8 +1,18 @@
 function init(){
-	alert($('#page').length);
-	$('#page').pagination({
+	$('.hrms-page').pagination({
 		totalData: 100,
-		showData: 5,
-		coping: true
+		showData: 10,
+		count:4,
+		mode: 'fixed',
+		coping: false,
+		keepShowPN:false,
+		callback:function(pagination){
+			console.log(pagination);
+			console.log(pagination.getCurrent());
+		}
+	});
+	
+	$('#add').click(function(){
+		app.load('company/company_add');
 	});
 }
