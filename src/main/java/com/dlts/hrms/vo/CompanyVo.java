@@ -7,6 +7,11 @@ public class CompanyVo extends SysCompany {
     private int start;
     private int limit;
 
+    /**
+     * 登陆用户所在的公司逻辑编号
+     */
+    private String loginCompanyCode;
+
     public int getStart() {
         return start;
     }
@@ -21,6 +26,14 @@ public class CompanyVo extends SysCompany {
 
     public void setLimit(int limit) {
         this.limit = limit;
+    }
+
+    public String getLoginCompanyCode() {
+        return loginCompanyCode;
+    }
+
+    public void setLoginCompanyCode(String loginCompanyCode) {
+        this.loginCompanyCode = loginCompanyCode;
     }
 
 }

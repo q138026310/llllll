@@ -21,12 +21,20 @@ public class CompanyController extends BaseController {
     @ResponseBody
     @RequestMapping("page")
     public String page(CompanyVo companyVo) {
+        companyVo.setLoginCompanyCode(this.getSysCompany().getCode());
         return Response.body(companyService.page(companyVo));
+    }
+
+    @ResponseBody
+    @RequestMapping("select")
+    public String select(CompanyVo companyVo) {
+        return Response.body(companyService.select(companyVo));
     }
 
     @ResponseBody
     @RequestMapping("save")
     public String save(CompanyVo companyVo) {
+        companyVo.setLoginCompanyCode(this.getSysCompany().getCode());
         companyVo.setCreateUserId(this.getUserId());
         return Response.body(companyService.insert(companyVo));
     }

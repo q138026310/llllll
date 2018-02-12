@@ -23,9 +23,11 @@ var app={
 				console.log("----------"+url+"---------");
 				
 				if( resp.result==1 ){
-					app.alert('登陆失效，请重新登陆',function(){
+					app.warn('登陆失效，请重新登陆',function(){
 						location.href = "/hrms";
 					});
+				}else if( resp.result==2 ){
+					app.warn(app.cont['p'+resp.message]);
 				}else{
 					callback(resp);
 				}
@@ -195,8 +197,18 @@ var app={
 	},
 	alert:function(message,callback){
 		layer.alert(message, {icon: 1},callback);
-	}
+	},
+	warn:function(message,callback){
+		layer.alert(message, {icon: 2},callback);
+	},
+	cont:{}
 }
+
+$(function(){
+	app.request('index/cont',{},function(resp){
+		app.cont = resp.data;
+	});
+});
 
 //加法函数
 function accAdd(arg1, arg2) {

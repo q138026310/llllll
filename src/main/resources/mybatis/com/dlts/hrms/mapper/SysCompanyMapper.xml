@@ -43,10 +43,12 @@
   </select>
   
   <!--gen-e-1-w-0-->
+  
   <select id="pageCount" parameterType="map" resultType="java.lang.Integer">
     select count(1) from sys_company t where 1=1 
     <include refid="pageWhere"></include>
   </select>
+  
   <select id="pageSelect" parameterType="map" resultType="com.dlts.hrms.po.CompanyPo">
     select t.*,(select name from sys_company a where a.code = t.parent_code) parentName
     from sys_company t where 1=1 
@@ -54,14 +56,29 @@
     order by t.create_time desc,id
     limit #{start},#{limit}
   </select>
+  
   <sql id="pageWhere">
+  	and t.code like concat(#{loginCompanyCode},'%') 
   	<if test="name!=null and name!=''">
     	and t.name LIKE CONCAT('%',#{name},'%')
     </if>
-    <if test="code!=null and code!=''">
-    	and t.code LIKE CONCAT('%',#{code},'%')
+    <if test="customCode!=null and customCode!=''">
+    	and t.custom_code LIKE CONCAT('%',#{customCode},'%')
     </if>
   </sql>
+  
+  <select id="authCount" parameterType="map" resultType="java.lang.Integer">
+  	select count(1) from sys_company t where t.code like concat(#{loginCompanyCode},'%') 
+  	<if test="code!=null and code!=''">
+    	and t.code = #{code}
+    </if>
+    <if test="customCode!=null and customCode!=''">
+    	and t.custom_code = #{customCode}
+    </if>
+    <if test="name!=null and name!=''">
+    	and t.name = #{name}
+    </if>
+  </select>
   
   <insert id="insertTree" parameterType="com.dlts.hrms.entity.SysCompany">
     insert into sys_company (id,name,custom_code,code,parent_code,contact,contact_phone,create_user_id,create_time,update_user_id,update_time) 

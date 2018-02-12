@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.dlts.hrms.cm.GlobalConstant;
-import com.dlts.hrms.cm.Result;
+import com.dlts.hrms.cm.LoginResult;
 import com.dlts.hrms.entity.SysUser;
+import com.dlts.hrms.mapper.SysCompanyMapper;
 import com.dlts.hrms.mapper.SysUserMapper;
 import com.dlts.hrms.service.IUserService;
 import com.dlts.hrms.service.base.BaseService;
@@ -17,10 +18,13 @@ public class UserService extends BaseService implements IUserService {
     @Autowired
     SysUserMapper sysUserMapper;
 
-    @Override
-    public Result login(SysUser user) {
+    @Autowired
+    SysCompanyMapper sysCompanyMapper;
 
-        Result bean = Result.newResult();
+    @Override
+    public LoginResult login(SysUser user) {
+
+        LoginResult bean = LoginResult.newResult();
 
         if (StringUtils.isEmpty(user.getUsername())) {
             bean.setResult(GlobalConstant.LOGIN_USERNAME_NULL.value);
@@ -41,7 +45,8 @@ public class UserService extends BaseService implements IUserService {
             } else {
                 if (StringUtils.equals(dbUser.getPassword(), user.getPassword())) {
                     dbUser.setPassword(null);
-                    bean.setData(dbUser);
+                    bean.setUser(dbUser);
+                    bean.setCompany(sysCompanyMapper.getById(dbUser.getCompanyId()));
                 } else {
                     bean.setResult(GlobalConstant.LOGIN_PASSWORD_ERROR.value);
                 }

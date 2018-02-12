@@ -18,10 +18,18 @@ function init(){
 		app.load('company/company_add');
 	});
 	
-	$('#query').click(function(){
-		var name = $('#name').val();
-		var code = $('#code').val();
-		var queryParams = {name:name,code:code};
-		app.table({id:'.grid',type:'query',queryParams:queryParams});
+	$('input').keypress(function(event){
+		if(event.keyCode ==13){
+			query();
+		}
 	});
+	
+	$('#query').click(query);
+}
+
+function query(){
+	var name = $('#name').val();
+	var customCode = $('#customCode').val();
+	var queryParams = {name:name,customCode:customCode};
+	app.table({id:'.grid',type:'query',queryParams:queryParams});
 }

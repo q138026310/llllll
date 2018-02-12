@@ -9,6 +9,7 @@ import com.dlts.hrms.cm.Gap;
 import com.dlts.hrms.cm.GlobalConstant;
 import com.dlts.hrms.cm.Page;
 import com.dlts.hrms.entity.SysCompany;
+import com.dlts.hrms.ex.ServiceException;
 import com.dlts.hrms.mapper.SysCompanyMapper;
 import com.dlts.hrms.po.CompanyPo;
 import com.dlts.hrms.service.ICompanyService;
@@ -28,7 +29,8 @@ public class CompanyService extends BaseService implements ICompanyService {
     public Page page(CompanyVo companyVo) {
         Gap map = Gap.newMap();
         map.put("name", companyVo.getName());
-        map.put("code", companyVo.getCode());
+        map.put("customCode", companyVo.getCustomCode());
+        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
         map.setPage(companyVo.getStart(), companyVo.getLimit());
 
         List<CompanyPo> list = sysCompanyMapper.pageSelect(map.map());
@@ -38,18 +40,25 @@ public class CompanyService extends BaseService implements ICompanyService {
     }
 
     @Override
+    public List<SysCompany> select(CompanyVo companyVo) {
+        return sysCompanyMapper.select(companyVo);
+    }
+
+    @Override
     public int insert(CompanyVo companyVo) {
         companyVo.setId(UuidUtils.getUuid());
         companyVo.setCreateTime(DateUtils.now());
 
         if (StringUtils.isBlank(companyVo.getParentCode())) {
-            companyVo.setParentCode(GlobalConstant.COMPANY_ROOT_CODE);
+            // 用户不输入上级公司编号则上级公司自动为登陆人所在公司
+            companyVo.setParentCode(companyVo.getLoginCompanyCode());
         } else {
-            SysCompany entity = new SysCompany();
-            entity.setCustomCode(companyVo.getParentCode());
-            entity = sysCompanyMapper.get(entity);
-            companyVo.setParentCode(entity.getCode());
+            checkParentCode(companyVo);
         }
+
+        checkNameRepeat(companyVo);
+
+        checkCodeRepeat(companyVo);
 
         return sysCompanyMapper.insertTree(companyVo);
     }
@@ -69,5 +78,52 @@ public class CompanyService extends BaseService implements ICompanyService {
     public int find(CompanyVo companyVo) {
         // TODO Auto-generated method stub
         return 0;
+    }
+
+    /**
+     * 上级编号权限检查
+     * 
+     * @param companyVo
+     */
+    private void checkParentCode(CompanyVo companyVo) {
+        Gap map = Gap.newMap();
+        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("code", companyVo.getParentCode());
+        int authCount = sysCompanyMapper.authCount(map.map());
+        if (authCount == 0) {
+            throw new ServiceException(GlobalConstant.ACCESS_DENIED.value);
+        }
+    }
+
+    /**
+     * 公司名称是否重复
+     * 
+     * @param companyVo
+     * @return
+     */
+    public void checkNameRepeat(CompanyVo companyVo) {
+        Gap map = Gap.newMap();
+        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("name", companyVo.getName());
+        int authCount = sysCompanyMapper.authCount(map.map());
+        if (authCount > 0) {
+            throw new ServiceException(GlobalConstant.COMPANY_NAME_EXISTS.value);
+        }
+    }
+
+    /**
+     * 公司编号是否重复
+     * 
+     * @param companyVo
+     * @return
+     */
+    public void checkCodeRepeat(CompanyVo companyVo) {
+        Gap map = Gap.newMap();
+        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("customCode", companyVo.getCustomCode());
+        int authCount = sysCompanyMapper.authCount(map.map());
+        if (authCount > 0) {
+            throw new ServiceException(GlobalConstant.COMPANY_CODE_EXISTS.value);
+        }
     }
 }

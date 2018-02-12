@@ -21,7 +21,14 @@
 		<div class="detail-row detail-row-100">
 			<div class="detail-col-right detail-col-30">上级公司编号：</div>
 			<div class="detail-col-left detail-col-30">
-				<input name="parentCode" type="text" placeholder="请填写上级公司的编号" class="hrms-input"/>
+				<input name="parentCustomCode" type="text" placeholder="请填写上级公司的编号，填写完成后回车确定" class="hrms-input"/>
+				<input name="parentCode" type="hidden" />
+			</div>
+		</div>
+		<div class="detail-row detail-row-100">
+			<div class="detail-col-right detail-col-30">上级公司名称：</div>
+			<div class="detail-col-left detail-col-30">
+				<input name="parentName" readonly="readonly" type="text" placeholder="根据上级公司编号自动识别" class="hrms-input hrms-input-read"/>
 			</div>
 		</div>
 		<div class="detail-row detail-row-100">

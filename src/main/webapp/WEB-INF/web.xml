@@ -45,6 +45,11 @@
         <url-pattern>*.spring</url-pattern>
     </filter-mapping>
     
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>*.spring</url-pattern>
+    </filter-mapping>
+    
     
     
     <!-- Creates the Spring Container shared by all Servlets and Filters -->

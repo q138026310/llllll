@@ -11,5 +11,7 @@ public interface SysCompanyMapper extends Mapper<SysCompany> {
 
     public List<CompanyPo> pageSelect(Map<String, Object> map);
 
+    public int authCount(Map<String, Object> map);
+
     public int insertTree(SysCompany entity);
 }

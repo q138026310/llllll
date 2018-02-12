@@ -125,11 +125,19 @@ input{
 
 .hrms-input{
 	border: 1px solid #dcdcdc;border-radius: 5px;outline:none;height: 32px;width: 100%;
-	padding-left: 10px;
+	padding-left: 10px;font-size: 13px;
 } 
 
+.hrms-input-read{
+	background-color: #dcdcdc;cursor: default;
+}
+
 .hrms-input:hover,.hrms-input:focus{
-	    border: 1px solid #5bc4d1;
+	border: 1px solid #5bc4d1;
+}
+
+.hrms-input-read:hover,.hrms-input-read:focus{
+	border: 1px solid #dcdcdc;
 }
 
 .center{
