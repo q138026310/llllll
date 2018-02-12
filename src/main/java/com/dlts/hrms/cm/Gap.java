@@ -26,9 +26,13 @@ public class Gap {
         return p;
     }
 
-    public static Gap newMap(Object obj) {
-        Gap p = newMap();
-        return p;
+    public void setPage(int start, int limit) {
+        if (start == 0) {
+            start = 1;
+        }
+
+        map.put("start", (start - 1) * limit);
+        map.put("limit", limit);
     }
 
     public Gap put(String key, Object value) {

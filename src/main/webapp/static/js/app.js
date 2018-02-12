@@ -23,8 +23,9 @@ var app={
 				console.log("----------"+url+"---------");
 				
 				if( resp.result==1 ){
-					app.alert('登陆失效，请重新登陆');
-					location.href = "/hrms";
+					app.alert('登陆失效，请重新登陆',function(){
+						location.href = "/hrms";
+					});
 				}else{
 					callback(resp);
 				}
@@ -69,11 +70,32 @@ var app={
 		
 		var id = options.id;
 		
+		if( options.type == 'query' ){
+			var queryParams = options.queryParams;
+			options = $(id).data();
+			options.queryParams = $.extend(options.queryParams,queryParams);
+			options.queryParams.start = 1;
+		}
+		
+		$(id).data(options);
+		
+		if(!options.queryParams){
+			options.queryParams = {};
+		}
+		
+		if(!options.queryParams.start){
+			options.queryParams.start = 1;
+		}
+		
+		if(!options.queryParams.limit){
+			options.queryParams.limit = 10;
+		}
+		
 		app.request(options.url,options.queryParams,function(resp){
 			
 			$(id).empty();
 			
-			var firstTr = $('<div class="grid-tr"></div>');
+			var firstTr = $('<div class="grid-tr-head"></div>');
 			
 			$.each(options.columns,function(i,column){
 				firstTr.append('<div class="grid-th">'+column.text+'</div>');
@@ -82,13 +104,25 @@ var app={
 			$(id).append(firstTr);
 			
 			$.each(resp.data.list,function(i,row){
-				var bodyTr = $('<div class="grid-tr"></div>');
+				var bodyTr = null;
+				
+				if(i%2==1){
+					bodyTr = $('<div class="grid-tr grid-tr-ligh"></div>');
+				}else{
+					bodyTr = $('<div class="grid-tr"></div>');
+				}
 
 				$.each(options.columns,function(i,column){
-					var value = row[column.name];
-					if(!value){
-						value = '';
+					var value = null;
+					if( column.name==null || column.name.length==0 ){
+						value = column.formatter();
+					}else{
+						value = row[column.name];
+						if(!value){
+							value = '';
+						}
 					}
+					
 					bodyTr.append('<div class="grid-td">'+value+'</div>');
 				});
 
@@ -96,15 +130,19 @@ var app={
 			});
 			
 			$('.hrms-page').pagination({
+				pageCount:1,
 				totalData: resp.data.count,
-				showData: 10,
+				showData: options.queryParams.limit,
 				count:4,
+				current:options.queryParams.start,
 				mode: 'fixed',
 				coping: false,
 				keepShowPN:false,
 				callback:function(pagination){
 					console.log(pagination);
 					console.log(pagination.getCurrent());
+					options.queryParams.start=pagination.getCurrent();
+					app.table(options);
 				}
 			});
 			
@@ -121,18 +159,43 @@ var app={
 		});
 		
 		return data;
+	},
+	checkType:{BLANK:1,LENGTH:2},
+	check:function(options){
+		
+		var elements = options.elements;
+		
+		for( var i=0 ; i<elements.length ; i++ ){
+			var element = elements[i];
+			var queryStr = 'input[name="'+element.name+'"]';
+			var value = $.trim($(queryStr).val());
+			
+			for( var j=0 ; j<element.checks.length ; j++ ){
+				var check = element.checks[j];
+				
+				if( check.type == app.checkType.BLANK ){
+					//blank
+					if( value == null || value.length==0 ){
+						layer.tips(check.text,queryStr);
+						return false;
+					}
+				}else if(check.type == app.checkType.LENGTH){
+					//length
+					if( check.max && value.length > check.max){
+						layer.tips('最多输入'+check.max+'个字符',queryStr);
+						return false;
+					}
+				}
+				
+				
+			}
+		}
+		
+		return true;
+	},
+	alert:function(message,callback){
+		layer.alert(message, {icon: 1},callback);
 	}
-}
-
-$.fn.tip = function(message,time){
-	if(!time)time = 3;
-	
-	$(this).tips({
-		side:2,
-        msg:message,
-        bg:'#AE81FF',
-        time:time
-    });
 }
 
 //加法函数

@@ -21,6 +21,10 @@ div{
 	font-size:13px;color:#545454;
 }
 
+a{
+	text-decoration: none;cursor: pointer;
+}
+
 ul,li {
 list-style:none; /* 将默认的列表符号去掉 */
 padding:0; /* 将默认的内边距去掉 */
@@ -41,10 +45,14 @@ input{
 	display: table; width: 100%; border-collapse: collapse;
 }   
 .grid-tr {display: table-row;}    
+.grid-tr:hover{
+	background-color: #ebf8f9;
+}
+.grid-tr-head {display: table-row;}   
 .grid-th {
 	display: table-cell;font-weight: bold;
 	text-align: center;vertical-align: middle;
-	background-color: #f7f7f7;height: 40px;font-size: 13px;
+	background-color: #f7f7f7;height: 30px;font-size: 13px;
     border-bottom: 1px solid #dcdcdc;
     border-top: 1px solid #dcdcdc;box-sizing: border-box;
 }   
@@ -53,10 +61,21 @@ input{
 }
 .grid-td {
 	display: table-cell; height: 100%;
-	text-align: center;vertical-align: middle;height: 40px;
-	font-size: 12px;
+	text-align: center;vertical-align: middle;height: 38px;
+	font-size: 12px;border-bottom: 1px solid #dcdcdc;
 }  
 
+.grid .grid-opt-a{
+	text-decoration: none;margin-left: 15px;font-size: 12px;
+}
+
+.grid .grid-a-denger{
+	color: #f17b7b;
+}
+
+.grid .grid-a-normal{
+	color: #32b5c5;
+}
 
 .hrms-page{
 	text-align: center;
@@ -135,6 +154,11 @@ input{
 	float:left;    height: 50px;
     line-height: 50px;
 }
+
+.center .detail .detail-row{
+	display: inline-block;
+}
+    
 
 .center .detail .detail-row-100{
 	width:100%;
