@@ -3,19 +3,19 @@
 <mapper namespace="com.dlts.hrms.mapper.SysRoleMapper">
 
   <sql id="Base_Column_List">
-    id,company_id,department_id,name,create_by,create_date,update_by,update_date,remarks
+    id,company_id,department_id,name,create_user_id,create_time,update_user_id,update_time,remarks
   </sql>
   
   <insert id="insert" parameterType="com.dlts.hrms.entity.SysRole">
-    insert into sys_area (id,company_id,department_id,name,create_by,create_date,update_by,update_date,remarks) values (#{id},#{company_id},#{department_id},#{name},#{create_by},#{create_date},#{update_by},#{update_date},#{remarks})
+    insert into sys_role (id,company_id,department_id,name,create_user_id,create_time,update_user_id,update_time,remarks) values (#{id},#{companyId},#{departmentId},#{name},#{createUserId},#{createTime},#{updateUserId},#{updateTime},#{remarks})
   </insert>
   
   <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysRole">
-    update sys_role <set><if test="id != null">id = #{id},</if><if test="companyId != null">company_id = #{companyId},</if><if test="departmentId != null">department_id = #{departmentId},</if><if test="name != null">name = #{name},</if><if test="createBy != null">create_by = #{createBy},</if><if test="createDate != null">create_date = #{createDate},</if><if test="updateBy != null">update_by = #{updateBy},</if><if test="updateDate != null">update_date = #{updateDate},</if><if test="remarks != null">remarks = #{remarks},</if></set> where id = #{id}
+    update sys_role <set><if test="id != null">id = #{id},</if><if test="companyId != null">company_id = #{companyId},</if><if test="departmentId != null">department_id = #{departmentId},</if><if test="name != null">name = #{name},</if><if test="createUserId != null">create_user_id = #{createUserId},</if><if test="createTime != null">create_time = #{createTime},</if><if test="updateUserId != null">update_user_id = #{updateUserId},</if><if test="updateTime != null">update_time = #{updateTime},</if><if test="remarks != null">remarks = #{remarks},</if></set> where id = #{id}
   </update>
   
   <update id="update" parameterType="com.dlts.hrms.entity.SysRole">
-    update sys_role set id=#{id},company_id=#{companyId},department_id=#{departmentId},name=#{name},create_by=#{createBy},create_date=#{createDate},update_by=#{updateBy},update_date=#{updateDate},remarks=#{remarks} where id = #{id}
+    update sys_role set id=#{id},company_id=#{companyId},department_id=#{departmentId},name=#{name},create_user_id=#{createUserId},create_time=#{createTime},update_user_id=#{updateUserId},update_time=#{updateTime},remarks=#{remarks} where id = #{id}
   </update>
   
   <delete id="delete" parameterType="java.lang.String">
@@ -23,7 +23,7 @@
   </delete>
   
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysRole">
-    delete from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if>
+    delete from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="updateUserId!=null">and update_user_id=#{updateUserId}</if><if test="updateTime!=null">and update_time=#{updateTime}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </delete>
   
   <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysRole">
@@ -31,15 +31,15 @@
   </select>
   
   <select id="get" parameterType="com.dlts.hrms.entity.SysRole" resultType="com.dlts.hrms.entity.SysRole">
-    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if>
+    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="updateUserId!=null">and update_user_id=#{updateUserId}</if><if test="updateTime!=null">and update_time=#{updateTime}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </select>
   
   <select id="select" parameterType="com.dlts.hrms.entity.SysRole" resultType="com.dlts.hrms.entity.SysRole">
-    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if>
+    select <include refid="Base_Column_List" /> from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="updateUserId!=null">and update_user_id=#{updateUserId}</if><if test="updateTime!=null">and update_time=#{updateTime}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </select>
   
   <select id="count" parameterType="com.dlts.hrms.entity.SysRole" resultType="java.lang.Integer">
-    select count(1) from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="updateBy!=null">and update_by=#{updateBy}</if><if test="updateDate!=null">and update_date=#{updateDate}</if><if test="remarks!=null">and remarks=#{remarks}</if>
+    select count(1) from sys_role  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="name!=null">and name=#{name}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="updateUserId!=null">and update_user_id=#{updateUserId}</if><if test="updateTime!=null">and update_time=#{updateTime}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </select>
   
   <!--gen-e-1-w-0-->

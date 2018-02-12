@@ -21,10 +21,10 @@ CREATE TABLE sys_user
 	login_ip varchar(20) COMMENT '最后登陆IP',
 	login_date datetime COMMENT '最后登陆时间',
 	login_flag char(1) COMMENT '是否可登录 1是0否',
-	create_by varchar(32) NULL COMMENT '创建者',
-	create_date datetime NULL COMMENT '创建时间',
-	update_by varchar(32) NULL COMMENT '更新者',
-	update_date datetime NULL COMMENT '更新时间',
+	create_user_id varchar(32) NULL COMMENT '创建者',
+	create_time datetime NULL COMMENT '创建时间',
+	update_user_id varchar(32) NULL COMMENT '更新者',
+	update_time datetime NULL COMMENT '更新时间',
 	remarks varchar(255) COMMENT '备注信息',
 	PRIMARY KEY (id)
 ) COMMENT = '用户表';
@@ -69,10 +69,10 @@ CREATE TABLE sys_role
 	company_id varchar(32) NULL COMMENT '归属公司',
 	department_id varchar(32) NULL COMMENT '归属部门',
 	name varchar(100) NULL COMMENT '角色名称',
-	create_by varchar(32) NULL COMMENT '创建者',
-	create_date datetime NULL COMMENT '创建时间',
-	update_by varchar(32) NULL COMMENT '更新者',
-	update_date datetime NULL COMMENT '更新时间',
+	create_user_id varchar(32) NULL COMMENT '创建者',
+	create_time datetime NULL COMMENT '创建时间',
+	update_user_id varchar(32) NULL COMMENT '更新者',
+	update_time datetime NULL COMMENT '更新时间',
 	remarks varchar(255) COMMENT '备注信息',
 	PRIMARY KEY (id)
 ) COMMENT = '角色表';
@@ -121,11 +121,19 @@ CREATE TABLE sys_company
 (
   id varchar(32) NULL COMMENT '编号',
   name varchar(50) NULL COMMENT '名称',
+  code varchar(50) NULL COMMENT '编号',
+  parent_code varchar(50) NULL COMMENT '上级编号',
+  contact varchar(10) NULL COMMENT '联系人',
+  contact_phone varchar(50) NULL COMMENT '联系人电话',
+  create_user_id varchar(32) NULL COMMENT '创建者',
+	create_time datetime NULL COMMENT '创建时间',
+	update_user_id varchar(32) NULL COMMENT '更新者',
+	update_time datetime NULL COMMENT '更新时间',
   PRIMARY KEY (id)
 )COMMENT = '公司表';
 
 
-insert into sys_company(id,name) values(1,'大浪淘沙');
+insert into sys_company(id,name,code,parent_code) values(1,'大浪淘沙','0367','-1');
 
 
 DROP TABLE IF EXISTS sys_department;
@@ -139,10 +147,10 @@ CREATE TABLE sys_department
 	phone varchar(200) COMMENT '电话',
 	fax varchar(200) COMMENT '传真',
 	email varchar(200) COMMENT '邮箱',
-	create_by varchar(32) NULL COMMENT '创建者',
-	create_date datetime NULL COMMENT '创建时间',
-	update_by varchar(32) NULL COMMENT '更新者',
-	update_date datetime NULL COMMENT '更新时间',
+	create_user_id varchar(32) NULL COMMENT '创建者',
+	create_time datetime NULL COMMENT '创建时间',
+	update_user_id varchar(32) NULL COMMENT '更新者',
+	update_time datetime NULL COMMENT '更新时间',
 	remarks varchar(255) COMMENT '备注信息',
 	PRIMARY KEY (id)
 ) COMMENT = '部门表';
@@ -171,8 +179,8 @@ CREATE TABLE sys_log
 	id varchar(32) NULL COMMENT '编号',
 	type char(1) DEFAULT '1' COMMENT '日志类型',
 	title varchar(255) DEFAULT '' COMMENT '日志标题',
-	create_by varchar(32) COMMENT '创建者',
-	create_date datetime COMMENT '创建时间',
+	create_user_id varchar(32) COMMENT '创建者',
+	create_time datetime COMMENT '创建时间',
 	remote_addr varchar(255) COMMENT '操作IP地址',
 	user_agent varchar(255) COMMENT '用户代理',
 	request_uri varchar(255) COMMENT '请求URI',

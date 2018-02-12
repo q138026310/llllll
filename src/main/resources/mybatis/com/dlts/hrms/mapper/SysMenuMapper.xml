@@ -7,7 +7,7 @@
   </sql>
   
   <insert id="insert" parameterType="com.dlts.hrms.entity.SysMenu">
-    insert into sys_area (id,parent_id,name,sort,href,icon) values (#{id},#{parent_id},#{name},#{sort},#{href},#{icon})
+    insert into sys_menu (id,parent_id,name,sort,href,icon) values (#{id},#{parentId},#{name},#{sort},#{href},#{icon})
   </insert>
   
   <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysMenu">

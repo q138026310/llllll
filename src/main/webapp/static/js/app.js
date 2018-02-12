@@ -110,6 +110,17 @@ var app={
 			
 		});
 		
+	},
+	serializeElement(){
+		var topEle = $('.right .in .center');
+		
+		var data = {};
+		
+		topEle.find('input').each(function(){
+			data[this.name] = $.trim($(this).val());
+		});
+		
+		return data;
 	}
 }
 

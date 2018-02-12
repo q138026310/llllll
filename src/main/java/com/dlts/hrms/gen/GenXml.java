@@ -100,7 +100,7 @@ public class GenXml {
             if (i > 0) {
                 baseColumn += ",";
             }
-            baseColumn += "#{" + columns.get(i).name + "}";
+            baseColumn += "#{" + getPropName(columns.get(i).name) + "}";
         }
         return baseColumn;
     }

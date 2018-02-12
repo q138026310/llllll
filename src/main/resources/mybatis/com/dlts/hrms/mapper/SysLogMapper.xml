@@ -3,19 +3,19 @@
 <mapper namespace="com.dlts.hrms.mapper.SysLogMapper">
 
   <sql id="Base_Column_List">
-    id,type,title,create_by,create_date,remote_addr,user_agent,request_uri,method,params,exception
+    id,type,title,create_user_id,create_time,remote_addr,user_agent,request_uri,method,params,exception
   </sql>
   
   <insert id="insert" parameterType="com.dlts.hrms.entity.SysLog">
-    insert into sys_area (id,type,title,create_by,create_date,remote_addr,user_agent,request_uri,method,params,exception) values (#{id},#{type},#{title},#{create_by},#{create_date},#{remote_addr},#{user_agent},#{request_uri},#{method},#{params},#{exception})
+    insert into sys_log (id,type,title,create_user_id,create_time,remote_addr,user_agent,request_uri,method,params,exception) values (#{id},#{type},#{title},#{createUserId},#{createTime},#{remoteAddr},#{userAgent},#{requestUri},#{method},#{params},#{exception})
   </insert>
   
   <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysLog">
-    update sys_log <set><if test="id != null">id = #{id},</if><if test="type != null">type = #{type},</if><if test="title != null">title = #{title},</if><if test="createBy != null">create_by = #{createBy},</if><if test="createDate != null">create_date = #{createDate},</if><if test="remoteAddr != null">remote_addr = #{remoteAddr},</if><if test="userAgent != null">user_agent = #{userAgent},</if><if test="requestUri != null">request_uri = #{requestUri},</if><if test="method != null">method = #{method},</if><if test="params != null">params = #{params},</if><if test="exception != null">exception = #{exception},</if></set> where id = #{id}
+    update sys_log <set><if test="id != null">id = #{id},</if><if test="type != null">type = #{type},</if><if test="title != null">title = #{title},</if><if test="createUserId != null">create_user_id = #{createUserId},</if><if test="createTime != null">create_time = #{createTime},</if><if test="remoteAddr != null">remote_addr = #{remoteAddr},</if><if test="userAgent != null">user_agent = #{userAgent},</if><if test="requestUri != null">request_uri = #{requestUri},</if><if test="method != null">method = #{method},</if><if test="params != null">params = #{params},</if><if test="exception != null">exception = #{exception},</if></set> where id = #{id}
   </update>
   
   <update id="update" parameterType="com.dlts.hrms.entity.SysLog">
-    update sys_log set id=#{id},type=#{type},title=#{title},create_by=#{createBy},create_date=#{createDate},remote_addr=#{remoteAddr},user_agent=#{userAgent},request_uri=#{requestUri},method=#{method},params=#{params},exception=#{exception} where id = #{id}
+    update sys_log set id=#{id},type=#{type},title=#{title},create_user_id=#{createUserId},create_time=#{createTime},remote_addr=#{remoteAddr},user_agent=#{userAgent},request_uri=#{requestUri},method=#{method},params=#{params},exception=#{exception} where id = #{id}
   </update>
   
   <delete id="delete" parameterType="java.lang.String">
@@ -23,7 +23,7 @@
   </delete>
   
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysLog">
-    delete from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
+    delete from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
   </delete>
   
   <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.SysLog">
@@ -31,15 +31,15 @@
   </select>
   
   <select id="get" parameterType="com.dlts.hrms.entity.SysLog" resultType="com.dlts.hrms.entity.SysLog">
-    select <include refid="Base_Column_List" /> from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
+    select <include refid="Base_Column_List" /> from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
   </select>
   
   <select id="select" parameterType="com.dlts.hrms.entity.SysLog" resultType="com.dlts.hrms.entity.SysLog">
-    select <include refid="Base_Column_List" /> from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
+    select <include refid="Base_Column_List" /> from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
   </select>
   
   <select id="count" parameterType="com.dlts.hrms.entity.SysLog" resultType="java.lang.Integer">
-    select count(1) from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createBy!=null">and create_by=#{createBy}</if><if test="createDate!=null">and create_date=#{createDate}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
+    select count(1) from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
   </select>
   
   <!--gen-e-1-w-0-->

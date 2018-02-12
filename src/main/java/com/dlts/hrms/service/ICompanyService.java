@@ -7,4 +7,12 @@ public interface ICompanyService {
 
     public Page page(CompanyVo companyVo);
 
+    public int insert(CompanyVo companyVo);
+
+    public int update(CompanyVo companyVo);
+
+    public int delete(CompanyVo companyVo);
+
+    public int find(CompanyVo companyVo);
+
 }

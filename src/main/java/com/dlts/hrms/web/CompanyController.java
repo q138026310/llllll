@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.dlts.hrms.cm.Response;
 import com.dlts.hrms.service.ICompanyService;
 import com.dlts.hrms.vo.CompanyVo;
+import com.dlts.hrms.web.base.BaseController;
 
 @Controller
 @RequestMapping("company")
-public class CompanyController {
+public class CompanyController extends BaseController {
 
     @Resource(name = "companyService")
     ICompanyService companyService;
@@ -22,4 +23,12 @@ public class CompanyController {
     public String page(CompanyVo companyVo) {
         return Response.body(companyService.page(companyVo));
     }
+
+    @ResponseBody
+    @RequestMapping("save")
+    public String save(CompanyVo companyVo) {
+        companyVo.setCreateUserId(this.getUserId());
+        return Response.body(companyService.insert(companyVo));
+    }
+
 }

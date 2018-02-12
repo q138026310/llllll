@@ -7,7 +7,7 @@
   </sql>
   
   <insert id="insert" parameterType="com.dlts.hrms.entity.SysDict">
-    insert into sys_area (id,value,name,code,parent_id,remarks) values (#{id},#{value},#{name},#{code},#{parent_id},#{remarks})
+    insert into sys_dict (id,value,name,code,parent_id,remarks) values (#{id},#{value},#{name},#{code},#{parentId},#{remarks})
   </insert>
   
   <update id="updateSelective" parameterType="com.dlts.hrms.entity.SysDict">

@@ -7,7 +7,7 @@
   </sql>
   
   <insert id="insert" parameterType="com.dlts.hrms.entity.${entityName}">
-    insert into sys_area (${Base_Column}) values (${insertValues})
+    insert into ${tableName} (${Base_Column}) values (${insertValues})
   </insert>
   
   <update id="updateSelective" parameterType="com.dlts.hrms.entity.${entityName}">

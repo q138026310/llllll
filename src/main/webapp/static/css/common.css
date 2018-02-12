@@ -127,6 +127,43 @@ input{
 	margin:0px auto;width: 100%;padding: 10px;border-bottom:1px solid #e6e6e6;display: inline-block;
 }
 
+.center .detail{
+	text-align: center;
+}
+
+.center .detail .detail-row > div{
+	float:left;    height: 50px;
+    line-height: 50px;
+}
+
+.center .detail .detail-row-100{
+	width:100%;
+}
+
+.detail-col-30{
+	width: 30%;
+}
+
+.detail-col-left{
+	text-align: left;
+}
+.detail-col-left-pad{
+	text-align: left;
+	padding-left: 15px;
+}
+
+.detail-col-center{
+	text-align: center;
+}
+
+.detail-col-right{
+	text-align: right;
+}
+
+.detail-col4{
+	width: 40%;
+}
+
 .center .title > div{
 	float: left;
 }
