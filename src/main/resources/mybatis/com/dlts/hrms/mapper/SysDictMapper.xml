@@ -22,6 +22,10 @@
     delete from sys_dict where id = #{id}
   </delete>
   
+  <update id="deleteLogic" parameterType="java.lang.String">
+    update sys_dict set delete_flag = 0 where id = #{id}
+  </update>
+  
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysDict">
     delete from sys_dict  where 1=1 <if test="id!=null">and id=#{id}</if><if test="value!=null">and value=#{value}</if><if test="name!=null">and name=#{name}</if><if test="code!=null">and code=#{code}</if><if test="parentId!=null">and parent_id=#{parentId}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </delete>

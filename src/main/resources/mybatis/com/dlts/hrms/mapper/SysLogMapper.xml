@@ -22,6 +22,10 @@
     delete from sys_log where id = #{id}
   </delete>
   
+  <update id="deleteLogic" parameterType="java.lang.String">
+    update sys_log set delete_flag = 0 where id = #{id}
+  </update>
+  
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysLog">
     delete from sys_log  where 1=1 <if test="id!=null">and id=#{id}</if><if test="type!=null">and type=#{type}</if><if test="title!=null">and title=#{title}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="remoteAddr!=null">and remote_addr=#{remoteAddr}</if><if test="userAgent!=null">and user_agent=#{userAgent}</if><if test="requestUri!=null">and request_uri=#{requestUri}</if><if test="method!=null">and method=#{method}</if><if test="params!=null">and params=#{params}</if><if test="exception!=null">and exception=#{exception}</if>
   </delete>

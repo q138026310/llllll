@@ -22,6 +22,10 @@
     delete from sys_user where id = #{id}
   </delete>
   
+  <update id="deleteLogic" parameterType="java.lang.String">
+    update sys_user set delete_flag = 0 where id = #{id}
+  </update>
+  
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysUser">
     delete from sys_user  where 1=1 <if test="id!=null">and id=#{id}</if><if test="companyId!=null">and company_id=#{companyId}</if><if test="departmentId!=null">and department_id=#{departmentId}</if><if test="username!=null">and username=#{username}</if><if test="password!=null">and password=#{password}</if><if test="code!=null">and code=#{code}</if><if test="name!=null">and name=#{name}</if><if test="email!=null">and email=#{email}</if><if test="phone!=null">and phone=#{phone}</if><if test="mobile!=null">and mobile=#{mobile}</if><if test="userType!=null">and user_type=#{userType}</if><if test="photo!=null">and photo=#{photo}</if><if test="loginIp!=null">and login_ip=#{loginIp}</if><if test="loginDate!=null">and login_date=#{loginDate}</if><if test="loginFlag!=null">and login_flag=#{loginFlag}</if><if test="createUserId!=null">and create_user_id=#{createUserId}</if><if test="createTime!=null">and create_time=#{createTime}</if><if test="updateUserId!=null">and update_user_id=#{updateUserId}</if><if test="updateTime!=null">and update_time=#{updateTime}</if><if test="remarks!=null">and remarks=#{remarks}</if>
   </delete>

@@ -27,7 +27,11 @@ var app={
 						location.href = "/hrms";
 					});
 				}else if( resp.result==2 ){
-					app.warn(app.cont['p'+resp.message]);
+					if(app.cont['p'+resp.message]){
+						app.warn(app.cont['p'+resp.message]);
+					}else{
+						app.warn(resp.message);
+					}
 				}else{
 					callback(resp);
 				}
@@ -64,9 +68,14 @@ var app={
 		}
 		return o;
 	},
-	load:function(url){
+	load:function(url,params){
 		var param = app.getReqeustParams();
-		location.href = '/hrms/html/index/index.html?redirect='+url+'&rectmid='+param.rectmid+'&rectsmid='+param.rectsmid;
+		
+		if(!params){
+			params = '';
+		}
+		
+		location.href = '/hrms/html/index/index.html?redirect='+url+'&rectmid='+param.rectmid+'&rectsmid='+param.rectsmid+params;
 	},
 	table:function(options){
 		
@@ -117,7 +126,7 @@ var app={
 				$.each(options.columns,function(i,column){
 					var value = null;
 					if( column.name==null || column.name.length==0 ){
-						value = column.formatter();
+						value = column.formatter(i,row);
 					}else{
 						value = row[column.name];
 						if(!value){

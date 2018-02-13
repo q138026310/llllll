@@ -23,6 +23,4 @@ public interface ICompanyService {
 
     public int delete(CompanyVo companyVo);
 
-    public int find(CompanyVo companyVo);
-
 }

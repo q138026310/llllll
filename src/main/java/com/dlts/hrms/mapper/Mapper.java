@@ -56,7 +56,15 @@ public interface Mapper<A> {
      * @param id
      * @return
      */
-    public int delete(A id);
+    public int delete(String id);
+
+    /**
+     * 根据表id逻辑删除
+     * 
+     * @param id
+     * @return
+     */
+    public int deleteLogic(String id);
 
     /**
      * 添加

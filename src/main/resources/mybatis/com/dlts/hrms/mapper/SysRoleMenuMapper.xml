@@ -22,6 +22,10 @@
     delete from sys_role_menu where id = #{id}
   </delete>
   
+  <update id="deleteLogic" parameterType="java.lang.String">
+    update sys_role_menu set delete_flag = 0 where id = #{id}
+  </update>
+  
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.SysRoleMenu">
     delete from sys_role_menu  where 1=1 <if test="roleId!=null">and role_id=#{roleId}</if><if test="menuId!=null">and menu_id=#{menuId}</if>
   </delete>

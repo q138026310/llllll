@@ -152,6 +152,7 @@ CREATE TABLE sys_company
 	create_time datetime NULL COMMENT '创建时间',
 	update_user_id varchar(32) NULL COMMENT '更新者',
 	update_time datetime NULL COMMENT '更新时间',
+  delete_flag int(1) null comment '删除标记0删除1正常',
   PRIMARY KEY (id)
 )COMMENT = '公司表';
 
@@ -219,23 +220,3 @@ CREATE TABLE sys_log
 
 
 -- test DATA
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(21,'大浪淘沙1','1367','-1','张三1','13100112230',str_to_date('2014-04-22 15:47:00','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(3,'大浪淘沙2','2367','-1','张三2','13100112231',str_to_date('2014-04-22 15:47:01','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(4,'大浪淘沙3','3367','2367','张三3','13100112232',str_to_date('2014-04-22 15:47:02','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(5,'大浪淘沙4','4367','-1','张三4','13100112233',str_to_date('2014-04-22 15:47:03','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(6,'大浪淘沙5','5367','-1','张三5','13100112234',str_to_date('2014-04-22 15:47:04','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(7,'大浪淘沙6','6367','-1','张三6','13100112235',str_to_date('2014-04-22 15:47:05','%Y-%m-%d %H:%i:%s'));
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(8,'大浪淘沙7','7367','7367','张三7','13100112236',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(9,'大浪淘沙8','8367','-1','张三8','13100112237',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(10,'大浪淘沙9','9367','-1','张三9','13100112238',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(11,'大浪淘沙10','10367','-1','张三10','13100112239',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(12,'大浪淘沙11','110367','-1','张三11','131001122310',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(13,'大浪淘沙12','120367','-1','张三12','131001122311',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(14,'大浪淘沙13','130367','-1','张三13','131001122312',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(15,'大浪淘沙14','140367','-1','张三14','131001122313',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(16,'大浪淘沙15','150367','120367','张三15','131001122314',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(17,'大浪淘沙16','160367','-1','张三16','131001122315',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(18,'大浪淘沙17','170367','-1','张三17','131001122316',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(19,'大浪淘沙18','180367','170367','张三18','131001122317',SYSDATE());
-insert into sys_company(id,name,code,parent_code,contact,contact_phone,create_time) values(20,'大浪淘沙19','190367','-1','张三19','131001122318',SYSDATE());
-

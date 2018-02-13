@@ -9,8 +9,8 @@ function init(){
 		         {text:'上级公司',name:'parentName'},
 		         {text:'联系人',name:'contact'},
 		         {text:'联系电话',name:'contactPhone'},
-		         {text:'操作',name:'',formatter:function(){
-		        	 return '<a class="grid-opt-a grid-a-normal">编辑</a><a class="grid-opt-a grid-a-denger">删除</a>';
+		         {text:'操作',name:'',formatter:function(i,row){
+		        	 return '<a class="grid-opt-a grid-a-normal" onclick="edit(\''+row.id+'\')">编辑</a><a class="grid-opt-a grid-a-denger">删除</a>';
 		         }}]
 	});
 	
@@ -25,6 +25,10 @@ function init(){
 	});
 	
 	$('#query').click(query);
+}
+
+function edit(id){
+	app.load('company/company_add','&id='+id);
 }
 
 function query(){

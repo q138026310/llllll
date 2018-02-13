@@ -2,7 +2,6 @@ package com.dlts.hrms.cm;
 
 public class GlobalConstant {
 
-    public static int SUCCESS = 0;
 
     public static Gnum LOGIN_USERNAME_NULL = Gnum.newGnum(100000, "用户名为空");
     public static Gnum LOGIN_PASSWORD_NULL = Gnum.newGnum(100001, "密码为空");
@@ -13,6 +12,9 @@ public class GlobalConstant {
     public static Gnum COMPANY_CODE_EXISTS = Gnum.newGnum(100006, "公司编号重复");
 
     public static Gnum ACCESS_DENIED = Gnum.newGnum(100004, "access denied");
+
+    public static int SUCCESS = 0;
+    public static String COMPANY_ROOT_CODE = "10";
 
     public static class Encode {
         public static String UTF_8 = "UTF-8";

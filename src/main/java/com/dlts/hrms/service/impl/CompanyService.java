@@ -50,8 +50,12 @@ public class CompanyService extends BaseService implements ICompanyService {
         companyVo.setCreateTime(DateUtils.now());
 
         if (StringUtils.isBlank(companyVo.getParentCode())) {
-            // 用户不输入上级公司编号则上级公司自动为登陆人所在公司
-            companyVo.setParentCode(companyVo.getLoginCompanyCode());
+            // 用户不输入上级公司编号则上级公司自动为登陆人所在公司的顶级公司
+            if (companyVo.getLoginCompanyCode().equals(GlobalConstant.COMPANY_ROOT_CODE)) {
+                companyVo.setParentCode(companyVo.getLoginCompanyCode());
+            } else {
+                companyVo.setParentCode(companyVo.getLoginCompanyCode().substring(0, 5));
+            }
         } else {
             checkParentCode(companyVo);
         }
@@ -65,19 +69,12 @@ public class CompanyService extends BaseService implements ICompanyService {
 
     @Override
     public int update(CompanyVo companyVo) {
-        return 0;
+        return sysCompanyMapper.update(companyVo);
     }
 
     @Override
     public int delete(CompanyVo companyVo) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
-    @Override
-    public int find(CompanyVo companyVo) {
-        // TODO Auto-generated method stub
-        return 0;
+        return sysCompanyMapper.deleteLogic(companyVo.getId());
     }
 
     /**
@@ -126,4 +123,5 @@ public class CompanyService extends BaseService implements ICompanyService {
             throw new ServiceException(GlobalConstant.COMPANY_CODE_EXISTS.value);
         }
     }
+
 }
