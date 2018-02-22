@@ -32,11 +32,25 @@ public class CompanyController extends BaseController {
     }
 
     @ResponseBody
+    @RequestMapping("get")
+    public String get(CompanyVo companyVo) {
+        return Response.body(companyService.get(companyVo));
+    }
+
+    @ResponseBody
     @RequestMapping("save")
     public String save(CompanyVo companyVo) {
         companyVo.setLoginCompanyCode(this.getSysCompany().getCode());
         companyVo.setCreateUserId(this.getUserId());
         return Response.body(companyService.insert(companyVo));
+    }
+
+    @ResponseBody
+    @RequestMapping("modify")
+    public String modify(CompanyVo companyVo) {
+        companyVo.setLoginCompanyCode(this.getSysCompany().getCode());
+        companyVo.setUpdateUserId(this.getUserId());
+        return Response.body(companyService.update(companyVo));
     }
 
 }

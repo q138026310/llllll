@@ -11,7 +11,8 @@ public class GlobalConstant {
     public static Gnum COMPANY_NAME_EXISTS = Gnum.newGnum(100005, "公司名称重复");
     public static Gnum COMPANY_CODE_EXISTS = Gnum.newGnum(100006, "公司编号重复");
 
-    public static Gnum ACCESS_DENIED = Gnum.newGnum(100004, "access denied");
+    public static Gnum ACCESS_DENIED = Gnum.newGnum(200001, "access denied");
+    public static Gnum PARAM_ERROR = Gnum.newGnum(200002, "access denied");
 
     public static int SUCCESS = 0;
     public static String COMPANY_ROOT_CODE = "10";

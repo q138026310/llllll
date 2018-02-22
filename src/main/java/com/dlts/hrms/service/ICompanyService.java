@@ -17,6 +17,10 @@ public interface ICompanyService {
 
     public List<SysCompany> select(CompanyVo companyVo);
 
+    public SysCompany getById(String companyId);
+
+    public SysCompany get(CompanyVo companyVo);
+
     public int insert(CompanyVo companyVo);
 
     public int update(CompanyVo companyVo);

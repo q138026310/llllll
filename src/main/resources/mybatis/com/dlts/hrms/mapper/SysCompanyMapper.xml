@@ -81,6 +81,9 @@
     <if test="name!=null and name!=''">
     	and t.name = #{name}
     </if>
+    <if test="id!=null and id!=''">
+    	and t.id != #{id}
+    </if>
   </select>
   
   <insert id="insertTree" parameterType="com.dlts.hrms.entity.SysCompany">

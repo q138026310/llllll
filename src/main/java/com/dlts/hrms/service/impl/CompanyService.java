@@ -45,36 +45,71 @@ public class CompanyService extends BaseService implements ICompanyService {
     }
 
     @Override
-    public int insert(CompanyVo companyVo) {
-        companyVo.setId(UuidUtils.getUuid());
-        companyVo.setCreateTime(DateUtils.now());
+    public SysCompany getById(String companyId) {
+        return sysCompanyMapper.getById(companyId);
+    }
 
-        if (StringUtils.isBlank(companyVo.getParentCode())) {
-            // 用户不输入上级公司编号则上级公司自动为登陆人所在公司的顶级公司
-            if (companyVo.getLoginCompanyCode().equals(GlobalConstant.COMPANY_ROOT_CODE)) {
-                companyVo.setParentCode(companyVo.getLoginCompanyCode());
-            } else {
-                companyVo.setParentCode(companyVo.getLoginCompanyCode().substring(0, 5));
-            }
-        } else {
-            checkParentCode(companyVo);
+    @Override
+    public SysCompany get(CompanyVo companyVo) {
+        return sysCompanyMapper.get(companyVo);
+    }
+
+    @Override
+    public int insert(CompanyVo companyVo) {
+        if (StringUtils.isNotBlank(companyVo.getId())) {
+            throw new ServiceException(GlobalConstant.PARAM_ERROR.value);
         }
 
-        checkNameRepeat(companyVo);
+        check(companyVo);
 
-        checkCodeRepeat(companyVo);
-
+        companyVo.setId(UuidUtils.getUuid());
+        companyVo.setCreateTime(DateUtils.now());
         return sysCompanyMapper.insertTree(companyVo);
     }
 
     @Override
     public int update(CompanyVo companyVo) {
-        return sysCompanyMapper.update(companyVo);
+        if (StringUtils.isBlank(companyVo.getId())) {
+            throw new ServiceException(GlobalConstant.PARAM_ERROR.value);
+        }
+
+        check(companyVo);
+
+        companyVo.setUpdateTime(DateUtils.now());
+
+        return sysCompanyMapper.updateSelective(companyVo);
     }
 
     @Override
     public int delete(CompanyVo companyVo) {
         return sysCompanyMapper.deleteLogic(companyVo.getId());
+    }
+
+    private void check(CompanyVo companyVo) {
+        if (StringUtils.isBlank(companyVo.getParentCode())) {
+            companyVo.setParentCode(getParentCode(companyVo));
+        } else {
+            checkParentCode(companyVo);
+        }
+
+        checkNameRepeat(companyVo);
+        checkCodeRepeat(companyVo);
+    }
+
+    /**
+     * 获取上级编号
+     * 
+     * 用户不输入上级公司编号则上级公司自动为登陆人所在公司的顶级公司
+     * 
+     * @param companyVo
+     * @return
+     */
+    private String getParentCode(CompanyVo companyVo) {
+        if (companyVo.getLoginCompanyCode().equals(GlobalConstant.COMPANY_ROOT_CODE)) {
+            return companyVo.getLoginCompanyCode();
+        } else {
+            return companyVo.getLoginCompanyCode().substring(0, 5);
+        }
     }
 
     /**
@@ -98,10 +133,11 @@ public class CompanyService extends BaseService implements ICompanyService {
      * @param companyVo
      * @return
      */
-    public void checkNameRepeat(CompanyVo companyVo) {
+    private void checkNameRepeat(CompanyVo companyVo) {
         Gap map = Gap.newMap();
         map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
         map.put("name", companyVo.getName());
+        map.put("id", companyVo.getId());
         int authCount = sysCompanyMapper.authCount(map.map());
         if (authCount > 0) {
             throw new ServiceException(GlobalConstant.COMPANY_NAME_EXISTS.value);
@@ -114,10 +150,11 @@ public class CompanyService extends BaseService implements ICompanyService {
      * @param companyVo
      * @return
      */
-    public void checkCodeRepeat(CompanyVo companyVo) {
+    private void checkCodeRepeat(CompanyVo companyVo) {
         Gap map = Gap.newMap();
         map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
         map.put("customCode", companyVo.getCustomCode());
+        map.put("id", companyVo.getId());
         int authCount = sysCompanyMapper.authCount(map.map());
         if (authCount > 0) {
             throw new ServiceException(GlobalConstant.COMPANY_CODE_EXISTS.value);

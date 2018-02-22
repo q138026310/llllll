@@ -210,6 +210,9 @@ var app={
 	warn:function(message,callback){
 		layer.alert(message, {icon: 2},callback);
 	},
+	isBlank:function(value){
+		return (value==null || $.trim(value).length==0);
+	},
 	cont:{}
 }
 
