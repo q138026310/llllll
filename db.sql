@@ -6,7 +6,7 @@ SET SESSION FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS sys_user;
 CREATE TABLE sys_user
 (
-	id varchar(32) NULL COMMENT '编号',
+	id varchar(32) NOT NULL COMMENT '编号',
 	company_id varchar(32) NULL COMMENT '归属公司',
 	department_id varchar(32) NULL COMMENT '归属部门',
 	username varchar(30) NULL COMMENT '登录名',
@@ -36,7 +36,7 @@ insert into sys_user(id,company_id,username,password,login_flag) values(2,100,'w
 DROP TABLE IF EXISTS sys_menu;
 CREATE TABLE sys_menu
 (
-	id varchar(32) NULL COMMENT '编号',
+	id varchar(32) NOT NULL COMMENT '编号',
 	parent_id varchar(32) NULL COMMENT '父级编号',
 	name varchar(20) NULL COMMENT '名称',
 	sort int NULL COMMENT '排序',
@@ -66,7 +66,7 @@ insert into sys_menu(id,parent_id,name,sort,href,icon) values(703,7,'用户管�
 DROP TABLE IF EXISTS sys_role;
 CREATE TABLE sys_role
 (
-	id varchar(32) NULL COMMENT '编号',
+	id varchar(32) NOT  NULL COMMENT '编号',
 	company_id varchar(32) NULL COMMENT '归属公司',
 	department_id varchar(32) NULL COMMENT '归属部门',
 	name varchar(100) NULL COMMENT '角色名称',
@@ -84,8 +84,8 @@ insert into sys_role(id,company_id,name) values(2,100,'管理员');
 DROP TABLE IF EXISTS sys_user_role;
 CREATE TABLE sys_user_role
 (
-	user_id varchar(32) NULL COMMENT '用户编号',
-	role_id varchar(32) NULL COMMENT '角色编号',
+	user_id varchar(32) NOT NULL COMMENT '用户编号',
+	role_id varchar(32) NOT NULL COMMENT '角色编号',
 	PRIMARY KEY (user_id, role_id)
 ) COMMENT = '用户-角色';
 
@@ -96,8 +96,8 @@ insert into sys_user_role(user_id,role_id) values(2,2);
 DROP TABLE IF EXISTS sys_role_menu;
 CREATE TABLE sys_role_menu
 (
-	role_id varchar(32) NULL COMMENT '角色编号',
-	menu_id varchar(32) NULL COMMENT '菜单编号',
+	role_id varchar(32) NOT NULL COMMENT '角色编号',
+	menu_id varchar(32) NOT NULL COMMENT '菜单编号',
 	PRIMARY KEY (role_id, menu_id)
 ) COMMENT = '角色-菜单';
 
@@ -141,7 +141,7 @@ insert into sys_role_menu(role_id,menu_id) values(2,703);
 DROP TABLE IF EXISTS sys_company;
 CREATE TABLE sys_company
 (
-  id varchar(32) NULL COMMENT '编号',
+  id varchar(32) NOT NULL COMMENT '编号',
   name varchar(50) NULL COMMENT '名称',
   custom_code varchar(50) NULL COMMENT '编号',
   code varchar(50) NULL COMMENT '逻辑编号',
@@ -149,9 +149,9 @@ CREATE TABLE sys_company
   contact varchar(10) NULL COMMENT '联系人',
   contact_phone varchar(50) NULL COMMENT '联系人电话',
   create_user_id varchar(32) NULL COMMENT '创建者',
-	create_time datetime NULL COMMENT '创建时间',
-	update_user_id varchar(32) NULL COMMENT '更新者',
-	update_time datetime NULL COMMENT '更新时间',
+  create_time datetime NULL COMMENT '创建时间',
+  update_user_id varchar(32) NULL COMMENT '更新者',
+  update_time datetime NULL COMMENT '更新时间',
   delete_flag int(1) null comment '删除标记0删除1正常',
   PRIMARY KEY (id)
 )COMMENT = '公司表';
@@ -164,8 +164,8 @@ insert into sys_company(id,name,custom_code,code,parent_code) values(100,'小浪
 DROP TABLE IF EXISTS sys_department;
 CREATE TABLE sys_department
 (
-	id varchar(32) NULL COMMENT '编号',
-  company_id varchar(32) NULL COMMENT '归属公司',
+	id varchar(32) NOT NULL COMMENT '编号',
+    company_id varchar(32) NULL COMMENT '归属公司',
 	parent_id varchar(32) NULL COMMENT '父级编号',
 	name varchar(100) NULL COMMENT '名称',
 	master varchar(100) COMMENT '负责人',
@@ -186,7 +186,7 @@ CREATE TABLE sys_department
 DROP TABLE IF EXISTS sys_dict;
 CREATE TABLE sys_dict
 (
-	id varchar(32) NULL COMMENT '编号',
+	id varchar(32) NOT NULL COMMENT '编号',
 	value varchar(20) NULL COMMENT '数据值',
 	name varchar(20) NULL COMMENT '数据名',
 	code varchar(20) NULL COMMENT '数据编号',
@@ -201,7 +201,7 @@ insert into sys_dict(id,value,name,code,parent_id) values(1,1,'是否启用log,0
 DROP TABLE IF EXISTS sys_log;
 CREATE TABLE sys_log
 (
-	id varchar(32) NULL COMMENT '编号',
+	id varchar(32) NOT NULL COMMENT '编号',
 	type char(1) DEFAULT '1' COMMENT '日志类型',
 	title varchar(255) DEFAULT '' COMMENT '日志标题',
 	create_user_id varchar(32) COMMENT '创建者',
