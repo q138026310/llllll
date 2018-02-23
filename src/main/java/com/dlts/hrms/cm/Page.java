@@ -2,13 +2,13 @@ package com.dlts.hrms.cm;
 
 import java.util.List;
 
-public class Page {
+public class Page<A> {
 
     private int count;
-    private List<?> list;
+    private List<A> list;
 
-    public static Page newPage(int count, List<?> list) {
-        Page p = new Page();
+    public static <T> Page<T> newPage(int count, List<T> list) {
+        Page<T> p = new Page<T>();
         p.count = count;
         p.list = list;
         return p;
@@ -22,11 +22,11 @@ public class Page {
         this.count = count;
     }
 
-    public List<?> getList() {
+    public List<A> getList() {
         return list;
     }
 
-    public void setList(List<?> list) {
+    public void setList(List<A> list) {
         this.list = list;
     }
 

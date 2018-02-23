@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.dlts.hrms.cm.Page;
 import com.dlts.hrms.entity.SysCompany;
+import com.dlts.hrms.po.CompanyPo;
 import com.dlts.hrms.vo.CompanyVo;
 
 /**
@@ -13,7 +14,7 @@ import com.dlts.hrms.vo.CompanyVo;
  */
 public interface ICompanyService {
 
-    public Page page(CompanyVo companyVo);
+    public Page<CompanyPo> page(CompanyVo companyVo);
 
     public List<SysCompany> select(CompanyVo companyVo);
 

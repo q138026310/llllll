@@ -26,7 +26,7 @@ public class CompanyService extends BaseService implements ICompanyService {
     SysCompanyMapper sysCompanyMapper;
 
     @Override
-    public Page page(CompanyVo companyVo) {
+    public Page<CompanyPo> page(CompanyVo companyVo) {
         Gap map = Gap.newMap();
         map.put("name", companyVo.getName());
         map.put("customCode", companyVo.getCustomCode());
@@ -82,6 +82,9 @@ public class CompanyService extends BaseService implements ICompanyService {
 
     @Override
     public int delete(CompanyVo companyVo) {
+        if (StringUtils.isBlank(companyVo.getId())) {
+            throw new ServiceException(GlobalConstant.PARAM_ERROR.value);
+        }
         return sysCompanyMapper.deleteLogic(companyVo.getId());
     }
 
@@ -119,7 +122,7 @@ public class CompanyService extends BaseService implements ICompanyService {
      */
     private void checkParentCode(CompanyVo companyVo) {
         Gap map = Gap.newMap();
-        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("loginRootCode", this.getParentCode(companyVo));
         map.put("code", companyVo.getParentCode());
         int authCount = sysCompanyMapper.authCount(map.map());
         if (authCount == 0) {
@@ -135,7 +138,7 @@ public class CompanyService extends BaseService implements ICompanyService {
      */
     private void checkNameRepeat(CompanyVo companyVo) {
         Gap map = Gap.newMap();
-        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("loginRootCode", this.getParentCode(companyVo));
         map.put("name", companyVo.getName());
         map.put("id", companyVo.getId());
         int authCount = sysCompanyMapper.authCount(map.map());
@@ -152,7 +155,7 @@ public class CompanyService extends BaseService implements ICompanyService {
      */
     private void checkCodeRepeat(CompanyVo companyVo) {
         Gap map = Gap.newMap();
-        map.put("loginCompanyCode", companyVo.getLoginCompanyCode());
+        map.put("loginRootCode", this.getParentCode(companyVo));
         map.put("customCode", companyVo.getCustomCode());
         map.put("id", companyVo.getId());
         int authCount = sysCompanyMapper.authCount(map.map());

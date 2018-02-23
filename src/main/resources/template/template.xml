@@ -22,13 +22,13 @@
     delete from ${tableName} where id = #{id}
   </delete>
   
-  <update id="deleteLogic" parameterType="java.lang.String">
-    update ${tableName} set delete_flag = 0 where id = #{id}
-  </update>
-  
   <delete id="deleteSelective" parameterType="com.dlts.hrms.entity.${entityName}">
     delete from ${tableName} ${where}
   </delete>
+  
+  <update id="deleteLogic" parameterType="java.lang.String">
+    update ${tableName} set delete_flag = 0 where id = #{id}
+  </update>
   
   <select id="getById" parameterType="java.lang.String" resultType="com.dlts.hrms.entity.${entityName}">
     select <include refid="Base_Column_List" /> from ${tableName} where id = #{id}

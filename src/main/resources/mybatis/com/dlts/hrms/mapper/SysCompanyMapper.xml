@@ -71,7 +71,7 @@
   </sql>
   
   <select id="authCount" parameterType="map" resultType="java.lang.Integer">
-  	select count(1) from sys_company t where t.code like concat(#{loginCompanyCode},'%') 
+  	select count(1) from sys_company t where t.code like concat(#{loginRootCode},'%') 
   	<if test="code!=null and code!=''">
     	and t.code = #{code}
     </if>
