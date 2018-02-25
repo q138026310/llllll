@@ -160,7 +160,7 @@ var app={
 		});
 		
 	},
-	serializeElement(){
+	serializeElement:function(){
 		var topEle = $('.right .in .center');
 		
 		var data = {};
