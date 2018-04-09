@@ -1,18 +1,16 @@
 var app={
 	baseUrl:'/hrms/',
-	request:function(url,requestData,callback,errorfn,async){
+	request:function(url,requestData,callback,options){
 		if( url==null || url.length==0 )return;
 		
-		if(!async){
-			async = true;
-		}
+		
 		
 		if(!requestData)requestData = {};
 		
 		$.ajax({
 			url:app.baseUrl+url+".spring?_t="+new Date().getTime(),
 			data:requestData,
-			async:async,
+			async:true,
 			type:'POST',
 			success:function(resp){
 				var dd = resp.replace(/\+/g,'%20');
@@ -38,8 +36,8 @@ var app={
 				
 			},
 			error:function(e){
-				if(errorfn){
-					errorfn.apply(e);
+				if(options.error){
+					options.error.apply(e);
 				}else{
 					app.alert('请求失败：未知错误');
 				}
