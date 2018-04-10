@@ -1,1 +1,0 @@
-mybatis automatic generation utils
