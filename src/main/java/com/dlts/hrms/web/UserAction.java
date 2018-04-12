@@ -20,8 +20,17 @@ public class UserAction extends BaseAction<User> {
 
     @RequestMapping("/insert")
     public String insert(User user) {
-        logger.info(JsonUtils.toJson(user));
         return Response.body(userService.insert(user));
+    }
+
+    @RequestMapping("/update")
+    public String update(User user) {
+        return Response.body(userService.updateByExampleSelective(user));
+    }
+
+    @RequestMapping("/delete")
+    public String delete(User user) {
+        return Response.body(userService.delete(user));
     }
 
     @RequestMapping("/selectAll")

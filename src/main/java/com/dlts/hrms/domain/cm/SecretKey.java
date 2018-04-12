@@ -8,4 +8,6 @@ public class SecretKey {
 
     public static final String cookie = "Cookie";
 
+    public static final String user = "user";
+
 }

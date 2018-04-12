@@ -18,5 +18,9 @@ public @interface Validate {
 
     boolean update() default false;
 
+    boolean select() default false;
+
+    boolean delete() default false;
+
 
 }

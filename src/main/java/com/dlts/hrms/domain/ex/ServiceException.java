@@ -8,4 +8,8 @@ public class ServiceException extends RuntimeException {
         super(String.valueOf(value));
     }
 
+    public ServiceException(Exception e) {
+        super(String.valueOf(e));
+    }
+
 }

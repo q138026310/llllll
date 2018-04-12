@@ -1,9 +1,20 @@
 package com.dlts.hrms.utils;
 
+import java.util.Random;
+
 public class UuidUtils {
 
-    public static String getUuid() {
-        return UUID.randomUUID().toString();
+    private static final Random RANDOM = new Random();
+
+    private static final int BOUND = 1000000;
+
+    public static Long getUuid() {
+        return Long.parseLong(getTime() + String.format("%06d", RANDOM.nextInt(BOUND)));
+        //return UUID.randomUUID().toString();
     }
+
+   private static long getTime(){
+        return DateUtils.now().getTime();
+   }
 
 }

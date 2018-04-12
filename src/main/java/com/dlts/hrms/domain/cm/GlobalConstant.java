@@ -31,4 +31,10 @@ public final class GlobalConstant {
         public static final int SELECT = 4;
     }
 
+    public static class Status{
+        public static final int DELETE = 0;
+        public static final int NORMAL = 1;
+        public static final int DISABLE = 2;
+    }
+
 }

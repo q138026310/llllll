@@ -29,18 +29,35 @@ import java.util.Map;
 public class UserTest {
 
     @Test
-    public void selectAll_test() {
+    public void test_selectAll() {
         String url = App.URL+"/user/selectAll";
         Map<String,String> params = Maps.newHashMap();
         App.test(url,params);
     }
 
     @Test
-    public void insert_test() {
+    public void test_insert() {
         String url = App.URL+"/user/insert";
         Map<String,String> params = Maps.newHashMap();
+        params.put("customerId","1523438106394466426");
+        params.put("code","00110");
+        params.put("name","zhangsan");
+        params.put("companyId","1523438106394466421");
+        params.put("username","sdfsd");
+        params.put("password","sdfasdfd");
         App.test(url,params);
     }
+
+    @Test
+    public void test_update() {
+        String url = App.URL+"/user/update";
+        Map<String,String> params = Maps.newHashMap();
+        params.put("id","1523438854182887211");
+        params.put("email","2@qq.com");
+        App.test(url,params);
+    }
+
+
 
 
 }

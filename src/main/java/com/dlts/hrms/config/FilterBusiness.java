@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.SecretKey;
+import com.dlts.hrms.domain.po.login.LoginPo;
 import org.apache.commons.lang3.StringUtils;
 
 public class FilterBusiness {
@@ -32,16 +33,17 @@ public class FilterBusiness {
             return false;
         }
 
-        String token = getToken(cookie);
-        if( StringUtils.isBlank(token) ){
+        String cookieToken = getToken(cookie);
+        if( StringUtils.isBlank(cookieToken) ){
             return false;
         }
 
         HttpSession session = request.getSession();
         if (session != null) {
-            Object obj = session.getAttribute(SecretKey.token);
-            if (obj != null && obj.toString().equals(token)) {
-                return true;
+            Object obj = session.getAttribute(SecretKey.user);
+            if (obj != null ) {
+                String sessionToken = ((LoginPo) obj).getToken();
+                return sessionToken.equals(cookieToken);
             }
         }
 

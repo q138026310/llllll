@@ -2,6 +2,8 @@ package com.dlts.hrms.config;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -11,7 +13,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.dlts.hrms.domain.cm.SecretKey;
+import com.dlts.hrms.domain.po.login.LoginPo;
 import org.apache.catalina.filters.RemoteIpFilter;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
@@ -47,9 +52,13 @@ public class ConfigurationFilter {
 
             if (FilterBusiness.isChain(req, resp)) {
 
-                req.setAttribute("abc","789");
-
-                chain.doFilter(request, response);
+                HrmsRequestWrapper hrmsRequestWrapper = new HrmsRequestWrapper(req);
+                Map<String, String[]> parameterMap = new HashMap<>(hrmsRequestWrapper.getParameterMap());
+                Long[] data = getData(req);
+                parameterMap.put("customerId",new String[]{String.valueOf(data[0])});
+                parameterMap.put("loginUserId",new String[]{String.valueOf(data[1])});
+                hrmsRequestWrapper.setParameterMap(parameterMap);
+                chain.doFilter(hrmsRequestWrapper, response);
             } else {
                 PrintWriter out = resp.getWriter();
                 out.print("{\"result\":2,errorMsg:\"not login\"}");
@@ -60,5 +69,22 @@ public class ConfigurationFilter {
 
         @Override
         public void init(FilterConfig arg0) throws ServletException {}
+
+        private Long[] getData(HttpServletRequest req){
+            Long[] data = new Long[2];
+
+            HttpSession session = req.getSession();
+            if( session != null ){
+                Object obj = session.getAttribute(SecretKey.user);
+                if( obj != null ){
+                    LoginPo login = (LoginPo)obj;
+                    data[0] = login.getUser().getCustomerId();
+                    data[1] = login.getUser().getId();
+                }
+            }
+
+
+            return data;
+        }
     }
 }

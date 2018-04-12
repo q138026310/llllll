@@ -2,17 +2,16 @@ package com.dlts.hrms.domain.entity;
 
 import com.dlts.hrms.domain.cm.Validate;
 
-import java.util.Date;
-
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import java.util.Date;
 
 @Table(name = "sys_user")
 public class User extends BaseEntity {
-    private String customerId;
     @Validate
-    private String companyId;
-    private String departmentId;
+    private Long companyId;
+    private Long departmentId;
     @Validate
     private String username;
     @Validate
@@ -29,35 +28,36 @@ public class User extends BaseEntity {
     private String loginIp;
     private Date loginDate;
     @Validate
-    private String loginFlag;
+    private Integer status;
     @Validate
-    private String createUserId;
+    private Long createUserId;
     @Validate
     private Date createTime;
     @Validate(insert=false,update=true)
-    private String updateUserId;
+    private Long updateUserId;
     @Validate(insert=false,update=true)
     private Date updateTime;
     private String remarks;
 
-    public String getCompanyId() {
-        return this.companyId;
+
+    public Long getCompanyId() {
+        return companyId;
     }
 
-    public void setCompanyId(String companyId) {
+    public void setCompanyId(Long companyId) {
         this.companyId = companyId;
     }
 
-    public String getDepartmentId() {
-        return this.departmentId;
+    public Long getDepartmentId() {
+        return departmentId;
     }
 
-    public void setDepartmentId(String departmentId) {
+    public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
     }
 
     public String getUsername() {
-        return this.username;
+        return username;
     }
 
     public void setUsername(String username) {
@@ -65,7 +65,7 @@ public class User extends BaseEntity {
     }
 
     public String getPassword() {
-        return this.password;
+        return password;
     }
 
     public void setPassword(String password) {
@@ -73,7 +73,7 @@ public class User extends BaseEntity {
     }
 
     public String getCode() {
-        return this.code;
+        return code;
     }
 
     public void setCode(String code) {
@@ -81,7 +81,7 @@ public class User extends BaseEntity {
     }
 
     public String getName() {
-        return this.name;
+        return name;
     }
 
     public void setName(String name) {
@@ -89,7 +89,7 @@ public class User extends BaseEntity {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
@@ -97,7 +97,7 @@ public class User extends BaseEntity {
     }
 
     public String getPhone() {
-        return this.phone;
+        return phone;
     }
 
     public void setPhone(String phone) {
@@ -105,7 +105,7 @@ public class User extends BaseEntity {
     }
 
     public String getMobile() {
-        return this.mobile;
+        return mobile;
     }
 
     public void setMobile(String mobile) {
@@ -113,7 +113,7 @@ public class User extends BaseEntity {
     }
 
     public String getUserType() {
-        return this.userType;
+        return userType;
     }
 
     public void setUserType(String userType) {
@@ -121,7 +121,7 @@ public class User extends BaseEntity {
     }
 
     public String getPhoto() {
-        return this.photo;
+        return photo;
     }
 
     public void setPhoto(String photo) {
@@ -129,7 +129,7 @@ public class User extends BaseEntity {
     }
 
     public String getLoginIp() {
-        return this.loginIp;
+        return loginIp;
     }
 
     public void setLoginIp(String loginIp) {
@@ -137,47 +137,47 @@ public class User extends BaseEntity {
     }
 
     public Date getLoginDate() {
-        return this.loginDate;
+        return loginDate;
     }
 
     public void setLoginDate(Date loginDate) {
         this.loginDate = loginDate;
     }
 
-    public String getLoginFlag() {
-        return this.loginFlag;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setLoginFlag(String loginFlag) {
-        this.loginFlag = loginFlag;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getCreateUserId() {
-        return this.createUserId;
+    public Long getCreateUserId() {
+        return createUserId;
     }
 
-    public void setCreateUserId(String createUserId) {
+    public void setCreateUserId(Long createUserId) {
         this.createUserId = createUserId;
     }
 
     public Date getCreateTime() {
-        return this.createTime;
+        return createTime;
     }
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public String getUpdateUserId() {
-        return this.updateUserId;
+    public Long getUpdateUserId() {
+        return updateUserId;
     }
 
-    public void setUpdateUserId(String updateUserId) {
+    public void setUpdateUserId(Long updateUserId) {
         this.updateUserId = updateUserId;
     }
 
     public Date getUpdateTime() {
-        return this.updateTime;
+        return updateTime;
     }
 
     public void setUpdateTime(Date updateTime) {
@@ -185,18 +185,10 @@ public class User extends BaseEntity {
     }
 
     public String getRemarks() {
-        return this.remarks;
+        return remarks;
     }
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
-    }
-
-    public String getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
     }
 }

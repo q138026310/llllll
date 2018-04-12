@@ -21,44 +21,30 @@
 
 package com.dlts.hrms.domain.entity;
 
+import com.dlts.hrms.domain.cm.Validate;
+
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
-/**
- * 基础信息
- *
- * @author liuzh
- * @since 2016-01-31 21:42
- */
 public class BaseEntity {
-    @Id
-    @Column(name = "id")
-    private String id;
 
-    /**
-     * 非数据库字段标记
-     * 
-     * 当前第几页
-     */
+    @Id
+    @Validate(update=true,delete = true)
+    private Long id;
+
+    private Long customerId;
+
     @Transient
     private Integer page;
 
-    /**
-     * 非数据库字段标记
-     * 
-     * 每页行数
-     */
     @Transient
     private Integer rows;
 
-    public String getId() {
-        return id;
-    }
+    @Transient
+    private Long loginUserId;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+
 
     public Integer getPage() {
         return page;
@@ -74,5 +60,29 @@ public class BaseEntity {
 
     public void setRows(Integer rows) {
         this.rows = rows;
+    }
+
+    public Long getLoginUserId() {
+        return loginUserId;
+    }
+
+    public void setLoginUserId(Long loginUserId) {
+        this.loginUserId = loginUserId;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

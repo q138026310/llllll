@@ -2,6 +2,7 @@ package com.dlts.hrms.web;
 
 import javax.servlet.http.HttpSession;
 
+import com.dlts.hrms.domain.cm.SecretKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +24,7 @@ public class IndexAction {
     public String login(LoginVo loginVo, HttpSession session) {
         Unified<LoginPo> unified = userService.login(loginVo);
         if (unified.success()) {
-            session.setAttribute("token", unified.getData().getToken());
+            session.setAttribute(SecretKey.user, unified.getData());
         }
         return Response.body(unified);
     }
