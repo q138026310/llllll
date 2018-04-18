@@ -13,11 +13,14 @@ import com.dlts.hrms.utils.ServiceUtils;
 import com.dlts.hrms.utils.UuidUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import org.apache.commons.beanutils.PropertyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.InvocationTargetException;
+
 @Service
-public class UserService extends BaseService<User>{
+public class UserService{
 
     @Autowired
     UserMapper userMapper;
@@ -50,8 +53,8 @@ public class UserService extends BaseService<User>{
         Unified<Integer> unified = Unified.create(Integer.class);
         user.setId(UuidUtils.getUuid());
         user.setStatus(GlobalConstant.Status.NORMAL);
-        user.setCreateUserId(user.getLoginUserId());
         user.setCreateTime(DateUtils.now());
+        user.setCreateUserId(user.getLoginUserId());
 
         ServiceUtils.check(user,GlobalConstant.DbOperatorType.INSERT);
         unified.setData(userMapper.insert(user));
@@ -63,11 +66,11 @@ public class UserService extends BaseService<User>{
         return update(user);
     }
 
-    public Unified<PageResult> page() {
-        Page page = PageHelper.startPage(1,2);
+    public Unified<PageResult> page(User user) {
+        Page page = PageHelper.startPage(user.getPage(),user.getRows());
         Unified<PageResult> unified = Unified.create(PageResult.class);
         PageResult pageResult = PageResult.create();
-        pageResult.setData(userMapper.selectAll());
+        pageResult.setData(userMapper.selectByExample(ServiceUtils.getCustomerExample(user)));
         pageResult.setCount(page.getTotal());
         unified.setData(pageResult);
         return unified;

@@ -3,9 +3,7 @@ package com.dlts.hrms.utils;
 import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.Validate;
 import com.dlts.hrms.domain.entity.BaseEntity;
-import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.domain.ex.ServiceException;
-import com.sun.xml.internal.rngom.parse.host.Base;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.reflect.FieldUtils;
@@ -26,6 +24,14 @@ public class ServiceUtils {
         BaseEntity entity = (BaseEntity) bean;
         criteria.andEqualTo("customerId",entity.getCustomerId());
         criteria.andEqualTo("id",entity.getId());
+        return example;
+    }
+
+    public static Example getCustomerExample(Object bean){
+        Example example=new Example(bean.getClass());
+        Example.Criteria criteria = example.createCriteria();
+        BaseEntity entity = (BaseEntity) bean;
+        criteria.andEqualTo("customerId",entity.getCustomerId());
         return example;
     }
 

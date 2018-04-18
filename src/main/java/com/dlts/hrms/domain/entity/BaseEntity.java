@@ -36,10 +36,10 @@ public class BaseEntity {
     private Long customerId;
 
     @Transient
-    private Integer page;
+    private Integer page = 0;
 
     @Transient
-    private Integer rows;
+    private Integer rows = 10;
 
     @Transient
     private Long loginUserId;

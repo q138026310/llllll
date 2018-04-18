@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyAction extends BaseAction<Company>{
+public class CompanyAction extends BaseAction{
 
     @RequestMapping("/selectOwn")
     public String selectOwn() {

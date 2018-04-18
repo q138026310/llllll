@@ -1,6 +1,7 @@
 package com.dlts.hrms.web;
 
 import com.dlts.hrms.domain.cm.Response;
+import com.dlts.hrms.domain.entity.BaseEntity;
 import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.service.impl.UserService;
 import com.dlts.hrms.utils.JsonUtils;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/user")
-public class UserAction extends BaseAction<User> {
+public class UserAction extends BaseAction{
 
     Logger logger = Logger.getLogger(getClass());
 
@@ -19,8 +20,8 @@ public class UserAction extends BaseAction<User> {
     UserService userService;
 
     @RequestMapping("/insert")
-    public String insert(User user) {
-        return Response.body(userService.insert(user));
+    public String insert(User entity) {
+        return Response.body(userService.insert(entity));
     }
 
     @RequestMapping("/update")
