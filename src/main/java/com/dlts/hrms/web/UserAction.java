@@ -20,8 +20,8 @@ public class UserAction extends BaseAction{
     UserService userService;
 
     @RequestMapping("/insert")
-    public String insert(User entity) {
-        return Response.body(userService.insert(entity));
+    public String insert(User user) {
+        return Response.body(userService.insert(user));
     }
 
     @RequestMapping("/update")
@@ -35,13 +35,19 @@ public class UserAction extends BaseAction{
     }
 
     @RequestMapping("/page")
-    public String page() {
-        return Response.body(userService.page());
+    public String page(User user) {
+        return Response.body(userService.page(user));
+    }
+
+    @RequestMapping("/select")
+    public String select(User user) {
+        return Response.body(userService.page(user));
     }
 
     @RequestMapping("/get")
     public String get(User user) {
         return Response.body(userService.get(user));
     }
+
 
 }

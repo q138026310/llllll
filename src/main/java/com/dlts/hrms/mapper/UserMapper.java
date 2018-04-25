@@ -5,5 +5,4 @@ import com.dlts.hrms.domain.entity.User;
 
 public interface UserMapper extends LmsMapper<User> {
 
-
 }

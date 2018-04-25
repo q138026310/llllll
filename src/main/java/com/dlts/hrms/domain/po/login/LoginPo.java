@@ -7,6 +7,11 @@ public class LoginPo {
     private User user;
     private String token;
 
+    public LoginPo(User user, String token) {
+        this.user = user;
+        this.token = token;
+    }
+
     public User getUser() {
         return user;
     }

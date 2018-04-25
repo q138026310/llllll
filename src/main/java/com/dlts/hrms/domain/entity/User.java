@@ -1,42 +1,40 @@
 package com.dlts.hrms.domain.entity;
 
+import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.Validate;
 
-import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.util.Date;
 
 @Table(name = "sys_user")
 public class User extends BaseEntity {
     @Validate
     private Long companyId;
-    private Long departmentId;
+    private Long departmentId = GlobalConstant.DbDefaultValue.BIGINT;
     @Validate
     private String username;
     @Validate
     private String password;
     @Validate
-    private String code;
+    private String code = GlobalConstant.DbDefaultValue.CHAR;
     @Validate
     private String name;
-    private String email;
-    private String phone;
-    private String mobile;
-    private String userType;
-    private String photo;
-    private String loginIp;
-    private Date loginDate;
+    private String email= GlobalConstant.DbDefaultValue.CHAR;
+    private String phone= GlobalConstant.DbDefaultValue.CHAR;
+    private Long mobile;
+    private String photo= GlobalConstant.DbDefaultValue.CHAR;
+    private Integer loginIp= GlobalConstant.DbDefaultValue.INT;
+    private Date loginTime;
     @Validate
     private Integer status;
     @Validate
     private Long createUserId;
     @Validate
-    private Date createTime;
+    private String createTime;
     @Validate(insert=false,update=true)
     private Long updateUserId;
     @Validate(insert=false,update=true)
-    private Date updateTime;
+    private String updateTime;
     private String remarks;
 
 
@@ -104,21 +102,14 @@ public class User extends BaseEntity {
         this.phone = phone;
     }
 
-    public String getMobile() {
+    public Long getMobile() {
         return mobile;
     }
 
-    public void setMobile(String mobile) {
+    public void setMobile(Long mobile) {
         this.mobile = mobile;
     }
 
-    public String getUserType() {
-        return userType;
-    }
-
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 
     public String getPhoto() {
         return photo;
@@ -128,20 +119,14 @@ public class User extends BaseEntity {
         this.photo = photo;
     }
 
-    public String getLoginIp() {
-        return loginIp;
+
+
+    public Date getLoginTime() {
+        return loginTime;
     }
 
-    public void setLoginIp(String loginIp) {
-        this.loginIp = loginIp;
-    }
-
-    public Date getLoginDate() {
-        return loginDate;
-    }
-
-    public void setLoginDate(Date loginDate) {
-        this.loginDate = loginDate;
+    public void setLoginTime(Date loginTime) {
+        this.loginTime = loginTime;
     }
 
     public Integer getStatus() {
@@ -160,12 +145,20 @@ public class User extends BaseEntity {
         this.createUserId = createUserId;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(String updateTime) {
+        this.updateTime = updateTime;
     }
 
     public Long getUpdateUserId() {
@@ -176,13 +169,6 @@ public class User extends BaseEntity {
         this.updateUserId = updateUserId;
     }
 
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Date updateTime) {
-        this.updateTime = updateTime;
-    }
 
     public String getRemarks() {
         return remarks;

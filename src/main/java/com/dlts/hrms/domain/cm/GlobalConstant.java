@@ -12,6 +12,7 @@ public final class GlobalConstant {
 
     public class Result {
         public final static int PARAM_ERROR = 1;
+        public final static int BUSI_ERROR = 2;
     }
 
     public static class PostValueType{
@@ -35,6 +36,12 @@ public final class GlobalConstant {
         public static final int DELETE = 0;
         public static final int NORMAL = 1;
         public static final int DISABLE = 2;
+    }
+
+    public static class DbDefaultValue{
+        public static final Long  BIGINT= -1l;
+        public static final String  CHAR = "-1";
+        public static final Integer  INT = -1;
     }
 
 }

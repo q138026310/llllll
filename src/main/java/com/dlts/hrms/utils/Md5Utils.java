@@ -27,4 +27,9 @@ public class Md5Utils {
         return HexUtils.toHexString(bytes);
     }
 
+    public static String encrypt(String value) {
+        byte[] bytes = MD.digest((value + SecretKey.value).getBytes(UTF_8));
+        return HexUtils.toHexString(bytes);
+    }
+
 }

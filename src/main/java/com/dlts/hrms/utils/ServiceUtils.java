@@ -1,6 +1,7 @@
 package com.dlts.hrms.utils;
 
 import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.TkQuery;
 import com.dlts.hrms.domain.cm.Validate;
 import com.dlts.hrms.domain.entity.BaseEntity;
 import com.dlts.hrms.domain.ex.ServiceException;
@@ -33,6 +34,15 @@ public class ServiceUtils {
         BaseEntity entity = (BaseEntity) bean;
         criteria.andEqualTo("customerId",entity.getCustomerId());
         return example;
+    }
+
+    public static TkQuery getDefaultQuery(Object bean){
+        Example example=new Example(bean.getClass());
+        Example.Criteria criteria = example.createCriteria();
+        BaseEntity entity = (BaseEntity) bean;
+        criteria.andEqualTo("customerId",entity.getCustomerId());
+        TkQuery query = new TkQuery(example,criteria);
+        return query;
     }
 
 
@@ -93,7 +103,11 @@ public class ServiceUtils {
             Validate validate = field.getAnnotation(Validate.class);
             if(getValidate(validate,dbOperatorType)){
                 Object obj = PropertyUtils.getProperty(bean,field.getName());
-                if( obj==null || StringUtils.isBlank(obj.toString()) ){
+                if( obj==null){
+                    throw new ServiceException("param ["+field.getName()+"] is null");
+                }
+                String value = obj.toString();
+                if( obj==null || StringUtils.isBlank(value) || value.equals(GlobalConstant.DbDefaultValue.CHAR)  ){
                     throw new ServiceException("param ["+field.getName()+"] is null");
                 }
             }
