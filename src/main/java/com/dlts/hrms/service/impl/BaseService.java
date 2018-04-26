@@ -6,6 +6,7 @@ import com.dlts.hrms.domain.cm.PageResult;
 import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.BaseEntity;
 import com.dlts.hrms.domain.entity.Company;
+import com.dlts.hrms.domain.ex.ServiceException;
 import com.dlts.hrms.utils.DateUtils;
 import com.dlts.hrms.utils.ServiceUtils;
 import com.dlts.hrms.utils.UuidUtils;
@@ -45,11 +46,11 @@ public class BaseService {
                 }
             }
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         }
         unified.setData(mapper.insert(bean));
         return unified;
@@ -75,11 +76,11 @@ public class BaseService {
             PropertyUtils.setProperty(bean,"updateUserId",loginUserId);
             ServiceUtils.check(bean,GlobalConstant.DbOperatorType.UPDATE);
         } catch (IllegalAccessException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         } catch (InvocationTargetException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         } catch (NoSuchMethodException e) {
-            e.printStackTrace();
+            throw new ServiceException(e);
         }
 
 
