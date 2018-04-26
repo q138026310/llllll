@@ -46,8 +46,8 @@ public class ServiceUtils {
     }
 
 
-    public static void check(Object bean,int dbOperatorType){
-        try{
+    public static void check(Object bean,int dbOperatorType) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
+
             switch (dbOperatorType){
                 case GlobalConstant.DbOperatorType.INSERT :
                     checkInsert(bean,dbOperatorType);
@@ -62,13 +62,6 @@ public class ServiceUtils {
                     checkSelect(bean,dbOperatorType);
                     break;
             }
-        }catch (IllegalAccessException e){
-            throw new ServiceException(e);
-        }catch (NoSuchMethodException e){
-            throw new ServiceException(e);
-        }catch (InvocationTargetException e){
-            throw new ServiceException(e);
-        }
 
     }
 
@@ -107,7 +100,7 @@ public class ServiceUtils {
                     throw new ServiceException("param ["+field.getName()+"] is null");
                 }
                 String value = obj.toString();
-                if( obj==null || StringUtils.isBlank(value) || value.equals(GlobalConstant.DbDefaultValue.CHAR)  ){
+                if( StringUtils.isBlank(value)  ){
                     throw new ServiceException("param ["+field.getName()+"] is null");
                 }
             }

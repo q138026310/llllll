@@ -24,6 +24,7 @@ public class FilterBusiness {
     public static boolean isChain(HttpServletRequest request, HttpServletResponse response) {
 
         String requestUri = request.getRequestURI();
+
         if (isReleaseUrl(requestUri)) {
             return true;
         }

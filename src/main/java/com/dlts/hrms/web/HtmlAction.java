@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class HtmlAction {
 
     @RequestMapping("/{module}/{fn}")
-    ModelAndView home2(@PathVariable String module, @PathVariable String fn) {
+    ModelAndView home(@PathVariable String module, @PathVariable String fn) {
         ModelAndView result = new ModelAndView(module + "/" + fn);
         return result;
     }

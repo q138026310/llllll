@@ -1,42 +1,68 @@
 package com.dlts.hrms.domain.entity;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.Validate;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
-import java.util.Date;
 
 @Table(name = "sys_user")
 public class User extends BaseEntity {
+
     @Validate
+    @Column(length = 19)
     private Long companyId;
-    private Long departmentId = GlobalConstant.DbDefaultValue.BIGINT;
+
+    @Column(length = 19)
+    private Long departmentId;
+
     @Validate
+    @Column(length = 20)
     private String username;
+
     @Validate
+    @Column(length = 100)
     private String password;
+
     @Validate
-    private String code = GlobalConstant.DbDefaultValue.CHAR;
+    @Column(length = 20)
+    private String code;
+
     @Validate
+    @Column(length = 5)
     private String name;
-    private String email= GlobalConstant.DbDefaultValue.CHAR;
-    private String phone= GlobalConstant.DbDefaultValue.CHAR;
+
+    @Column(length = 30)
+    private String email;
+
+    @Column(length = 15)
+    private String phone;
+
+    @Column(length = 11)
     private Long mobile;
-    private String photo= GlobalConstant.DbDefaultValue.CHAR;
-    private Integer loginIp= GlobalConstant.DbDefaultValue.INT;
-    private Date loginTime;
+
+    @Column(length = 100)
+    private String photo;
+
+    @Column(length = 10)
+    private Integer loginIp;
+
+    @Column(length = 19)
+    private String loginTime;
+
     @Validate
     private Integer status;
+
     @Validate
     private Long createUserId;
+
     @Validate
     private String createTime;
+
     @Validate(insert=false,update=true)
     private Long updateUserId;
+
     @Validate(insert=false,update=true)
     private String updateTime;
-    private String remarks;
-
 
     public Long getCompanyId() {
         return companyId;
@@ -121,13 +147,7 @@ public class User extends BaseEntity {
 
 
 
-    public Date getLoginTime() {
-        return loginTime;
-    }
 
-    public void setLoginTime(Date loginTime) {
-        this.loginTime = loginTime;
-    }
 
     public Integer getStatus() {
         return status;
@@ -170,11 +190,19 @@ public class User extends BaseEntity {
     }
 
 
-    public String getRemarks() {
-        return remarks;
+    public String getLoginTime() {
+        return loginTime;
     }
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks;
+    public void setLoginTime(String loginTime) {
+        this.loginTime = loginTime;
+    }
+
+    public Integer getLoginIp() {
+        return loginIp;
+    }
+
+    public void setLoginIp(Integer loginIp) {
+        this.loginIp = loginIp;
     }
 }

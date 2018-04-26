@@ -21,8 +21,6 @@
 
 package com.dlts.hrms.test;
 
-import com.dlts.hrms.utils.Md5Utils;
-import com.dlts.hrms.utils.UuidUtils;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 
@@ -30,38 +28,26 @@ import java.util.Map;
 
 public class UserTest {
 
-    @Test
-    public void test_trans() {
-        String url = App.URL+"/user/trans";
-        Map<String,String> params = Maps.newHashMap();
-        params.put("customerId","1523438106394466426");
-        params.put("code","789564");
-        params.put("name","iujolk");
-        params.put("mobile","12323234");
-        params.put("companyId","1523438106394466421");
-        params.put("username","123");
-        params.put("password","234");
-        App.test(url,params);
-    }
+
 
     @Test
     public void test_page() {
-        String url = App.URL+"/user/page";
+        String url = App.BASE_URL+"/user/page";
         Map<String,String> params = Maps.newHashMap();
         App.test(url,params);
     }
 
     @Test
     public void test_get() {
-        String url = App.URL+"/user/get";
+        String url = App.BASE_URL+"/user/get";
         Map<String,String> params = Maps.newHashMap();
-        params.put("id","1524621649932605114");
+        params.put("id","111");
         App.test(url,params);
     }
 
     @Test
     public void test_insert() {
-        String url = App.URL+"/user/insert";
+        String url = App.BASE_URL+"/user/insert";
         Map<String,String> params = Maps.newHashMap();
         params.put("customerId","1523438106394466426");
         params.put("code","00110");
@@ -75,28 +61,13 @@ public class UserTest {
 
     @Test
     public void test_update() {
-        String url = App.URL+"/user/update";
+        String url = App.BASE_URL+"/user/update";
         Map<String,String> params = Maps.newHashMap();
-        params.put("id","1524621649892059774");
+        params.put("id","111");
         params.put("email","2@qq.com");
         App.test(url,params);
     }
 
-    @Test
-    public void test_insertTest() {
-
-        //System.out.println(Md5Utils.encrypt("superadmin"));
-       // System.out.println(UuidUtils.getUuid());
-        String url = App.URL+"/user/insertTest";
-        Map<String,String> params = Maps.newHashMap();
-        params.put("customerId","1523438106394466426");
-        params.put("code","789564");
-        params.put("name","iujolk");
-        params.put("companyId","1523438106394466421");
-        params.put("username","123");
-        params.put("password","234");
-        App.test(url,params);
-    }
 
 
 }

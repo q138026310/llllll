@@ -19,11 +19,7 @@ public class CompanyService extends BaseService{
     CompanyMapper companyMapper;
 
     public Unified<List<Company>> select(Company company) {
-        Unified<List<Company>> unified = new Unified<List<Company>>();
-
-        TkQuery query = ServiceUtils.getDefaultQuery(company);
-        unified.setData(companyMapper.selectByExample(query.getExample()));
-        return unified;
+        return select(company,companyMapper);
     }
 
     public Unified<Integer> insert(Company company) {
@@ -39,7 +35,7 @@ public class CompanyService extends BaseService{
         return page(company,companyMapper);
     }
 
-    public Unified<Object> get(Company company) {
+    public Unified<Company> get(Company company) {
         return get(company,companyMapper);
     }
 

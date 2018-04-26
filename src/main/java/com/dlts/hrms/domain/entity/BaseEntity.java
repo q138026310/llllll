@@ -23,7 +23,6 @@ package com.dlts.hrms.domain.entity;
 
 import com.dlts.hrms.domain.cm.Validate;
 
-import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 

@@ -2,6 +2,7 @@ package com.dlts.hrms.domain.entity;
 
 import com.dlts.hrms.domain.cm.Validate;
 
+import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -9,20 +10,36 @@ import java.util.Date;
 public class Company extends BaseEntity{
 
     @Validate
+    @Column(length = 20)
     private String name;
+
+    @Column(length = 20)
     private String code;
+
     @Validate
+    @Column(length = 19)
     private Long parentId;
+
+    @Column(length = 5)
     private String contact;
+
+    @Column(length = 20)
     private String contactPhone;
-    @Validate
-    private Long createUserId;
-    @Validate
-    private String createTime;
-    private Long updateUserId;
-    private String updateTime;
+
     @Validate
     private Integer status;
+
+    @Validate
+    private Long createUserId;
+
+    @Validate
+    private String createTime;
+
+    @Validate(insert=false,update=true)
+    private Long updateUserId;
+
+    @Validate(insert=false,update=true)
+    private String updateTime;
 
     public String getName() {
         return name;

@@ -6,7 +6,7 @@ logging:
     level:
         com.dy.springboot.server.mapper: DEBUG
         # com.onepro.custom.mapper: DEBUG
-        #com.dlts.hrms.mapper: DEBUG
+        com.dlts.hrms.mapper: DEBUG
         tk.mybatis: DEBUG
 
 spring:

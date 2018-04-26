@@ -40,9 +40,7 @@ public class UserService extends BaseService{
     }
 
     public Unified<List<User>> select(User user) {
-        Unified<List<User>> unified = new Unified<List<User>>();
-        unified.setData(userMapper.selectByExample(ServiceUtils.getCustomerExample(user)));
-        return unified;
+        return select(user,userMapper);
     }
 
     public Unified<Integer> insert(User user) {

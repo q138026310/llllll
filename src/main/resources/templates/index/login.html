@@ -27,7 +27,7 @@
                         <div class="ant-col-24">
                             <div class="ant-form-item-control ">
                                 <span class="ant-input-wrapper">
-                                    <input type="text" value="superadmin" id="username" placeholder="请输入您的手机号" class="ant-input ant-input-lg input-fix" />
+                                    <input type="text" value="admin" id="username" placeholder="请输入您的手机号" class="ant-input ant-input-lg input-fix" />
                                 </span>
                             </div>
                         </div>
@@ -37,7 +37,7 @@
                         <div class="ant-col-24">
                             <div class="ant-form-item-control ">
                                 <span class="ant-input-wrapper">
-                                    <input type="password" value="superadmin" id="password" placeholder="请输入您的密码" class="ant-input ant-input-lg input-fix" />
+                                    <input type="password" value="admin" id="password" placeholder="请输入您的密码" class="ant-input ant-input-lg input-fix" />
                                 </span>
                             </div>
                         </div>
@@ -61,8 +61,8 @@
 		
 		app.request('index/login',{username:username,password:password},function(resp){
 			if( resp.result==0 ){
-                $.cookie('token', '123456', { expires: 7, path: '/' });
-                location.href = "/hrms/html/index/login";
+                $.cookie('token',resp.data.token, { expires: 7, path: '/' });
+                location.href = "/hrms/html/index/index.html";
 			}
 		});
 	});
