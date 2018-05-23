@@ -20,11 +20,8 @@ public class RoleService extends BaseService{
         return select(role,roleMapper);
     }
 
-
     public Unified<Role> get(Role role) {
         return get(role,roleMapper);
     }
-
-
 
 }
