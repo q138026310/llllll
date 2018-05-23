@@ -13,7 +13,7 @@ public class User extends BaseEntity {
     private Long companyId;
 
     @Column(length = 19)
-    private Long departmentId;
+    private Long organizationId;
 
     @Validate
     @Column(length = 20)
@@ -72,12 +72,12 @@ public class User extends BaseEntity {
         this.companyId = companyId;
     }
 
-    public Long getDepartmentId() {
-        return departmentId;
+    public Long getOrganizationId() {
+        return organizationId;
     }
 
-    public void setDepartmentId(Long departmentId) {
-        this.departmentId = departmentId;
+    public void setOrganizationId(Long organizationId) {
+        this.organizationId = organizationId;
     }
 
     public String getUsername() {
@@ -136,7 +136,6 @@ public class User extends BaseEntity {
         this.mobile = mobile;
     }
 
-
     public String getPhoto() {
         return photo;
     }
@@ -144,10 +143,6 @@ public class User extends BaseEntity {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
-
-
-
 
     public Integer getStatus() {
         return status;
