@@ -10,7 +10,7 @@
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
 <body>
-<table class="layui-hide" id="demo"></table>
+<table class="layui-hide" id="demo" lay-filter="demo"></table>
 
 
 <script src="/hrms/static/js/plugins/layui/layui.js" charset="utf-8"></script>
@@ -133,8 +133,8 @@
             var value = obj.value //得到修改后的值
                 ,data = obj.data //得到所在行所有键值
                 ,field = obj.field; //得到字段
-            //layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-            console.log('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+            //console.log('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
         });
     });
 </script>

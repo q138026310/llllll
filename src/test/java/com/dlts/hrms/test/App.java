@@ -78,6 +78,9 @@ public class App {
 
     private static void initTables(Connection conn){
         Set<Class<?>> classes = getClasses("com.dlts.hrms.domain.entity");
+
+        //System.out.print();
+
         for( Class<?> clazz : classes ){
             //System.out.println("--------------------"+clazz.getSimpleName());
             if(clazz.getSimpleName().equals("BaseEntity")){
@@ -88,7 +91,7 @@ public class App {
 
         //SELECT GROUP_CONCAT(COLUMN_NAME SEPARATOR ",") FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = 'hrms' AND TABLE_NAME = 'SYS_USER'
 
-        String sql = "insert into sys_user(company_id,department_id,username,password,code,name,email,phone,mobile,photo,login_ip,login_time,status,create_user_id,create_time,update_user_id,update_time,id,customer_id)\n" +
+        String sql = "insert into sys_user(company_id,organization_id,username,password,code,name,email,phone,mobile,photo,login_ip,login_time,status,create_user_id,create_time,update_user_id,update_time,id,customer_id)\n" +
                 " values(1,1,'admin','176d8ab94944e3883779f50f7638fd4a','0001','121','','',131,'',1,'',1,1,'',1,'',111,222)";
         executeSql(conn,sql);
 
@@ -108,6 +111,9 @@ public class App {
 
     private static void initTable(Connection conn,Class<?> clazz){
         Table table = clazz.getAnnotation(Table.class);
+
+        executeSql(conn,"drop table if EXISTS "+table.name());
+
         StringBuilder sb = new StringBuilder("create table "+table.name()+"(");
 
         Field[] fields =  FieldUtils.getAllFields(clazz);
@@ -384,7 +390,7 @@ public class App {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://192.168.79.152:3306/test?characterEncoding=UTF-8&useSSL=false","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://192.168.79.152:3306/hrms?characterEncoding=UTF-8&useSSL=false","root","root");
         } catch (Exception e) {
             e.printStackTrace();
         }
