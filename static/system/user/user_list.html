@@ -55,14 +55,20 @@
 <script>
 
 	$('#add').click(function(){
-		layer.open({
-		  type: 2,
-		  area: ['700px', '450px'],
-		  fixed: false, //不固定
-		  maxmin: true,
-		  content: 'user_add.html'
+		app.window(layer,{
+				content: 'user_add.html',
+				yes:saveUser
 		});
 	});
+	
+	function saveUser(){
+		app.request({
+			url:'user/insert',
+			success:function(resp){
+				
+			}
+		});
+	}
 
     layui.use('table', function(){
         var table = layui.table;
