@@ -23,6 +23,12 @@ public class FilterBusiness {
      */
     public static boolean isChain(HttpServletRequest request, HttpServletResponse response) {
 
+       /* int a = 1;
+        int b = 1;
+        if( a==b ){
+            return true;
+        }*/
+
         String requestUri = request.getRequestURI();
 
         if (isReleaseUrl(requestUri)) {

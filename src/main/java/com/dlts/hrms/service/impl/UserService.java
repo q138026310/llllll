@@ -7,18 +7,15 @@ import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.domain.po.login.LoginPo;
 import com.dlts.hrms.domain.vo.login.LoginVo;
 import com.dlts.hrms.mapper.UserMapper;
-import com.dlts.hrms.utils.DateUtils;
+import com.dlts.hrms.service.base.BaseService;
 import com.dlts.hrms.utils.Md5Utils;
-import com.dlts.hrms.utils.ServiceUtils;
-import com.dlts.hrms.utils.UuidUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Random;
 
 @Service
-public class UserService extends BaseService{
+public class UserService extends BaseService {
 
     @Autowired
     UserMapper userMapper;

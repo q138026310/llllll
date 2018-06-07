@@ -12,11 +12,11 @@ public class MyCat {
         Connection conn = getConnection();
         PreparedStatement pstmt = null;
         try {
-            pstmt = conn.prepareStatement("select * from sys_company");
+            pstmt = conn.prepareStatement("select * from sys_test");
 
             ResultSet rs = pstmt.executeQuery();
             while( rs.next() ){
-                System.out.print(rs.getString("parent_code"));
+                System.out.print(rs.getString("name"));
             }
 
             pstmt.execute();

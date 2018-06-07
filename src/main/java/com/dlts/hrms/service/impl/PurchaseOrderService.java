@@ -5,6 +5,7 @@ import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.PurchaseOrder;
 import com.dlts.hrms.domain.vo.order.PurchaseOrderVo;
 import com.dlts.hrms.mapper.PurchaseOrderMapper;
+import com.dlts.hrms.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,7 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-public class PurchaseOrderService extends BaseService{
+public class PurchaseOrderService extends BaseService {
     
     @Autowired
     PurchaseOrderMapper purchaseOrderMapper;

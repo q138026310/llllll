@@ -46,6 +46,14 @@
 
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
+app.getOkBtn().click(function(){
+	app.request({
+		url:'user/insert',
+		success:function(resp){
+			
+		}
+	});
+});
 
 </script>
 

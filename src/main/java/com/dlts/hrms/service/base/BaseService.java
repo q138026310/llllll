@@ -1,4 +1,4 @@
-package com.dlts.hrms.service.impl;
+package com.dlts.hrms.service.base;
 
 import com.dlts.hrms.config.LmsMapper;
 import com.dlts.hrms.domain.cm.GlobalConstant;

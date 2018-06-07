@@ -8,7 +8,6 @@ logging:
         # com.onepro.custom.mapper: DEBUG
         com.dlts.hrms.mapper: DEBUG
         tk.mybatis: DEBUG
-
 spring:
     datasource:
 #        type: com.alibaba.druid.pool.DruidDataSource
@@ -36,7 +35,17 @@ spring:
         view:
             prefix: /templates/
             suffix: .html
-
+    redis:
+        #database: 1
+        host: 192.168.79.135
+        port: 6379
+        password:
+        timeout: 5000
+        pool:
+            max-idle: 8
+            min-idle: 0
+            max-active: 8
+            max-wait: -1
 #以下属性不可用
 #mybatis:
 #    pagehelper:

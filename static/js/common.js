@@ -6,7 +6,10 @@ var app = {
 			area: ['500px', '300px'],
 			fixed: false, //不固定
 			maxmin: true,
-			btn:['确认','取消']
+			btn:['确认','取消'],
+			yes:function(){
+				return false;
+			}
 		}
 		
 		$.extend(setting,options);
@@ -32,5 +35,9 @@ var app = {
 			data[this.name] = this.value;
 		});
 		return data;
+	},
+	getOkBtn:function(){
+		//layui-layer-btn0
+		return $('.layui-layer-btn0',parent.document);
 	}
 }

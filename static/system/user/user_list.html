@@ -56,19 +56,11 @@
 
 	$('#add').click(function(){
 		app.window(layer,{
-				content: 'user_add.html',
-				yes:saveUser
+				content: 'user_add.html'
 		});
 	});
+
 	
-	function saveUser(){
-		app.request({
-			url:'user/insert',
-			success:function(resp){
-				
-			}
-		});
-	}
 
     layui.use('table', function(){
         var table = layui.table;

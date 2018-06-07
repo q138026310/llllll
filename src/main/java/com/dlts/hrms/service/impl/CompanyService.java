@@ -2,18 +2,17 @@ package com.dlts.hrms.service.impl;
 
 import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.PageResult;
-import com.dlts.hrms.domain.cm.TkQuery;
 import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.Company;
 import com.dlts.hrms.mapper.CompanyMapper;
-import com.dlts.hrms.utils.ServiceUtils;
+import com.dlts.hrms.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class CompanyService extends BaseService{
+public class CompanyService extends BaseService {
 
     @Autowired
     CompanyMapper companyMapper;

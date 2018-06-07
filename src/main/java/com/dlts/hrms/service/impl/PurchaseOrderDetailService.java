@@ -4,6 +4,7 @@ import com.dlts.hrms.domain.cm.PageResult;
 import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.PurchaseOrderDetail;
 import com.dlts.hrms.mapper.PurchaseOrderDetailMapper;
+import com.dlts.hrms.service.base.BaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
