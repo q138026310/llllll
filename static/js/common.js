@@ -19,14 +19,22 @@ var app = {
 	request:function(options){
 		var setting = {
 			type:'POST',
-			dataType:'JSON',
+			dataType:'json',
+			xhrFields: {
+				withCredentials: true
+			},
 			data:app.serializeForm(),
 			error:function(){
-				
+				alert('error');
 			}
 		};
 		$.extend(setting,options);
 		setting.url = app.BASE_API_URL+setting.url;
+		
+		console.log('------------ajax options----------------');
+		console.log(setting);
+		console.log('------------ajax options----------------');
+		
 		$.ajax(setting);
 	},
 	serializeForm:function(){

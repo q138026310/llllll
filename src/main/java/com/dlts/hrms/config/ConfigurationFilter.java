@@ -50,6 +50,9 @@ public class ConfigurationFilter {
             HttpServletRequest req = (HttpServletRequest) request;
             HttpServletResponse resp = (HttpServletResponse) response;
 
+            //resp.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:8848");
+            //resp.setHeader("Access-Control-Allow-Credentials","true");
+
             if (FilterBusiness.isChain(req, resp)) {
 
                 HrmsRequestWrapper hrmsRequestWrapper = new HrmsRequestWrapper(req);

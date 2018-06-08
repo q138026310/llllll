@@ -41,7 +41,7 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void configureViewResolvers(ViewResolverRegistry registry) {
-        registry.jsp("/templates/", ".html");
+        registry.jsp("/", ".html");
     }
 
 }
