@@ -29,6 +29,8 @@
 		<httpmime.version>4.3.6</httpmime.version>
 		<commons-beanutils.version>1.9.3</commons-beanutils.version>
 		<druid.version>1.0.18</druid.version>
+		<validation-api.version>2.0.1.Final</validation-api.version>
+		<hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
     </properties>
 
     <dependencies>
@@ -248,14 +250,14 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>2.0.1.Final</version>
+			<version>${validation-api.version}</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 		<dependency>
 			<groupId>org.hibernate.validator</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>6.0.7.Final</version>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
 
 	</dependencies>
