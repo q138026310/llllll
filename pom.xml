@@ -31,10 +31,21 @@
 		<druid.version>1.0.18</druid.version>
 		<validation-api.version>2.0.1.Final</validation-api.version>
 		<hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
+		<junit.version>4.12</junit.version>
     </properties>
 
     <dependencies>
-        <!-- 添加Spring依赖-->
+
+		<!-- https://mvnrepository.com/artifact/junit/junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+
+		<!-- 添加Spring依赖-->
 		<!--依赖注入包-->  
 		<dependency>  
 			<groupId>org.springframework</groupId>  

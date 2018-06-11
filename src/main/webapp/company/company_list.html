@@ -17,7 +17,7 @@
   <div class="layui-field-box">
 		<div class="layui-form-item">
 			<div class="layui-inline">
-			  <label class="layui-form-label">验证手机</label>
+			  <label class="layui-form-label">验证手机1</label>
 			  <div class="layui-input-inline">
 				<input type="tel" name="phone" lay-verify="required|phone" autocomplete="off" class="layui-input">
 			  </div>
@@ -29,7 +29,7 @@
 			  </div>
 			</div>
 			<div class="layui-inline">
-				<button class="layui-btn">按钮</button>
+				<button class="layui-btn">查询</button>
 			</div>
 			<div class="layui-inline">
 				<button class="layui-btn" id="add">添加</button>
@@ -54,13 +54,20 @@
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
 
+	/*$(function(){
+	    app.request({
+			url:'company/page',
+			success:function(resp){
+
+			}
+		});
+	});*/
+
 	$('#add').click(function(){
 		app.window(layer,{
-				content: 'user_add.html'
+		    content: 'user_add.html'
 		});
 	});
-
-	
 
     layui.use('table', function(){
         var table = layui.table;
@@ -70,13 +77,13 @@
             elem: '#demo',
 			page:true
             ,cols: [[ //标题栏
-                {field: 'id', title: 'ID', width: 80, sort: true}
-                ,{field: 'username', title: '用户名', width: 120,edit:'text'}
-                ,{field: 'email', title: '邮箱', minWidth: 150}
-                ,{field: 'sign', title: '签名', minWidth: 160}
-                ,{field: 'sex', title: '性别', width: 80,templet: '#switchTpl', unresize: true}
-                ,{field: 'city', title: '城市', width: 100}
-                ,{field: 'experience', title: '积分', width: 80, sort: true}
+                {field: 'id', title: '公司名称', minWidth: 150, sort: true}
+                ,{field: 'username', title: '公司编号', minWidth: 120,edit:'text'}
+                ,{field: 'email', title: '上级公司', minWidth: 150}
+                ,{field: 'sign', title: '联系人', minWidth: 80}
+                ,{field: 'sex', title: '联系电话', minWidth: 80,templet: '#switchTpl', unresize: true}
+                ,{field: 'city', title: '状态', minWidth: 100}
+                ,{field: 'experience', title: '操作', width: 80}
             ]]
             ,data: [{
                 "id": "10001"

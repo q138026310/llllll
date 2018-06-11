@@ -22,7 +22,6 @@ public class IndexAction {
 
     @RequestMapping("/login")
     public String login(LoginVo loginVo, HttpSession session) {
-        System.out.println("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee");
         Unified<LoginPo> unified = userService.login(loginVo);
         if (unified.success()) {
             session.setAttribute(SecretKey.user, unified.getData());

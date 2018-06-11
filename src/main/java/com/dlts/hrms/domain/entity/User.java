@@ -8,6 +8,13 @@ import javax.persistence.Table;
 @Table(name = "sys_user")
 public class User extends BaseEntity {
 
+    /**
+     * 公司id
+     *
+     * 当前不考虑多公司
+     *
+     * 后续考虑多公司的话 用户添加界面加上即可
+     */
     @Validate
     @Column(length = 19)
     private Long companyId;

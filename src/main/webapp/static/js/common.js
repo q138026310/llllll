@@ -1,5 +1,5 @@
 var app = {
-	BASE_API_URL:'http://127.0.0.1:8888/hrms/',
+	BASE_API_URL:'/hrms/',
 	window:function(layer,options){
 		var setting = {
 			type: 2,
