@@ -47,5 +47,8 @@ var app = {
 	getOkBtn:function(){
 		//layui-layer-btn0
 		return $('.layui-layer-btn0',parent.document);
+	},
+	locationTo:function(url){
+		location.href = url;
 	}
 }
