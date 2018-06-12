@@ -43,7 +43,7 @@
 
     <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
-        <property name="basePackage" value="com.iflytek.edu.mapper"/>
+        <property name="basePackage" value="com.dlts.hrms.mapper"/>
     </bean>
 
     <!-- 定义事务 -->
