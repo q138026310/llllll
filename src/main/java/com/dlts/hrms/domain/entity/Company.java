@@ -6,6 +6,9 @@ import javax.persistence.Column;
 import javax.persistence.Table;
 import java.util.Date;
 
+/**
+ *
+ */
 @Table(name = "sys_company")
 public class Company extends BaseEntity{
 
@@ -15,6 +18,10 @@ public class Company extends BaseEntity{
 
     @Column(length = 20)
     private String code;
+
+    /**
+     * 0 无上级
+     */
 
     @Validate
     @Column(length = 19)

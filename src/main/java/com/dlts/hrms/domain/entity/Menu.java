@@ -9,12 +9,14 @@ import javax.persistence.Table;
 @Table(name = "sys_menu")
 public class Menu extends BaseEntity{
 
+    @Column(length = 19)
     private Long parentId;
 
     @Column(length = 20)
     private String name;
 
-    private int sort;
+    @Column(length = 4)
+    private Integer sort;
 
     @Column(length = 200)
     private String href;
@@ -38,11 +40,11 @@ public class Menu extends BaseEntity{
         this.name = name;
     }
 
-    public int getSort() {
+    public Integer getSort() {
         return sort;
     }
 
-    public void setSort(int sort) {
+    public void setSort(Integer sort) {
         this.sort = sort;
     }
 

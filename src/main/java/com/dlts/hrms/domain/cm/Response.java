@@ -4,8 +4,8 @@ import com.dlts.hrms.utils.JsonUtils;
 
 public class Response {
 
-    public static <T> String body(Unified<T> u) {
-        String json = JsonUtils.toJson(u);
+    public static String body(Object obj) {
+        String json = JsonUtils.toJson(obj);
         return json;
     }
 

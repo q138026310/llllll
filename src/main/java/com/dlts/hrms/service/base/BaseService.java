@@ -13,6 +13,7 @@ import com.dlts.hrms.utils.UuidUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.beanutils.PropertyUtils;
+import tk.mybatis.mapper.entity.Example;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -39,15 +40,21 @@ public class BaseService {
         return unified;
     }
 
-    protected Unified<PageResult> page(Object bean,LmsMapper mapper) {
+    protected PageResult page(Object bean,LmsMapper mapper) {
         BaseEntity entity = (BaseEntity) bean;
-        Page page = PageHelper.startPage(entity.getPage(),entity.getRows());
-        Unified<PageResult> unified = Unified.create(PageResult.class);
+        Page page = PageHelper.startPage(entity.getPage(),entity.getLimit());
         PageResult pageResult = PageResult.create();
-        pageResult.setData(mapper.select(bean));
+
+
+        Example example = new Example(bean.getClass());
+        Example.Criteria criteria = example.createCriteria();
+        criteria.andEqualTo("customerId",entity.getCustomerId());
+        criteria.andGreaterThan("status",0);
+        example.setOrderByClause(" create_time desc ");
+        pageResult.setData(mapper.selectByExample(example));
+
         pageResult.setCount(page.getTotal());
-        unified.setData(pageResult);
-        return unified;
+        return pageResult;
     }
 
     protected Unified<Integer> update(Object bean,LmsMapper mapper) {

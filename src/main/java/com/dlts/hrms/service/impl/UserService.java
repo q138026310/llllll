@@ -50,7 +50,7 @@ public class UserService extends BaseService {
         return update(user);
     }
 
-    public Unified<PageResult> page(User user) {
+    public PageResult page(User user) {
         return page(user,userMapper);
     }
 

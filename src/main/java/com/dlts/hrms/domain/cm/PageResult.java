@@ -7,6 +7,7 @@ import java.util.List;
  */
 public class PageResult {
 
+    private int code=0;
     private long count;
     private List<?> data;
 
@@ -28,5 +29,13 @@ public class PageResult {
 
     public static PageResult create(){
         return new PageResult();
+    }
+
+    public int getCode() {
+        return code;
+    }
+
+    public void setCode(int code) {
+        this.code = code;
     }
 }

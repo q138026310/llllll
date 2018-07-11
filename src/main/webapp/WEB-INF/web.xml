@@ -47,6 +47,21 @@
         </init-param>
     </filter>
 
+    <!-- new request start -->
+    <filter>
+        <filter-name>newrequestFilter</filter-name>
+        <filter-class>com.dlts.hrms.config.RequestParamFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>newrequestFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- new request end -->
     <filter-mapping>
         <filter-name>CharacterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
@@ -66,8 +81,6 @@
     </servlet-mapping>
 
     <welcome-file-list>
-    	<welcome-file>index.html</welcome-file>
-    	<welcome-file>index.htm</welcome-file>
-    	<welcome-file>index.jsp</welcome-file>
+    	<welcome-file>login.html</welcome-file>
   	</welcome-file-list>
 </web-app>

@@ -40,7 +40,7 @@ public final class GlobalConstant {
 
     public static class DbDefaultValue{
         public static final Long  BIGINT= -1l;
-        public static final String  CHAR = "-1";
+        public static final String  CHAR = "";
         public static final Integer  INT = -1;
     }
 

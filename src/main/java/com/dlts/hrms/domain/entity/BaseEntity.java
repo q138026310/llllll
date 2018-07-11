@@ -38,7 +38,7 @@ public class BaseEntity {
     private Integer page = 0;
 
     @Transient
-    private Integer rows = 10;
+    private Integer limit = 10;
 
     @Transient
     private Long loginUserId;
@@ -53,12 +53,12 @@ public class BaseEntity {
         this.page = page;
     }
 
-    public Integer getRows() {
-        return rows;
+    public Integer getLimit() {
+        return limit;
     }
 
-    public void setRows(Integer rows) {
-        this.rows = rows;
+    public void setLimit(Integer limit) {
+        this.limit = limit;
     }
 
     public Long getLoginUserId() {

@@ -3,6 +3,7 @@ package com.dlts.hrms.web;
 import com.dlts.hrms.domain.cm.Response;
 import com.dlts.hrms.domain.entity.Company;
 import com.dlts.hrms.domain.entity.User;
+import com.dlts.hrms.domain.vo.company.CompanyPageVo;
 import com.dlts.hrms.service.impl.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,8 +32,8 @@ public class CompanyAction extends BaseAction{
     }
 
     @RequestMapping("/page")
-    public String page(Company company) {
-        return Response.body(companyService.page(company));
+    public String page(CompanyPageVo companyPageVo) {
+        return Response.body(companyService.page(companyPageVo));
     }
 
     @RequestMapping("/select")

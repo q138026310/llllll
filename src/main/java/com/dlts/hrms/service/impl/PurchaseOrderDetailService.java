@@ -35,7 +35,7 @@ public class PurchaseOrderDetailService extends BaseService {
         return update(purchaseOrderDetail);
     }
 
-    public Unified<PageResult> page(PurchaseOrderDetail purchaseOrderDetail) {
+    public PageResult page(PurchaseOrderDetail purchaseOrderDetail) {
         return page(purchaseOrderDetail, purchaseOrderDetailMapper);
     }
 
