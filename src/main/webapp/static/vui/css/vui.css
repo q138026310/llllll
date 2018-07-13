@@ -1,0 +1,180 @@
+body,html{
+	padding: 0px;margin: 0px;height: 100%;font-family: SF UI Display,PingFang SC,Neue Haas Grotesk Text Pro,Arial Nova,Segoe UI,Microsoft YaHei,Microsoft JhengHei,Helvetica,Hiragino Sans GB,Helvetica Neue,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,sans-serif!important;
+}
+
+
+/**index  start**/
+
+img{
+	background-size: 100%;
+}
+
+.vui-layout-body > div{
+	position: absolute;left: 0px;top: 0px;
+}
+.vui-layout-top{
+	width: 100%;height:60px;background-color: #202939;z-index: 10003;color:#FFFFFF;
+	box-shadow: 0 1px 10px #2a3445;
+}
+.vui-layout-left{
+	z-index: 10002;padding: 60px 15px 15px 15px;box-sizing:border-box;color:#FFFFFF;
+	width:190px;
+	height: 100%;background-color: #3c4b64;
+}
+.vui-layout-center{
+	width:100%;z-index: 10001;box-sizing:border-box;padding: 60px 0px 0px 190px;
+	height: 100%;background-color: #f5f5f5;
+}
+.vui-layout-center .content-out{
+	width: 100%;height: 100%;padding: 15px;box-sizing:border-box;
+}
+
+.vui-layout-center .content-out .content{
+	width: 100%;height: 100%;
+    border-radius: 4px;
+    background-color: #fff;
+    border: 1px solid #dcdcdc;
+}
+
+.vui-layout-top > .logo{
+	margin-top:15px;margin-left: 17px;position: absolute;
+}
+.vui-layout-top > .menu{
+	margin-left:118px;
+}
+.vui-layout-top > .menu ul{
+	font-size: 13px;
+    color: #ddd;
+    background: none;border: none;outline: none;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.vui-layout-top > .menu ul li{
+	list-style: none;color: #ddd;
+    border-bottom: 3px solid #202939!important;margin-right: 30px;padding: 0 10px;
+    height: 60px;float: left;box-sizing:border-box;line-height: 60px;cursor: pointer;
+}
+
+.vui-layout-top > .menu ul li:hover{
+	color: #fff;
+}
+
+.vui-layout-top > .menu ul .active{
+    border-bottom: 3px solid #fff!important;color: #fff;
+}
+
+.vui-layout-top > div{
+	display: inline-block;
+}
+.vui-layout-top .left{
+	font-size: 12px;
+	position: absolute;
+    right: 0px;    line-height: 60px;
+}
+.vui-layout-top .left > div{
+	display: inline-block;width: 115px;
+}
+    
+/**index  end**/
+
+/**table  start**/
+.vui-table{
+	border-collapse: collapse;
+    margin: 0 auto;
+    text-align: center;
+}
+.vui-table td, .vui-table th{
+    border: 1px solid #e6e6e6;
+    color: #666;
+    height: 30px;padding: 0px;
+}
+.vui-table th{
+    background-color: #f2f2f2;
+    width: 100px;
+}
+.vui-table tr{
+    height: 39px;
+}
+/*.vui-table tr:nth-child(odd){
+    background: #fff;
+}
+.vui-table tr:nth-child(even){
+    background: #F5FAFA;
+}*/
+.vui-table .page{
+	width:100%;
+	height:100%;padding: 9px;text-align: left;
+}
+.vui-table .page a{
+	text-decoration:none;
+}
+.vui-table .page .first{
+	color: #d2d2d2!important;cursor: not-allowed!important;padding: 4px 12px;
+}
+.vui-table .page .last{
+	color: #333!important;cursor: pointer!important;padding: 4px 12px;
+}
+.vui-table .page .last:hover{
+	color: #009688!important;
+}
+.vui-table .page .text{
+	    background-color: #009688;cursor: default!important;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 12px;
+}
+.vui-table .page .btn{
+	    background-color: none;cursor: pointer!important;
+    padding: 4px 10px;
+    border-radius: 2px;
+    color: #333;
+    font-size: 12px;
+}
+.vui-table .page .btn:hover{
+	color: #009688;
+}
+.vui-table .page .input:hover{
+	border: 1px solid #009688;
+}
+.vui-table .page .input{
+	width: 40px;
+	height: 26px;
+    line-height: 26px;
+    display: inline-block;
+    width: 40px;
+    margin: 0 10px;
+    padding: 0 3px;
+    text-align: center;
+    border-radius: 2px;
+    vertical-align: top;
+    background-color: #fff;
+    box-sizing: border-box;border: 1px solid #e2e2e2;font-family: inherit;
+    font-size: inherit;
+    font-style: inherit;
+    font-weight: inherit;
+}
+.vui-table .page .ok{
+	padding: 0 10px;height: 26px;cursor: pointer;
+    line-height: 26px;margin-left: 10px;
+    padding: 0 10px;
+    cursor: pointer;border-radius: 2px;
+    vertical-align: top;
+    background-color: #fff;
+    box-sizing: border-box;border: 1px solid #e2e2e2;align-items: flex-start;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+}
+
+.vui-table .editext{
+	border: 1px solid #5FB878;outline:none
+}
+.vui-table .editext:active{
+	border: 1px solid #5FB878;
+}
+
+/* #5FB878 */
+/**table  end**/
