@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>111</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<link rel="stylesheet" type="text/css" href="./table.css" />
+		<link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css">
+		<script src="./jquery-1.9.1.min.js"></script>
+		<script src="./table.js"></script>
+	</head>
+	<body>
+		<table id="table"></table>
+		<script>
+			vui.datagrid({
+				id:'table',
+				url:'/vui/data.jsp',
+				columns:[
+					{field:'name',title:'姓名',width:100},
+					{field:'sex',title:'性别',width:100},
+					{field:'phone',title:'联系方式',width:100},
+					{field:'state',title:'状态',width:100},
+					{field:'yyy',title:'呃呃呃',width:100,edit:true},
+					{title:'操作',width:100,formatter:function(row){
+						return 'adfd';
+					}}
+				]
+			});
+		</script> 
+	</body>
+</html>
