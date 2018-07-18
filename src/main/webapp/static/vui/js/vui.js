@@ -16,37 +16,45 @@ vui.datagrid = function(options,method,params){
 	
 	function loadHead(options){
 		var columns = options.columns;
-		var headTr = $('<tr></tr>');
+		var headTr = $('<div class="vui-table-row vui-table-head"></div>');
 		for (var i = 0; i < columns.length; i++) {
 			var column = columns[i];
-			headTr.append('<th>'+column.title+'</th>');
+			headTr.append('<div class="vui-table-cell">'+column.title+'</div>');
 		}
 		$(tableId).append(headTr);
 	}
 	
 	function loadData(tableId,data,currpage){
-		$(tableId+' tr[type="body"]').remove();
+		$(tableId+' div[type="body"]').remove();
 		var options = $(tableId).data();
 		var columns = options.columns;
 		var rows = data.rows;
 		for (var i = 0; i < rows.length; i++) {
 			var row = rows[i];
-			var rowTr = $('<tr type="body"></tr>');	
+			var rowTr = $('<div class="vui-table-row" type="body"></div>');
 			for (var j = 0; j < columns.length; j++) {
 				var column = columns[j];
 				var edit = column.edit?1:0;
+				var value = null;
 				if(column.field){
-					rowTr.append('<td edit="'+edit+'">'+row[column.field]+'</td>');	
+					value = row[column.field];
 				}else{
-					rowTr.append('<td edit="'+edit+'">'+column.formatter(row)+'</td>');
+					value = column.formatter(row);
 				}
+				var td =  $('<div class="vui-table-cell" style="width:'+column.width+'px;" edit="'+edit+'">'+value+'</div>');
+				if( j==0 ){
+					td.css({"border-left":"0px"});
+				}else if( j==columns.length-1 ){
+					td.css({"border-right":"0px"});
+				}
+				rowTr.append(td);
 				
 			}
 			$(tableId).append(rowTr);
 		}
 		
 		//1
-		$(tableId).find('td[edit="1"]').click(function(){
+		$(tableId).find('div[edit="1"]').click(function(){
 			var width = $(this).width()-2;
 			var height = $(this).height()-3;
 			var _input = $('<input type="text" style="width:'+width+'px;height:'+height+'px;" class="editext" value="'+$(this).html()+'"/>');
@@ -79,24 +87,28 @@ vui.datagrid = function(options,method,params){
     } 
 	
 	function loadPage(tableId,options,total,currpage){
-		$(tableId+' .page').parent().parent().remove();
+		$(tableId.replace('_table','')+' > .page').remove();
 		
 		var totalPage = getTotalPage(total,options.limit);
 		var pageDiv = $('<div class="page"></div>');
 		
 		pageDiv.append('<a class="first" href="javascript:;"><i class="fa fa-angle-left fa-lg"></i></a>');
-		pageDiv.append('<span class="text">1</span>');
+		//pageDiv.append('<span class="text">1</span>');
+        pageDiv.append('<a class="btn" href="javascript:;" data-page="1">1</a>');
 		if(totalPage<6){
 			for (var i = 2; i < 6; i++) {
 				pageDiv.append('<a class="btn" href="javascript:;" data-page="'+i+'">'+i+'</a>');		
 			}
 		}else{
-			pageDiv.append('<a class="btn" href="javascript:;" data-page="2">2</a>');
-			pageDiv.append('<a class="btn" href="javascript:;" data-page="3">3</a>');
-			pageDiv.append('<span>...</span>');
-			pageDiv.append('<a class="btn" href="javascript:;" data-page="'+totalPage+'">'+totalPage+'</a>');
+			if( currpage>2 ){
+
+			}else{
+                pageDiv.append('<a class="btn" href="javascript:;" data-page="2">2</a>');
+                pageDiv.append('<a class="btn" href="javascript:;" data-page="3">3</a>');
+                pageDiv.append('<span>...</span>');
+			}
 		}
-		
+        pageDiv.append('<a class="btn" href="javascript:;" data-page="'+totalPage+'">'+totalPage+'</a>');
 		pageDiv.append('<a class="last" href="javascript:;"><i class="fa fa-angle-right fa-lg"></i></a>');
 		pageDiv.append('<span style="font-size:12px;margin-left: 15px;">到第</span><input type="text" class="input"/><span style="font-size:12px;">页</span>');
 		pageDiv.append('<input class="ok" style="cursor:pointer;" type="button" value="确定"/>' );
@@ -105,21 +117,16 @@ vui.datagrid = function(options,method,params){
 		appendPageDiv(tableId,options,pageDiv);
 		
 		appendEvent(tableId);
-		
 	}
 	
 	function appendEvent(tableId){
-		$(tableId+' .page .btn').click(function(){
+		$(tableId.replace('_table','')+' .page .btn').click(function(){
 			loadUrl(tableId,$(this).data('page'));
 		});
 	}
 	
 	function appendPageDiv(tableId,options,pageDiv){
-		var td = $('<td colspan="'+options.columns.length+'" style="padding:0px;"></td>');
-		td.append(pageDiv);
-		var tr = $('<tr></tr>');
-		tr.append(td);
-		$(tableId).append(tr);
+		$(tableId.replace('_table','')).append(pageDiv);
 	}
 	
 	function getTotalPage(total,limit){
@@ -133,7 +140,13 @@ vui.datagrid = function(options,method,params){
 	}
 	
 	function setOptions(options){
-		var tableId = '#'+options.id;
+		var id = '#'+options.id;
+		var tableId = options.id+'_table';
+
+		$(id).css({"overflow":"hidden"});
+		$(id).append('<div id="'+tableId+'"></div>');
+
+		tableId = '#'+tableId;
 		$(tableId).data(options);
 		return tableId;
 	}

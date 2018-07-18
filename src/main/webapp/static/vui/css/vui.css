@@ -80,22 +80,29 @@ img{
 /**index  end**/
 
 /**table  start**/
+
+.vui-table-row{
+    display: table-row;
+}
+
+.vui-table-cell{
+    display: table-cell;
+}
+
 .vui-table{
+    display: table;
+    width: 100%;
 	border-collapse: collapse;
     margin: 0 auto;
-    text-align: center;
+    text-align: center;border-spacing: 0px;
 }
-.vui-table td, .vui-table th{
+.vui-table-head{
+    background-color: #f2f2f2;
+}
+.vui-table .vui-table-row, .vui-table .vui-table-cell{
     border: 1px solid #e6e6e6;
     color: #666;
-    height: 30px;padding: 0px;
-}
-.vui-table th{
-    background-color: #f2f2f2;
-    width: 100px;
-}
-.vui-table tr{
-    height: 39px;
+    height: 35px;padding: 0px;vertical-align: middle;
 }
 /*.vui-table tr:nth-child(odd){
     background: #fff;
@@ -103,43 +110,43 @@ img{
 .vui-table tr:nth-child(even){
     background: #F5FAFA;
 }*/
-.vui-table .page{
+.page{
 	width:100%;
 	height:100%;padding: 9px;text-align: left;
 }
-.vui-table .page a{
+.page a{
 	text-decoration:none;
 }
-.vui-table .page .first{
+.page .first{
 	color: #d2d2d2!important;cursor: not-allowed!important;padding: 4px 12px;
 }
-.vui-table .page .last{
+.page .last{
 	color: #333!important;cursor: pointer!important;padding: 4px 12px;
 }
-.vui-table .page .last:hover{
+.page .last:hover{
 	color: #009688!important;
 }
-.vui-table .page .text{
+.page .text{
 	    background-color: #009688;cursor: default!important;
     padding: 4px 10px;
     border-radius: 2px;
     color: #fff;
     font-size: 12px;
 }
-.vui-table .page .btn{
-	    background-color: none;cursor: pointer!important;
+.page .btn{
+    cursor: pointer!important;
     padding: 4px 10px;
     border-radius: 2px;
     color: #333;
     font-size: 12px;
 }
-.vui-table .page .btn:hover{
+.page .btn:hover{
 	color: #009688;
 }
-.vui-table .page .input:hover{
+.page .input:hover{
 	border: 1px solid #009688;
 }
-.vui-table .page .input{
+.page .input{
 	width: 40px;
 	height: 26px;
     line-height: 26px;
@@ -156,7 +163,7 @@ img{
     font-style: inherit;
     font-weight: inherit;
 }
-.vui-table .page .ok{
+ .page .ok{
 	padding: 0 10px;height: 26px;cursor: pointer;
     line-height: 26px;margin-left: 10px;
     padding: 0 10px;
@@ -169,12 +176,27 @@ img{
     color: buttontext;
 }
 
-.vui-table .editext{
+.editext{
 	border: 1px solid #5FB878;outline:none
 }
-.vui-table .editext:active{
+.editext:active{
 	border: 1px solid #5FB878;
 }
 
 /* #5FB878 */
 /**table  end**/
+
+/* form start*/
+.vui-field{
+    border: 1px solid #e6e6e6;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.vui-form-row{
+    display: table-row;
+}
+.vui-form-cell{
+    display: table-cell;
+}
+/* form end*/
