@@ -5,11 +5,11 @@ import java.util.List;
 /**
  * Created by admin on 2018/4/16.
  */
-public class PageResult {
+public class PageResult<T> {
 
     private int code=0;
     private long count;
-    private List<?> data;
+    private List<T> data;
 
     public long getCount() {
         return count;
@@ -19,16 +19,16 @@ public class PageResult {
         this.count = count;
     }
 
-    public List<?> getData() {
+    public List<T> getData() {
         return data;
     }
 
-    public void setData(List<?> data) {
+    public void setData(List<T> data) {
         this.data = data;
     }
 
-    public static PageResult create(){
-        return new PageResult();
+    public static <T> PageResult<T> create(){
+        return new PageResult<>();
     }
 
     public int getCode() {

@@ -1,5 +1,7 @@
 package com.dlts.hrms;
 
+import com.dlts.hrms.domain.cm.PageResult;
+import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.utils.CalcUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,5 +17,8 @@ public class TestTmp {
 
     public static void main(String[] args) throws ParseException {
         logger.info(String.valueOf(CalcUtils.div(2.8,0.7,2)));
+
+        PageResult<User> a =PageResult.create();
+
     }
 }
