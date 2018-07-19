@@ -10,7 +10,7 @@ public class DateUtils {
 
     private DateUtils(){}
 
-    private static String PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final String PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     public static Date now(){
         return new Date();

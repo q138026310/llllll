@@ -2,7 +2,9 @@ package com.dlts.hrms.domain.po.login;
 
 import com.dlts.hrms.domain.entity.User;
 
-public class LoginPo {
+import java.io.Serializable;
+
+public class LoginPo implements Serializable {
 
     private User user;
     private String token;

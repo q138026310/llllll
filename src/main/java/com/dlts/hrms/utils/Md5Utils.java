@@ -1,13 +1,17 @@
 package com.dlts.hrms.utils;
 
+import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.SecretKey;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
-import com.dlts.hrms.domain.cm.SecretKey;
-
 public class Md5Utils {
+
+    static Logger logger = LoggerFactory.getLogger(Md5Utils.class);
 
     private Md5Utils(){}
 
@@ -19,7 +23,7 @@ public class Md5Utils {
         try {
             MD = MessageDigest.getInstance(GlobalConstant.encrypt.MD5);
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            logger.error("content",e);
             throw new RuntimeException(e);
         }
     }

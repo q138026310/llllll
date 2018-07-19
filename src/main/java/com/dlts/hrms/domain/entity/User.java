@@ -4,9 +4,10 @@ import com.dlts.hrms.domain.cm.Validate;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import java.io.Serializable;
 
 @Table(name = "sys_user")
-public class User extends BaseEntity {
+public class User extends BaseEntity implements Serializable {
 
     /**
      * 公司id
