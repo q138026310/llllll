@@ -44,4 +44,8 @@ public final class GlobalConstant {
         public static final Integer  INT = -1;
     }
 
+    public static class Number{
+        public static final String num1= "1";
+    }
+
 }

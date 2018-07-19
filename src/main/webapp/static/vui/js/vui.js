@@ -1,5 +1,6 @@
 var vui = {};
 
+/* datagrid start */
 vui.datagrid = function(options,method,params){
 	
 	if( typeof(options) != 'object' ){
@@ -12,8 +13,7 @@ vui.datagrid = function(options,method,params){
 	$(tableId).addClass('vui-table');
 	loadHead(options);
 	loadUrl(tableId);
-	
-	
+
 	function loadHead(options){
 		var columns = options.columns;
 		var headTr = $('<div class="vui-table-row vui-table-head"></div>');
@@ -71,8 +71,7 @@ vui.datagrid = function(options,method,params){
 		
 		loadPage(tableId,options,data.total,currpage);
 	}
-	
-	
+
 	function moveEnd(obj){
         obj.focus(); 
         var len = obj.value.length;
@@ -87,7 +86,7 @@ vui.datagrid = function(options,method,params){
     } 
 	
 	function loadPage(tableId,options,total,currpage){
-		$(tableId.replace('_table','')+' > .page').remove();
+		$(getOutId(tableId)+' > .page').remove();
 		
 		var totalPage = getTotalPage(total,options.limit);
 		var pageDiv = $('<div class="page"></div>');
@@ -120,13 +119,13 @@ vui.datagrid = function(options,method,params){
 	}
 	
 	function appendEvent(tableId){
-		$(tableId.replace('_table','')+' .page .btn').click(function(){
+		$(getOutId(tableId)+' .page .btn').click(function(){
 			loadUrl(tableId,$(this).data('page'));
 		});
 	}
 	
 	function appendPageDiv(tableId,options,pageDiv){
-		$(tableId.replace('_table','')).append(pageDiv);
+		$(getOutId(tableId)).append(pageDiv);
 	}
 	
 	function getTotalPage(total,limit){
@@ -141,7 +140,7 @@ vui.datagrid = function(options,method,params){
 	
 	function setOptions(options){
 		var id = '#'+options.id;
-		var tableId = options.id+'_table';
+		var tableId = getTableId(options.id);
 
 		$(id).css({"overflow":"hidden"});
 		$(id).append('<div id="'+tableId+'"></div>');
@@ -149,6 +148,14 @@ vui.datagrid = function(options,method,params){
 		tableId = '#'+tableId;
 		$(tableId).data(options);
 		return tableId;
+	}
+
+	function getTableId(outId){
+		return outId+'_table';
+	}
+
+	function getOutId(tableId){
+		return tableId.replace('_table','');
 	}
 	
 	function loadUrl(tableId,page){
@@ -162,9 +169,24 @@ vui.datagrid = function(options,method,params){
 			success:function(data){
 				loadData(tableId,data,currpage);
 			},
-			error:function(e){
+			error:function(){
 				alert('error');
 			}
 		});
 	}
 }
+
+/* datagrid end */
+
+/* window start */
+
+
+vui.alert = function(options){
+	var windowId = new Date().getTime();
+	var width = 260,height = 150;
+	var left = $(document.body).width();
+	var top = $(document.body).height();
+
+    vui.lastWindowId = windowId;
+}
+/* window end */

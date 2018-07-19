@@ -4,7 +4,6 @@ import com.dlts.hrms.domain.cm.Validate;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
-import java.util.Date;
 
 /**
  *
