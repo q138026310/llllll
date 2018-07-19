@@ -1,11 +1,5 @@
-import com.dlts.hrms.domain.vo.http.HttpResult;
-import com.dlts.hrms.utils.HttpUtils;
-import com.dlts.hrms.utils.JsonUtils;
 import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.gson.JsonObject;
 import org.apache.commons.lang3.reflect.FieldUtils;
-import org.apache.http.Header;
 import org.junit.Test;
 
 import javax.persistence.Column;
@@ -31,33 +25,33 @@ public class App {
 
     public static void test(String url, Map<String,String> params){
 
-        String login_url = BASE_URL +"/index/login.spring";
-
-        Map<String,String> loginParams = Maps.newHashMap();
-
-        loginParams.put("username","admin");
-        loginParams.put("password","admin");
-
-        HttpResult result = HttpUtils.get(login_url,loginParams);
-        System.out.println("result:   "+result);
-
-        JsonObject login = JsonUtils.toJsonObject(result.getContent());
-        String token = login.get("data").getAsJsonObject().get("token").getAsString();
-
-        Map<String,String> headers = Maps.newHashMap();
-
-
-        String cookieValue = null;
-        for(Header header : result.getHeaders()){
-            if( header.getName().equals("Set-Cookie") ){
-                cookieValue = header.getValue();
-                break;
-            }
-        }
-        headers.put("Cookie",cookieValue+";token="+token);
-
-        result = HttpUtils.get(url+".spring",params,headers);
-        System.out.println("RESULT::::"+result.getContent());
+//        String login_url = BASE_URL +"/index/login.spring";
+//
+//        Map<String,String> loginParams = Maps.newHashMap();
+//
+//        loginParams.put("username","admin");
+//        loginParams.put("password","admin");
+//
+//        HttpResult result = HttpUtils.get(login_url,loginParams);
+//        System.out.println("result:   "+result);
+//
+//        JsonObject login = JsonUtils.toJsonObject(result.getContent());
+//        String token = login.get("data").getAsJsonObject().get("token").getAsString();
+//
+//        Map<String,String> headers = Maps.newHashMap();
+//
+//
+//        String cookieValue = null;
+//        for(Header header : result.getHeaders()){
+//            if( header.getName().equals("Set-Cookie") ){
+//                cookieValue = header.getValue();
+//                break;
+//            }
+//        }
+//        headers.put("Cookie",cookieValue+";token="+token);
+//
+//        result = HttpUtils.get(url+".spring",params,headers);
+//        System.out.println("RESULT::::"+result.getContent());
     }
 
 

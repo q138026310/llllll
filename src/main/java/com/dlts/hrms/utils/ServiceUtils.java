@@ -19,6 +19,8 @@ import java.util.List;
  */
 public class ServiceUtils {
 
+    private ServiceUtils(){}
+
     public static Example getDefaultExample(Object bean){
         Example example=new Example(bean.getClass());
         Example.Criteria criteria = example.createCriteria();

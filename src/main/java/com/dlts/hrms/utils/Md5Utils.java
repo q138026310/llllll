@@ -9,6 +9,8 @@ import com.dlts.hrms.domain.cm.SecretKey;
 
 public class Md5Utils {
 
+    private Md5Utils(){}
+
     private static MessageDigest MD;
     private static Charset UTF_8;
 

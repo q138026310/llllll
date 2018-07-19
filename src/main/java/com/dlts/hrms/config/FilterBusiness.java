@@ -1,18 +1,19 @@
 package com.dlts.hrms.config;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import com.dlts.hrms.domain.cm.GlobalConstant;
 import com.dlts.hrms.domain.cm.SecretKey;
 import com.dlts.hrms.domain.po.login.LoginPo;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class FilterBusiness {
 
-   static Logger logger = Logger.getLogger(FilterBusiness.class);
+   static Logger logger = LoggerFactory.getLogger(FilterBusiness.class);
 
     private static final String[] RELEASE_URLS =
             new String[] {"/static/", "/html/", "/templates/", "index/login"};

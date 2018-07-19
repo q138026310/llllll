@@ -1,12 +1,11 @@
 package com.dlts.hrms.web.system;
 
 import com.dlts.hrms.domain.cm.Response;
-import com.dlts.hrms.domain.entity.BaseEntity;
 import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.service.impl.UserService;
-import com.dlts.hrms.utils.JsonUtils;
 import com.dlts.hrms.web.BaseAction;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class UserAction extends BaseAction {
 
-    Logger logger = Logger.getLogger(getClass());
+    Logger logger = LoggerFactory.getLogger(UserAction.class);
 
     @Autowired
     UserService userService;

@@ -4,6 +4,8 @@ import java.util.Random;
 
 public class UuidUtils {
 
+    private UuidUtils(){}
+
     private static final Random RANDOM = new Random();
 
     private static final int BOUND = 1000000;
@@ -21,8 +23,5 @@ public class UuidUtils {
        return String.format("%06d", RANDOM.nextInt(BOUND));
    }
 
-   public static String getNumber(){
-       return DateUtils.formatNumber(DateUtils.now())+getRandom();
-   }
 
 }

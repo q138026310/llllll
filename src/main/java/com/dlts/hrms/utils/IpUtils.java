@@ -5,6 +5,8 @@ package com.dlts.hrms.utils;
  */
 public class IpUtils {
 
+    private IpUtils(){}
+
     public static int ipToInteger(String ip){
         String[] ips = ip.split("\\.");
         int ipFour = 0;

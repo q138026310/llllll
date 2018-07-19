@@ -7,6 +7,8 @@ import java.util.ArrayList;
  */
 public class ListUtils {
 
+    private ListUtils(){}
+
     public static <E> ArrayList<E> newArrayList() {
         return new ArrayList();
     }

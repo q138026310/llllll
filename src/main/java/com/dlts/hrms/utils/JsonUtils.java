@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 
 public class JsonUtils {
 
+    private JsonUtils(){}
+
     private static Gson GSON = null;
 
     public static String toJson(Object obj) {

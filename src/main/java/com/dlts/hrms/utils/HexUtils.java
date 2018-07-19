@@ -2,6 +2,8 @@ package com.dlts.hrms.utils;
 
 public class HexUtils {
 
+    private HexUtils(){}
+
     private static final char[] HEX = "0123456789abcdef".toCharArray();
 
     public static String toHexString(byte[] bytes) {
