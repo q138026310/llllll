@@ -15,16 +15,20 @@ import java.util.Map;
 
 public class RequestParamFilter extends OncePerRequestFilter {
 
-    private static String[] postfixs = new String[]{".js",".css",".html",".woff",".ttf",".png",".jpg",".gif",".ico"};
+    private static String[] postfixs = new String[]{".js",".css",".html",".woff",".woff2",".ttf",".png",".jpg",".gif",".ico"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        if( isStatic(request.getRequestURI()) ){
-            chain.doFilter(request,response);
+        HttpServletRequest req = null;
+
+        if( RequestParamFilter.isStatic(request.getRequestURI()) ){
+            req = request;
         }else{
-            chain.doFilter(getNewRequest(request),response);
+            req = getNewRequest(request);
         }
+
+        chain.doFilter(req,response);
     }
 
     private HttpServletRequest getNewRequest(HttpServletRequest request){

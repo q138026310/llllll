@@ -404,7 +404,7 @@ public class App {
         Connection conn = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/hrms?characterEncoding=UTF-8&useSSL=false","root","root");
+            conn = DriverManager.getConnection("jdbc:mysql://192.168.79.152:3306/hrms?characterEncoding=UTF-8&useSSL=false","root","root");
         } catch (Exception e) {
             e.printStackTrace();
         }

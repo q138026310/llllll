@@ -1,17 +1,18 @@
-package com.dlts.hrms.web;
+package com.dlts.hrms.web.system;
 
 import com.dlts.hrms.domain.cm.Response;
 import com.dlts.hrms.domain.entity.Company;
 import com.dlts.hrms.domain.entity.User;
 import com.dlts.hrms.domain.vo.company.CompanyPageVo;
 import com.dlts.hrms.service.impl.CompanyService;
+import com.dlts.hrms.web.BaseAction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/company")
-public class CompanyAction extends BaseAction{
+public class CompanyAction extends BaseAction {
 
     @Autowired
     CompanyService companyService;

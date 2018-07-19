@@ -35,7 +35,7 @@ public class BaseEntity {
     private Long customerId;
 
     @Transient
-    private Integer page = 0;
+    private Integer page = 1;
 
     @Transient
     private Integer limit = 10;
