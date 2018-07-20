@@ -2,12 +2,14 @@ package com.dlts.hrms.domain.cm;
 
 public class SecretKey {
 
-    public static final String value = "&#(%)O2313%t!~w_3-n=1";
+    private SecretKey(){}
 
-    public static final String token = "token";
+    public static final String VALUE = "&#(%)O2313%t!~w_3-n=1";
 
-    public static final String cookie = "Cookie";
+    public static final String TOKEN = "token";
 
-    public static final String user = "user";
+    public static final String COOKIE = "Cookie";
+
+    public static final String USER = "user";
 
 }

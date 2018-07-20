@@ -1,6 +1,6 @@
 package com.dlts.hrms.utils;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 
 import java.math.BigDecimal;
 
@@ -85,7 +85,7 @@ public class CalcUtils {
             throw new IllegalArgumentException("The scale must be a positive integer or zero");
         }
         BigDecimal data = BigDecimal.valueOf(num);
-        BigDecimal one = new BigDecimal(GlobalConstant.Number.num1);
+        BigDecimal one = new BigDecimal(App.Number.num1);
         return data.divide(one,scale,BigDecimal.ROUND_HALF_UP).doubleValue();
     }
 

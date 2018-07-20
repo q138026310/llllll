@@ -1,6 +1,6 @@
 package com.dlts.hrms.service.impl;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.PageResult;
 import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.User;
@@ -31,7 +31,7 @@ public class UserService extends BaseService {
             loginVo.setPassword(null);
             unified.setData(new LoginPo(user,Md5Utils.encrypt(user.getCustomerId())));
         } else {
-            unified.setResult(GlobalConstant.Result.BUSI_ERROR);
+            unified.setResult(App.Result.BUSI_ERROR);
         }
         return unified;
     }
@@ -46,7 +46,7 @@ public class UserService extends BaseService {
     }
 
     public Unified<Integer> delete(User user) {
-        user.setStatus(GlobalConstant.Status.DELETE);
+        user.setStatus(App.Status.DELETE);
         return update(user);
     }
 

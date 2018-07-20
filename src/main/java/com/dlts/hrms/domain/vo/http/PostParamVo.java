@@ -1,7 +1,7 @@
 package com.dlts.hrms.domain.vo.http;
 
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 
 /**
  * Created by admin on 2018/4/3.
@@ -38,13 +38,13 @@ public class PostParamVo {
 
     public static PostParamVo getStringParam(String key,String value){
         PostParamVo param =getParam(key,value);
-        param.setValueType(GlobalConstant.PostValueType.STRING);
+        param.setValueType(App.PostValueType.STRING);
         return param;
     }
 
     public static PostParamVo getFileParam(String key,String value){
         PostParamVo param =getParam(key,value);
-        param.setValueType(GlobalConstant.PostValueType.FILE);
+        param.setValueType(App.PostValueType.FILE);
         return param;
     }
 

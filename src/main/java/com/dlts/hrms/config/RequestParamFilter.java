@@ -34,7 +34,7 @@ public class RequestParamFilter extends OncePerRequestFilter {
     private HttpServletRequest getNewRequest(HttpServletRequest request){
         HttpSession session = request.getSession();
 
-        Object loginPObj = session.getAttribute(SecretKey.user);
+        Object loginPObj = session.getAttribute(SecretKey.USER);
         if( loginPObj==null ){
             return request;
         }else{

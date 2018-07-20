@@ -1,14 +1,12 @@
 package com.dlts.hrms.service.base;
 
 import com.dlts.hrms.config.LmsMapper;
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.PageResult;
 import com.dlts.hrms.domain.cm.Unified;
 import com.dlts.hrms.domain.entity.BaseEntity;
 import com.dlts.hrms.domain.ex.ServiceException;
-import com.dlts.hrms.utils.DateUtils;
-import com.dlts.hrms.utils.ServiceUtils;
-import com.dlts.hrms.utils.UuidUtils;
+import com.dlts.hrms.utils.*;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.apache.commons.beanutils.PropertyUtils;
@@ -43,27 +41,31 @@ public class BaseService {
         BaseEntity entity = (BaseEntity) bean;
         Page page = PageHelper.startPage(entity.getPage(),entity.getLimit());
         PageResult pageResult = PageResult.create();
-
-
         Example example = new Example(bean.getClass());
         Example.Criteria criteria = example.createCriteria();
-        criteria.andEqualTo("customerId",entity.getCustomerId());
-        criteria.andGreaterThan("status",0);
-        example.setOrderByClause(" create_time desc ");
+        criteria.andEqualTo(App.Property.CUSTOMER_ID,entity.getCustomerId());
+        criteria.andGreaterThan(App.Property.STATUS,0);
+        example.setOrderByClause(SqlUtils.order(App.Property.CREATE_TIME, App.SqlOrder.DESC));
         pageResult.setData(mapper.selectByExample(example));
 
         pageResult.setCount(page.getTotal());
         return pageResult;
     }
 
+    /**
+     * 有值更新 空值不更新
+     * @param bean
+     * @param mapper
+     * @return
+     */
     protected Unified<Integer> update(Object bean,LmsMapper mapper) {
         Unified<Integer> unified = Unified.create(Integer.class);
 
         try {
-            PropertyUtils.setProperty(bean,"updateTime",DateUtils.format(DateUtils.now()));
-            Object loginUserId = PropertyUtils.getProperty(bean,"loginUserId");
-            PropertyUtils.setProperty(bean,"updateUserId",loginUserId);
-            ServiceUtils.check(bean,GlobalConstant.DbOperatorType.UPDATE);
+            PropertyUtils.setProperty(bean, App.Property.UPDATE_TIME,DateUtils.format(DateUtils.now()));
+            Object loginUserId = PropertyUtils.getProperty(bean, App.Property.LOGIN_USER_ID);
+            PropertyUtils.setProperty(bean, App.Property.UPDATE_USER_ID,loginUserId);
+            ServiceUtils.check(bean, App.DbOperatorType.UPDATE);
         } catch (IllegalAccessException e) {
             throw new ServiceException(e);
         } catch (InvocationTargetException e) {
@@ -71,7 +73,6 @@ public class BaseService {
         } catch (NoSuchMethodException e) {
             throw new ServiceException(e);
         }
-
 
         unified.setData(mapper.updateByExampleSelective(bean,ServiceUtils.getDefaultExample(bean)));
 
@@ -82,7 +83,7 @@ public class BaseService {
         Unified<T> unified = new Unified<T>();
         BaseEntity entity = (BaseEntity) bean;
         if (entity.getId()==null) {
-            unified.setResult(GlobalConstant.Result.PARAM_ERROR);
+            unified.setResult(App.Result.PARAM_ERROR);
         } else {
             List<T> data = mapper.select(bean);
             if( data.size()==1 ){
@@ -101,11 +102,11 @@ public class BaseService {
     private Object getFieldDefaultValue(Field field){
         String name = field.getType().getSimpleName();
         if( name.equals("Long") ){
-            return GlobalConstant.DbDefaultValue.BIGINT;
+            return App.DbDefaultValue.BIGINT;
         }else if( name.equals("String") ){
-            return GlobalConstant.DbDefaultValue.CHAR;
+            return App.DbDefaultValue.CHAR;
         }else if( name.equals("Integer") ){
-            return GlobalConstant.DbDefaultValue.INT;
+            return App.DbDefaultValue.INT;
         }else{
             return null;
         }
@@ -113,14 +114,14 @@ public class BaseService {
 
     private void setInsertBean(Object bean){
         try {
-            PropertyUtils.setProperty(bean,"id",UuidUtils.getUuid());
-            PropertyUtils.setProperty(bean,"status",GlobalConstant.Status.NORMAL);
-            PropertyUtils.setProperty(bean,"createTime",DateUtils.format(DateUtils.now()));
-            Object loginUserId = PropertyUtils.getProperty(bean,"loginUserId");
-            PropertyUtils.setProperty(bean,"createUserId",loginUserId);
+            PropertyUtils.setProperty(bean, App.Property.ID,UuidUtils.getUuid());
+            PropertyUtils.setProperty(bean, App.Property.STATUS, App.Status.NORMAL);
+            PropertyUtils.setProperty(bean, App.Property.CREATE_TIME,DateUtils.format(DateUtils.now()));
+            Object loginUserId = PropertyUtils.getProperty(bean, App.Property.LOGIN_USER_ID);
+            PropertyUtils.setProperty(bean, App.Property.CREATE_USER_ID,loginUserId);
 
 
-            ServiceUtils.check(bean,GlobalConstant.DbOperatorType.INSERT);
+            ServiceUtils.check(bean, App.DbOperatorType.INSERT);
 
             //check success after
             Field[] fields = bean.getClass().getDeclaredFields();

@@ -1,6 +1,6 @@
 package com.dlts.hrms.web;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.Response;
 import com.dlts.hrms.domain.cm.Unified;
 import org.slf4j.Logger;
@@ -20,7 +20,7 @@ public class BaseAction{
     @ExceptionHandler(Exception.class)
     public void processMethod(Exception e, HttpServletRequest request , HttpServletResponse response) throws IOException {
         Unified<String> unified = Unified.create(String.class);
-        unified.setResult(GlobalConstant.Result.BUSI_ERROR);
+        unified.setResult(App.Result.BUSI_ERROR);
         unified.setData(e.getMessage());
         response.getWriter().print(Response.body(unified));
         baseLogger.error("content",e);

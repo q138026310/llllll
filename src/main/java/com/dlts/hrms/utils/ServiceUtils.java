@@ -1,6 +1,6 @@
 package com.dlts.hrms.utils;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.TkQuery;
 import com.dlts.hrms.domain.cm.Validate;
 import com.dlts.hrms.domain.entity.BaseEntity;
@@ -51,16 +51,16 @@ public class ServiceUtils {
     public static void check(Object bean,int dbOperatorType) throws IllegalAccessException, NoSuchMethodException, InvocationTargetException {
 
             switch (dbOperatorType){
-                case GlobalConstant.DbOperatorType.INSERT :
+                case App.DbOperatorType.INSERT :
                     checkInsert(bean,dbOperatorType);
                     break;
-                case GlobalConstant.DbOperatorType.DELETE :
+                case App.DbOperatorType.DELETE :
                     checkDelete(bean,dbOperatorType);
                     break;
-                case GlobalConstant.DbOperatorType.UPDATE :
+                case App.DbOperatorType.UPDATE :
                     checkUpdate(bean,dbOperatorType);
                     break;
-                case GlobalConstant.DbOperatorType.SELECT :
+                case App.DbOperatorType.SELECT :
                     checkSelect(bean,dbOperatorType);
                     break;
             }
@@ -112,16 +112,16 @@ public class ServiceUtils {
     private static boolean getValidate(Validate validate,int dbOperatorType){
         boolean flag = false;
         switch (dbOperatorType){
-            case GlobalConstant.DbOperatorType.INSERT :
+            case App.DbOperatorType.INSERT :
                 flag = validate.insert();
                 break;
-            case GlobalConstant.DbOperatorType.DELETE :
+            case App.DbOperatorType.DELETE :
                 flag = validate.delete();
                 break;
-            case GlobalConstant.DbOperatorType.UPDATE :
+            case App.DbOperatorType.UPDATE :
                 flag = validate.update();
                 break;
-            case GlobalConstant.DbOperatorType.SELECT :
+            case App.DbOperatorType.SELECT :
                 flag = validate.select();
                 break;
         }

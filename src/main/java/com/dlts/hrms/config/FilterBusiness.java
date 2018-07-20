@@ -1,6 +1,6 @@
 package com.dlts.hrms.config;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.SecretKey;
 import com.dlts.hrms.domain.po.login.LoginPo;
 import org.apache.commons.lang3.StringUtils;
@@ -40,7 +40,7 @@ public class FilterBusiness {
             return true;
         }
 
-        String cookie = request.getHeader(SecretKey.cookie);
+        String cookie = request.getHeader(SecretKey.COOKIE);
         if( StringUtils.isBlank(cookie) ){
             logger.info("request cookie");
             return false;
@@ -54,7 +54,7 @@ public class FilterBusiness {
 
         HttpSession session = request.getSession();
         if (session != null) {
-            Object obj = session.getAttribute(SecretKey.user);
+            Object obj = session.getAttribute(SecretKey.USER);
             if (obj != null ) {
                 String sessionToken = ((LoginPo) obj).getToken();
                 return sessionToken.equals(cookieToken);
@@ -80,13 +80,13 @@ public class FilterBusiness {
     private static String getToken(String requestCookie){
 
         String token = null;
-        String[] cookies = requestCookie.split(GlobalConstant.Symbol.SEMICOLON);
+        String[] cookies = requestCookie.split(App.Symbol.SEMICOLON);
 
         if( cookies.length > 1 ){
             for(  String cookie : cookies ){
-                String[] ck = cookie.split(GlobalConstant.Symbol.EQUAL);
+                String[] ck = cookie.split(App.Symbol.EQUAL);
 
-                if( ck.length == 2 && ck[0].trim().equals(SecretKey.token) ){
+                if( ck.length == 2 && ck[0].trim().equals(SecretKey.TOKEN) ){
                     token = ck[1].trim();
                     break;
                 }

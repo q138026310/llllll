@@ -11,7 +11,7 @@ public class Response {
 
     // public static String encode(String value) {
     // try {
-    // return URLEncoder.encode(value, GlobalConstant.Encode.UTF_8);
+    // return URLEncoder.encode(value, App.Encode.UTF_8);
     // } catch (UnsupportedEncodingException e) {
     // e.printStackTrace();
     // }

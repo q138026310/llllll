@@ -1,6 +1,6 @@
 package com.dlts.hrms.domain.cm;
 
-public final class GlobalConstant {
+public final class App {
 
     public class Encode {
         public final static String UTF_8 = "UTF-8";
@@ -23,6 +23,7 @@ public final class GlobalConstant {
     public static class Symbol{
         public static final String SEMICOLON = ";";
         public static final String EQUAL = "=";
+        public static final String SPACE = " ";
     }
 
     public static class DbOperatorType{
@@ -46,6 +47,21 @@ public final class GlobalConstant {
 
     public static class Number{
         public static final String num1= "1";
+    }
+
+    public static class Property{
+        public static final String ID = "id";
+        public static final String STATUS = "status";
+        public static final String CREATE_TIME = "createTime";
+        public static final String CREATE_USER_ID = "createUserId";
+        public static final String LOGIN_USER_ID = "loginUserId";
+        public static final String CUSTOMER_ID = "customerId";
+        public static final String UPDATE_TIME = "updateTime";
+        public static final String UPDATE_USER_ID = "updateUserId";
+    }
+
+    public static class SqlOrder{
+        public static final String DESC = "desc";
     }
 
 }

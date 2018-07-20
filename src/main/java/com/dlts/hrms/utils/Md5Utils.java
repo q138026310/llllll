@@ -1,6 +1,6 @@
 package com.dlts.hrms.utils;
 
-import com.dlts.hrms.domain.cm.GlobalConstant;
+import com.dlts.hrms.domain.cm.App;
 import com.dlts.hrms.domain.cm.SecretKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +19,9 @@ public class Md5Utils {
     private static Charset UTF_8;
 
     static {
-        UTF_8 = Charset.forName(GlobalConstant.Encode.UTF_8);
+        UTF_8 = Charset.forName(App.Encode.UTF_8);
         try {
-            MD = MessageDigest.getInstance(GlobalConstant.encrypt.MD5);
+            MD = MessageDigest.getInstance(App.encrypt.MD5);
         } catch (NoSuchAlgorithmException e) {
             logger.error("content",e);
             throw new RuntimeException(e);
@@ -29,12 +29,12 @@ public class Md5Utils {
     }
 
     public static String encrypt(Long value) {
-        byte[] bytes = MD.digest((value + SecretKey.value).getBytes(UTF_8));
+        byte[] bytes = MD.digest((value + SecretKey.VALUE).getBytes(UTF_8));
         return HexUtils.toHexString(bytes);
     }
 
     public static String encrypt(String value) {
-        byte[] bytes = MD.digest((value + SecretKey.value).getBytes(UTF_8));
+        byte[] bytes = MD.digest((value + SecretKey.VALUE).getBytes(UTF_8));
         return HexUtils.toHexString(bytes);
     }
 

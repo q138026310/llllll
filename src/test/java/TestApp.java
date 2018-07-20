@@ -20,7 +20,7 @@ import java.util.jar.JarFile;
 /**
  * Created by admin on 2018/4/10.
  */
-public class App {
+public class TestApp {
     public static final String BASE_URL = "http://127.0.0.1:8888/hrms";
 
     public static void test(String url, Map<String,String> params){
@@ -60,7 +60,7 @@ public class App {
         Connection conn = null;
         try {
             conn = getConnection();
-            App.initTables(conn);
+            TestApp.initTables(conn);
         }catch (Exception e){
             e.printStackTrace();
         }finally {
