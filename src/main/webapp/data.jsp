@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+		 pageEncoding="UTF-8"%>
 <%
  
     String apage = request.getParameter("page");
@@ -14,9 +14,9 @@
 	int index = 0;
 	for( int i=(pagei-1)*10+1 ; i<=end ; i++ ){
 		if(index==0){
-			out.print("{\"id\":"+i+",\"name\":\"张三"+i+"\",\"sex\":0,\"state\":0,\"phone\":\"1346589741"+i+"\",\"yyy\":\"大大幅度"+i+"\"}");		
+			out.print("{\"id\":"+i+",\"name\":\"张三"+i+"\",\"sex\":0,\"state\":0,\"phone\":\"1346589741"+i+"\",\"yyy\":\"大大幅度"+i+"\"}");
 		}else{
-			out.print(",{\"id\":"+i+",\"name\":\"张三"+i+"\",\"sex\":0,\"state\":0,\"phone\":\"1346589741"+i+"\",\"yyy\":\"大大幅度"+i+"\"}");		
+			out.print(",{\"id\":"+i+",\"name\":\"张三"+i+"\",\"sex\":0,\"state\":0,\"phone\":\"1346589741"+i+"\",\"yyy\":\"大大幅度"+i+"\"}");
 		}
 		
 		index++;

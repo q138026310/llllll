@@ -29,29 +29,26 @@ vui.datagrid = function(options,method,params){
 		var options = $(tableId).data();
 		var columns = options.columns;
 		var rows = data.rows;
-		for (var i = 0; i < rows.length; i++) {
-			var row = rows[i];
-			var rowTr = $('<div class="vui-table-row" type="body"></div>');
-			for (var j = 0; j < columns.length; j++) {
-				var column = columns[j];
-				var edit = column.edit?1:0;
-				var value = null;
-				if(column.field){
-					value = row[column.field];
-				}else{
-					value = column.formatter(row);
-				}
-				var td =  $('<div class="vui-table-cell" style="width:'+column.width+'px;" edit="'+edit+'">'+value+'</div>');
-				if( j==0 ){
-					td.css({"border-left":"0px"});
-				}else if( j==columns.length-1 ){
-					td.css({"border-right":"0px"});
-				}
-				rowTr.append(td);
-				
-			}
-			$(tableId).append(rowTr);
-		}
+		$.each(rows,function(i,row){
+            var rowTr = $('<div class="vui-table-row" type="body"></div>');
+            $.each(columns,function(j,column){
+                var value=null,edit = column.edit?1:0;
+                if(column.field){
+                    value = row[column.field];
+                }else{
+                    value = column.formatter(row);
+                }
+                var colTd =  $('<div class="vui-table-cell" style="width:'+column.width+'px;" edit="'+edit+'">'+value+'</div>');
+                if( j==0 ){
+                    colTd.css({"border-left":"0px"});
+                }else if( j==columns.length-1 ){
+                    colTd.css({"border-right":"0px"});
+                }
+                rowTr.append(colTd);
+			});
+            $(tableId).append(rowTr);
+		});
+
 		
 		//1
 		$(tableId).find('div[edit="1"]').click(function(){
@@ -93,21 +90,21 @@ vui.datagrid = function(options,method,params){
 		
 		pageDiv.append('<a class="first" href="javascript:;"><i class="fa fa-angle-left fa-lg"></i></a>');
 		//pageDiv.append('<span class="text">1</span>');
-        pageDiv.append('<a class="btn" href="javascript:;" data-page="1">1</a>');
+        pageDiv.append(getPageNumEle(1));
 		if(totalPage<6){
 			for (var i = 2; i < 6; i++) {
-				pageDiv.append('<a class="btn" href="javascript:;" data-page="'+i+'">'+i+'</a>');		
+				pageDiv.append(getPageNumEle(i));
 			}
 		}else{
 			if( currpage>2 ){
 
 			}else{
-                pageDiv.append('<a class="btn" href="javascript:;" data-page="2">2</a>');
-                pageDiv.append('<a class="btn" href="javascript:;" data-page="3">3</a>');
+                pageDiv.append(getPageNumEle(2));
+                pageDiv.append(getPageNumEle(3));
                 pageDiv.append('<span>...</span>');
 			}
 		}
-        pageDiv.append('<a class="btn" href="javascript:;" data-page="'+totalPage+'">'+totalPage+'</a>');
+        pageDiv.append(getPageNumEle(totalPage));
 		pageDiv.append('<a class="last" href="javascript:;"><i class="fa fa-angle-right fa-lg"></i></a>');
 		pageDiv.append('<span style="font-size:12px;margin-left: 15px;">到第</span><input type="text" class="input"/><span style="font-size:12px;">页</span>');
 		pageDiv.append('<input class="ok" style="cursor:pointer;" type="button" value="确定"/>' );
@@ -116,6 +113,10 @@ vui.datagrid = function(options,method,params){
 		appendPageDiv(tableId,options,pageDiv);
 		
 		appendEvent(tableId);
+	}
+
+	function getPageNumEle(num){
+		return '<a class="btn" href="javascript:;" data-page="'+num+'">'+num+'</a>';
 	}
 	
 	function appendEvent(tableId){
@@ -178,15 +179,3 @@ vui.datagrid = function(options,method,params){
 
 /* datagrid end */
 
-/* window start */
-
-
-vui.alert = function(options){
-	var windowId = new Date().getTime();
-	var width = 260,height = 150;
-	var left = $(document.body).width();
-	var top = $(document.body).height();
-
-    vui.lastWindowId = windowId;
-}
-/* window end */

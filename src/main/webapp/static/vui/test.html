@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!--STATUS OK-->
+
+<html>
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8">
+		<script src="../js/jquery-1.9.1.min.js"></script>
+
+		<script src="../layui/lay/modules/layer.js"></script>
+		<link href="../layui/css/modules/layer/default/layer.css" rel="stylesheet">
+
+		<script src="../vui/js/vui.js"></script>
+		<link href="../vui/css/vui.css" rel="stylesheet">
+
+		<style>
+
+
+		</style>
+	</head>
+	<body>
+
+		
+		<!--<div class="vui-window-mode"></div>
+		<div class="vui-window vui-window-alert">
+			<div class="vui-window-head">
+
+			</div>
+			<div class="vui-window-body">Hi，你好！ 点击确认更换图标</div>
+			<div class="vui-window-btn"><a class="vui-form-button-win">确定</a></div>
+		</div>-->
+		<div id="table"></div>
+		<script>
+
+            vui.datagrid({
+                id:'table',
+                url:'/hrms/data.jsp',
+                columns:[
+                    {field:'name',title:'姓名',width:100},
+                    {field:'sex',title:'性别',width:100},
+                    {field:'phone',title:'联系方式',width:100},
+                    {field:'state',title:'状态',width:100},
+                    {field:'yyy',title:'呃呃呃',width:100,edit:true},
+                    {title:'操作',width:100,formatter:function(row){
+                        return 'adfd';
+                    }}
+                ]
+            });
+            //layer.alert('内容');
+            /*layer.open({
+                type: 2,
+                title: '很多时候，我们想最大化看，比如像这个页面。',
+                shadeClose: true,
+                shade: false,
+                maxmin: true, //开启最大化最小化按钮
+                area: ['893px', '600px'],
+                content: '//fly.layui.com/'
+            });*/
+		</script>
+	</body>
+</html>
