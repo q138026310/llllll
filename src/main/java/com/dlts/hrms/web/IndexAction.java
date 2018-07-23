@@ -28,4 +28,10 @@ public class IndexAction {
         return Response.body(unified);
     }
 
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        Unified<Integer> unified = new Unified<>();
+        session.invalidate();
+        return Response.body(unified);
+    }
 }

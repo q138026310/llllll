@@ -15,20 +15,24 @@ import java.util.Map;
 
 public class RequestParamFilter extends OncePerRequestFilter {
 
-    private static String[] postfixs = new String[]{".js",".css",".html",".woff",".woff2",".ttf",".png",".jpg",".gif",".ico"};
+    private static final String[] POSTFIXS = new String[]{".js",".css",".html",".woff",".woff2",".ttf",".png",".jpg",".gif",".ico"};
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws ServletException, IOException {
 
-        HttpServletRequest req = null;
+        HttpServletRequest req;
 
-        if( RequestParamFilter.isStatic(request.getRequestURI()) ){
-            req = request;
+        if(FilterBusiness.isChain(request)){
+            if( RequestParamFilter.isStatic(request.getRequestURI()) ){
+                req = request;
+            }else{
+                req = getNewRequest(request);
+            }
+            chain.doFilter(req,response);
         }else{
-            req = getNewRequest(request);
+            response.sendRedirect("/login.html");
         }
 
-        chain.doFilter(req,response);
     }
 
     private HttpServletRequest getNewRequest(HttpServletRequest request){
@@ -49,8 +53,8 @@ public class RequestParamFilter extends OncePerRequestFilter {
     }
 
     private static boolean isStatic(String uri){
-        for (int i = 0; i < postfixs.length; i++) {
-            if(uri.endsWith(postfixs[i])){
+        for (int i = 0; i < POSTFIXS.length; i++) {
+            if(uri.endsWith(POSTFIXS[i])){
                 return true;
             }
         }

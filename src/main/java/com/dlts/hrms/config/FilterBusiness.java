@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class FilterBusiness {
@@ -16,16 +15,15 @@ public class FilterBusiness {
    static Logger logger = LoggerFactory.getLogger(FilterBusiness.class);
 
     private static final String[] RELEASE_URLS =
-            new String[] {"/static/", "/html/", "/templates/", "index/login"};
+            new String[] {"login.html","/static/"};
 
     /**
      * check cookie and token
      * 
      * @param request
-     * @param response
      * @return
      */
-    public static boolean isChain(HttpServletRequest request, HttpServletResponse response) {
+    public static boolean isChain(HttpServletRequest request) {
 
        /* int a = 1;
         int b = 1;
