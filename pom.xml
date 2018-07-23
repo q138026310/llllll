@@ -33,9 +33,14 @@
 		<validation-api.version>2.0.1.Final</validation-api.version>
 		<hibernate-validator.version>6.0.7.Final</hibernate-validator.version>
 		<junit.version>4.12</junit.version>
+		<javax.el-api.version>3.0.0</javax.el-api.version>
+		<jsp-api.version>2.0</jsp-api.version>
     </properties>
 
     <dependencies>
+
+		<!-- maven tomcat7 need -->
+
 
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
@@ -293,6 +298,21 @@
 					<uriEncoding>UTF-8</uriEncoding>
 					<!--<url>http://localhost:8080/manager/html</url>-->
 					<server>tomcat6</server>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat6-maven-plugin</artifactId>
+				<version>2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomcat.maven</groupId>
+				<artifactId>tomcat7-maven-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<server>myserver</server>
+					<port>8888</port>
+					<uriEncoding>UTF-8</uriEncoding>
 				</configuration>
 			</plugin>
             <plugin>
