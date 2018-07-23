@@ -19,9 +19,38 @@ vui.datagrid = function(options,method,params){
 		var headTr = $('<div class="vui-table-row vui-table-head"></div>');
 		for (var i = 0; i < columns.length; i++) {
 			var column = columns[i];
-			headTr.append('<div class="vui-table-cell">'+column.title+'</div>');
+			headTr.append('<div class="vui-table-cell" style="width:'+column.width+'px;">'+column.title+'</div>');
 		}
 		$(tableId).append(headTr);
+	}
+
+	function getTableWidth(options){
+		var width = $(document.body).width();
+		if( options.width ){
+			width = options.width;
+		}
+		return width;
+	}
+
+	function setColumnWidth(tableWidth,options){
+
+		var optionsWidth = 0;
+		var fixedWidth = options.columns.length+1;
+        $.each(options.columns,function(j,column){
+        	if(column.fixed){
+                fixedWidth = app.add(fixedWidth,column.width,0);
+			}else{
+                optionsWidth = app.add(optionsWidth,column.width,0);
+			}
+        });
+        var rate = app.div(optionsWidth,app.sub(tableWidth,fixedWidth,0),10);
+
+        $.each(options.columns,function(j,column){
+            if(!column.fixed){
+                column.width = app.div(column.width,rate,0);
+            }
+        });
+
 	}
 	
 	function loadData(tableId,data,currpage){
@@ -29,21 +58,23 @@ vui.datagrid = function(options,method,params){
 		var options = $(tableId).data();
 		var columns = options.columns;
 		var rows = data.rows;
+
 		$.each(rows,function(i,row){
             var rowTr = $('<div class="vui-table-row" type="body"></div>');
             $.each(columns,function(j,column){
-                var value=null,edit = column.edit?1:0;
+                var value=null;
                 if(column.field){
                     value = row[column.field];
                 }else{
                     value = column.formatter(row);
                 }
-                var colTd =  $('<div class="vui-table-cell" style="width:'+column.width+'px;" edit="'+edit+'">'+value+'</div>');
-                if( j==0 ){
-                    colTd.css({"border-left":"0px"});
-                }else if( j==columns.length-1 ){
-                    colTd.css({"border-right":"0px"});
-                }
+                var colTd = null;
+                if(column.edit){
+                    colTd =  $('<div class="vui-table-cell"  edit="'+column.edit+'">'+value+'</div>');
+				}else{
+                    colTd =  $('<div class="vui-table-cell">'+value+'</div>');
+				}
+
                 rowTr.append(colTd);
 			});
             $(tableId).append(rowTr);
@@ -51,19 +82,23 @@ vui.datagrid = function(options,method,params){
 
 		
 		//1
-		$(tableId).find('div[edit="1"]').click(function(){
-			var width = $(this).width()-2;
-			var height = $(this).height()-3;
-			var _input = $('<input type="text" style="width:'+width+'px;height:'+height+'px;" class="editext" value="'+$(this).html()+'"/>');
-			_input.blur(function(){
-				$(this).parent().html($(this).val());
-			});
-			$(this).empty();
-			$(this).append(_input);
-			moveEnd($(this).find('input').get(0));
+		$(tableId).find('div[edit]').click(function(){
+			var edit = $(this).attr('edit');
+			if( edit=='input' ){
+				if($(this).find('input').length>0){
+					return;
+				}
+                var width = $(this).width()-2;
+                var height = $(this).height()-4;
+                var _input = $('<input type="text" style="width:'+width+'px;height:'+height+'px;" class="editext" value="'+$(this).html()+'"/>');
+                _input.blur(function(){
+                    $(this).parent().html($(this).val());
+                });
+                $(this).empty();
+                $(this).append(_input);
+                moveEnd($(this).find('input').get(0));
+			}
 		});
-		
-		
 		//1
 		
 		loadPage(tableId,options,data.total,currpage);
@@ -147,6 +182,11 @@ vui.datagrid = function(options,method,params){
 		$(id).append('<div id="'+tableId+'"></div>');
 
 		tableId = '#'+tableId;
+
+        var tableWidth = getTableWidth(options);
+        $(tableId).width(tableWidth);
+        setColumnWidth(tableWidth,options);
+
 		$(tableId).data(options);
 		return tableId;
 	}

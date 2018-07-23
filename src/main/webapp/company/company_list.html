@@ -9,6 +9,7 @@
 	<link href="../static/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<script type="text/javascript" src="../static/js/jquery-1.9.1.min.js"></script>
 	<link rel="stylesheet" href="../static/vui/css/vui.css">
+	<script type="text/javascript" src="../static/js/common.js"></script>
 	<script type="text/javascript" src="../static/vui/js/vui.js"></script>
     <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
 </head>
@@ -43,13 +44,13 @@ $('#add').click(function(){
 
 vui.datagrid({
     id:'table',
-    url:'/hrms/data.jsp',
+    url:app.BASE_API_URL+'data.jsp',
     columns:[
         {field:'name',title:'姓名',width:100},
         {field:'sex',title:'性别',width:100},
         {field:'phone',title:'联系方式',width:100},
-        {field:'state',title:'状态',width:100},
-        {field:'yyy',title:'呃呃呃',width:100,edit:true},
+        {field:'state',title:'状态',width:100,fixed:true},
+        {field:'yyy',title:'呃呃呃',width:100,edit:'input'},
         {title:'操作',width:100,formatter:function(row){
                 return 'adfd';
             }}
