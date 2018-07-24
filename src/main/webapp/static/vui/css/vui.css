@@ -1,5 +1,6 @@
 body,html{
 	padding: 0px;margin: 0px;height: 100%;font-family: SF UI Display,PingFang SC,Neue Haas Grotesk Text Pro,Arial Nova,Segoe UI,Microsoft YaHei,Microsoft JhengHei,Helvetica,Hiragino Sans GB,Helvetica Neue,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,sans-serif!important;
+    background-color:#ebeff2;
 }
 
 input, textarea, select, button {
