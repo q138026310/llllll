@@ -13,6 +13,7 @@
         <if test=" contact != null and contact.length() > 0 ">
             and name like concat( '%','#{contact}','%' ) ;
         </if>
+        order by c1.create_time desc
     </select>
 
 </mapper>

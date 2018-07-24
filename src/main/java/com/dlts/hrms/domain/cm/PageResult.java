@@ -8,28 +8,8 @@ import java.util.List;
 public class PageResult<T> {
 
     private int code=0;
-    private long count;
-    private List<T> data;
-
-    public long getCount() {
-        return count;
-    }
-
-    public void setCount(long count) {
-        this.count = count;
-    }
-
-    public List<T> getData() {
-        return data;
-    }
-
-    public void setData(List<T> data) {
-        this.data = data;
-    }
-
-    public static <T> PageResult<T> create(){
-        return new PageResult<>();
-    }
+    private long total;
+    private List<T> rows;
 
     public int getCode() {
         return code;
@@ -37,5 +17,21 @@ public class PageResult<T> {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public long getTotal() {
+        return total;
+    }
+
+    public void setTotal(long total) {
+        this.total = total;
+    }
+
+    public List<T> getRows() {
+        return rows;
+    }
+
+    public void setRows(List<T> rows) {
+        this.rows = rows;
     }
 }

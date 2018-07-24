@@ -14,8 +14,7 @@ public class FilterBusiness {
 
    static Logger logger = LoggerFactory.getLogger(FilterBusiness.class);
 
-    private static final String[] RELEASE_URLS =
-            new String[] {"login.html","/static/"};
+    private static final String[] RELEASE_URLS = new String[]{".js",".css",".html",".woff",".woff2",".ttf",".png",".jpg",".gif",".ico","/login.html","/index/login"};
 
     /**
      * check cookie and token
@@ -32,6 +31,7 @@ public class FilterBusiness {
         }*/
 
         String requestUri = request.getRequestURI();
+        logger.info("requestUri:{}",requestUri);
 
         if (isReleaseUrl(requestUri)) {
             logger.info("releaseurl");
@@ -68,7 +68,7 @@ public class FilterBusiness {
 
     private static boolean isReleaseUrl(String requestUrl) {
         for (int i = 0; i < RELEASE_URLS.length; i++) {
-            if (requestUrl.contains(RELEASE_URLS[i])) {
+            if (requestUrl.endsWith(RELEASE_URLS[i])) {
                 return true;
             }
         }

@@ -33,41 +33,6 @@ var app = {
         }
         return true;
 	},
-	table:function(table,options){
-        table.render({
-            elem: options.elem,
-            url:app.BASE_API_URL+options.url,
-            where:$.extend({},options.where),
-            page:true,
-			cols: options.cols,
-            //,skin: 'line' //表格风格
-            even: true
-            //,page: true //是否显示分页
-            //,limits: [5, 7, 10]
-            //,limit: 5 //每页默认显示的数量
-        });
-
-        //监听单元格编辑
-		/*
-        table.on('edit(demo)', function(obj){
-            var value = obj.value //得到修改后的值
-                ,data = obj.data //得到所在行所有键值
-                ,field = obj.field; //得到字段
-            layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-            //console.log('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-        });
-        */
-	},
-	stateTemplet:function(d){
-        if(d.status==1){
-            return '<span class="layui-badge layui-bg-blue">正常</span>';
-        }else if(d.status==0){
-            return '<span class="layui-badge">已删除</span>';
-        }else if(d.status==2){
-            return '<span class="layui-badge layui-bg-orange">禁用</span>';
-        }
-
-    },
 	window:function(layer,options){
 		var setting = {
 			type: 2,
@@ -83,6 +48,10 @@ var app = {
 		$.extend(setting,options);
 		
 		layer.open(setting);
+	},
+	closeLastWindow:function(){
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.layer.close(index); //再执行关闭
 	},
 	request:function(options){
 		var setting = {

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>layui</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<script type="text/javascript" src="../static/js/jquery-1.9.1.min.js"></script>
+	<script src="../static/layui/lay/modules/layer.js"></script>
+	<link href="../static/layui/css/modules/layer/default/layer.css" rel="stylesheet">
+	<link rel="stylesheet" href="../static/vui/css/vui.css">
+	<script type="text/javascript" src="../static/vui/js/vui.js"></script>
+	<script type="text/javascript" src="../static/js/common.js"></script>
+</head>
+<body>
+
+<div id="formArea">
+	<input type="hidden" value="-1" name="parentId"/>
+	<div class="vui-from-table">
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label"><span class="required">*</span>公司名称：</label>
+				<input type="text" class="input" name="name" autocomplete="off" placeholder="请输入公司名称"/>
+			</div>
+		</div>
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">联系人：</label>
+				<input type="text" class="input" name="contact" autocomplete="off" placeholder="请输入联系人"/>
+			</div>
+		</div>
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">联系电话：</label>
+				<input type="text" class="input" name="contactPhone" autocomplete="off" placeholder="请输入联系电话"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+app.getOkBtn().click(function(){
+	if( !checkForm() ){
+		return;
+	}
+	app.request({
+		url:'company/insert',
+		success:function(resp){
+			if( resp.result==0 ){
+				app.alert(parent.layer,'操作成功');
+				parent.vui.datagrid("reload","#table");
+			}else{
+				app.alert(parent.layer,'操作失败【'+resp.data+'】',2);
+			}
+			app.closeLastWindow();
+		}
+	});
+});
+
+function checkForm(){
+
+    var checkOptions = [{
+        type:'input',
+		name:'name',
+        verify:['required']
+	}];
+
+	return app.checkForm(checkOptions);
+}
+
+</script>
+
+</body>
+</html>

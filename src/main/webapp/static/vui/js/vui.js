@@ -1,9 +1,12 @@
 var vui = {};
 
 /* datagrid start */
-vui.datagrid = function(options,method,params){
+vui.datagrid = function(options,id,params){
 	
 	if( typeof(options) != 'object' ){
+		if( options =='reload' ){
+            loadUrl(getTableId(id),1);
+		}
 		return;
 	}
 	
@@ -63,11 +66,13 @@ vui.datagrid = function(options,method,params){
             var rowTr = $('<div class="vui-table-row" type="body"></div>');
             $.each(columns,function(j,column){
                 var value=null;
-                if(column.field){
-                    value = row[column.field];
-                }else{
+                if(column.formatter){
                     value = column.formatter(row);
+                }else{
+                    value = row[column.field];
                 }
+                if(!value){value="";}
+
                 var colTd = null;
                 if(column.edit){
                     colTd =  $('<div class="vui-table-cell"  edit="'+column.edit+'">'+value+'</div>');
@@ -102,6 +107,10 @@ vui.datagrid = function(options,method,params){
 		//1
 		
 		loadPage(tableId,options,data.total,currpage);
+
+		if(loadDataSuccess){
+            loadDataSuccess();
+		}
 	}
 
 	function moveEnd(obj){

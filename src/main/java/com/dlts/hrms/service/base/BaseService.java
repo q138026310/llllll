@@ -40,15 +40,15 @@ public class BaseService {
     protected PageResult page(Object bean,LmsMapper mapper) {
         BaseEntity entity = (BaseEntity) bean;
         Page page = PageHelper.startPage(entity.getPage(),entity.getLimit());
-        PageResult pageResult = PageResult.create();
+        PageResult pageResult = new PageResult();
         Example example = new Example(bean.getClass());
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo(App.Property.CUSTOMER_ID,entity.getCustomerId());
         criteria.andGreaterThan(App.Property.STATUS,0);
         example.setOrderByClause(SqlUtils.order(App.Property.CREATE_TIME, App.SqlOrder.DESC));
-        pageResult.setData(mapper.selectByExample(example));
+        pageResult.setRows(mapper.selectByExample(example));
 
-        pageResult.setCount(page.getTotal());
+        pageResult.setTotal(page.getTotal());
         return pageResult;
     }
 

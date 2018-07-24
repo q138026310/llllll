@@ -30,7 +30,7 @@ public class RequestParamFilter extends OncePerRequestFilter {
             }
             chain.doFilter(req,response);
         }else{
-            response.sendRedirect("/login.html");
+            response.sendRedirect("/hrms/login.html");
         }
 
     }

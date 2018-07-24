@@ -2,6 +2,24 @@ body,html{
 	padding: 0px;margin: 0px;height: 100%;font-family: SF UI Display,PingFang SC,Neue Haas Grotesk Text Pro,Arial Nova,Segoe UI,Microsoft YaHei,Microsoft JhengHei,Helvetica,Hiragino Sans GB,Helvetica Neue,Source Han Sans SC,Noto Sans CJK SC,Source Han Sans CN,Noto Sans SC,Source Han Sans TC,Noto Sans CJK TC,sans-serif!important;
 }
 
+input, textarea, select, button {
+    text-rendering: auto;
+    color: initial;
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    margin: 0em;
+    font: 400 13.3333px Arial;    font: inherit;
+    margin: 0;
+}
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    font-size: 13px;
+}
 
 /**index  start**/
 
@@ -190,7 +208,12 @@ img{
 .vui-field{
     border: 1px solid #e6e6e6;
     margin-bottom: 10px;
-    font-size: 13px;
+    font-size: 13px;padding: 0px 0px 15px 15px;
+}
+
+.vui-from-table{
+    display: table;
+    padding: 10px 20px 20px 30px;
 }
 
 .vui-form-row{
@@ -198,5 +221,124 @@ img{
 }
 .vui-form-cell{
     display: table-cell;
+    text-align: right;
+    padding: 15px 15px 0px 0px;
 }
+.vui-form-cell .input{
+    position: relative;
+    display: inline-block;
+    padding: 6px 7px;overflow: visible;
+    height: 32px;
+    width: 240px;
+    cursor: text;margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #545454;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;box-sizing: border-box;
+    -webkit-transition: border .2s cubic-bezier(.645,.045,.355,1),background .2s cubic-bezier(.645,.045,.355,1),box-shadow .2s cubic-bezier(.645,.045,.355,1);
+    transition: border .2s cubic-bezier(.645,.045,.355,1),background .2s cubic-bezier(.645,.045,.355,1),box-shadow .2s cubic-bezier(.645,.045,.355,1);
+}
+
+.vui-form-cell .input:focus,.vui-form-cell .input:hover {
+    outline: none;
+    border: 1px solid #32b5c5;
+}
+
+.button{
+    color: #fff;
+    background-color: #32b5c5;
+    border-color: #32b5c5;
+    box-sizing: border-box;
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    line-height: 1.5;
+    padding: 4px 15px;
+    font-size: 12px;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;    text-transform: none;
+    user-select: none;
+    -webkit-transition: all .3s cubic-bezier(.645,.045,.355,1);
+    transition: all .3s cubic-bezier(.645,.045,.355,1);
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    margin-right:15px;
+
+}
+.button:focus,.button:hover{
+    outline: none;
+    background-color: #30acbb;
+    border-color: #30acbb;
+}
+
+.vui-form-cell .label{
+    font-size: 13px;
+}
+.required{
+    color: red;
+}
+
+.vui-opt-edit{
+    color: #32b5c5;
+}
+
+.vui-opt{
+    margin-right: 21px;
+    background: transparent;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    -webkit-transition: color .3s ease;
+    transition: color .3s ease;font-size: 12px;
+}
+.vui-opt-del{
+    color: #f17b7b;
+}
+
 /* form end*/
+
+/* label start */
+.label-success {
+    background-color: #5cb85c;
+}
+.label-warning {
+    background-color: #f0ad4e;
+}
+.label-danger {
+    background-color: #d9534f;
+}
+.label-info {
+    background-color: #5bc0de;
+}
+.label-primary {
+    background-color: #337ab7;
+}
+.label-default {
+    background-color: #777;
+}
+.label-status {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+/* label end */

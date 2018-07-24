@@ -11,9 +11,8 @@ import java.text.ParseException;
 public class TestTmp {
 
     static Logger logger = LoggerFactory.getLogger(TestTmp.class);
-
+//window.open("http://127.0.0.1:8888/hrms/company/company_list.html",'aaa','height=768;width:1024;resizable=no')
     public static void main(String[] args) throws ParseException {
-
 
     }
 }
