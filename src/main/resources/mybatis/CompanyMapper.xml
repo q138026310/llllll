@@ -3,9 +3,7 @@
 <mapper namespace="com.dlts.hrms.mapper.CompanyMapper">
 
     <select id="page" parameterType="com.dlts.hrms.domain.vo.company.CompanyPageVo" resultType="com.dlts.hrms.domain.po.company.CompanyPagePo">
-        select c1.*,
-        (select name from sys_company c2 where c2.id = c1.parent_id and c2.status > 0 ) parentName
-        from sys_company c1
+        select c1.* from sys_company c1
         where c1.status > 0
         <if test=" name != null and name.length() > 0 ">
             and name like concat( '%','#{name}','%' ) ;

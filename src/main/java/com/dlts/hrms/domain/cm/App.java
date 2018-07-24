@@ -60,6 +60,10 @@ public final class App {
         public static final String UPDATE_USER_ID = "updateUserId";
     }
 
+    public static class Column{
+        public static final String CREATE_TIME = "create_time";
+    }
+
     public static class SqlOrder{
         public static final String DESC = "desc";
     }

@@ -45,7 +45,7 @@ public class BaseService {
         Example.Criteria criteria = example.createCriteria();
         criteria.andEqualTo(App.Property.CUSTOMER_ID,entity.getCustomerId());
         criteria.andGreaterThan(App.Property.STATUS,0);
-        example.setOrderByClause(SqlUtils.order(App.Property.CREATE_TIME, App.SqlOrder.DESC));
+        example.setOrderByClause(SqlUtils.order(App.Column.CREATE_TIME, App.SqlOrder.DESC));
         pageResult.setRows(mapper.selectByExample(example));
 
         pageResult.setTotal(page.getTotal());
