@@ -24,11 +24,11 @@ public class FilterBusiness {
      */
     public static boolean isChain(HttpServletRequest request) {
 
-       /* int a = 1;
+        int a = 1;
         int b = 1;
         if( a==b ){
             return true;
-        }*/
+        }
 
         String requestUri = request.getRequestURI();
         logger.info("requestUri:{}",requestUri);

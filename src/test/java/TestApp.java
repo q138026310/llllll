@@ -84,22 +84,14 @@ public class TestApp {
         //SELECT GROUP_CONCAT(COLUMN_NAME SEPARATOR ",") FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = 'hrms' AND TABLE_NAME = 'SYS_USER'
 
         // 所有空数据用-1代替
-
-        //客户
-        String sql = "INSERT INTO `hrms`.`sys_customer`(`id`,`customer_id`,`contact`, `contact_phone`, `status`, `create_user_id`, `create_time`, `update_user_id`, `update_time`)" +
-                " VALUES ('100000001','100000001','如来', '13999999999', 1, 0, sysdate(), 0, '0');";
-        executeSql(conn,sql);
-
-        //公司
-        sql = "INSERT INTO `hrms`.`sys_company`(`id`, `name`, `code`, `parent_id`, `contact`, `contact_phone`, `status`, `create_user_id`, `create_time`," +
-                " `update_user_id`, `update_time`, `customer_id`) VALUES " +
-                " (200000001, '平台', '000', -1, 'admin', '13888888888', 1, 300000001, sysdate(), -1, -1,100000001);";
-        executeSql(conn,sql);
-        //用户
-        sql = "insert into sys_user(id,company_id,organization_id,username,password,code,name,email,phone,mobile,photo,login_ip,login_time,status,create_user_id,create_time,update_user_id,update_time,customer_id) " +
-                " values(300000001,200000001,1,'admin','176d8ab94944e3883779f50f7638fd4a','0001','121','','',131,'',1,'',1,1,'',1,'',100000001)";
-        executeSql(conn,sql);
-
+        /*ScriptRunner runner = new ScriptRunner(conn);
+        runner.setErrorLogWriter(new PrintWriter(System.out));
+        runner.setLogWriter(null);
+        try {
+            runner.runScript(new InputStreamReader(new FileInputStream(new File("E:\\source\\llllll\\trunk\\init-data.sql")),"UTF-8"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
 
     }
 

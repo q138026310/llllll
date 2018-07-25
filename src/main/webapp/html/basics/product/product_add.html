@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>layui</title>
+	<meta name="renderer" content="webkit">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="../../../static/vui/css/vui.css">
+
+	<script type="text/javascript" src="../../../static/js/jquery-1.9.1.min.js"></script>
+	<script src="../../../static/layui/lay/modules/layer.js"></script>
+	<script src="../../../static/laydate/laydate.js"></script>
+	<script type="text/javascript" src="../../../static/vui/js/vui.js"></script>
+	<script type="text/javascript" src="../../../static/js/common.js"></script>
+</head>
+<body>
+
+<div id="formArea">
+	<input type="hidden" value="-1" name="parentId"/>
+	<div class="vui-from-table">
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">单据日期</label>
+				<input type="text" class="input" name="contact" readonly="readonly" id="test1" autocomplete="off" placeholder="yyyy-MM-dd"/>
+			</div>
+			<div class="vui-form-cell">
+				<label class="label">单据编号</label>
+				<input type="text" class="input" name="contact" readonly="readonly" autocomplete="off"/>
+			</div>
+			<div class="vui-form-cell">
+				<label class="label">供应商</label>
+				<input type="text" class="input" name="contact" readonly="readonly" autocomplete="off"/>
+			</div>
+
+		</div>
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">供应商欠款</label>
+				<input type="text" class="input" name="contact" readonly="readonly" autocomplete="off"/>
+			</div>
+			<div class="vui-form-cell">
+				<label class="label">采购部门</label>
+				<input type="text" class="input" name="contact" autocomplete="off"/>
+			</div>
+			<div class="vui-form-cell">
+				<label class="label">采购员</label>
+				<input type="text" class="input" name="contact" autocomplete="off"/>
+			</div>
+		</div>
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">采购类型</label>
+				<input type="text" class="input" name="contactPhone" autocomplete="off"/>
+			</div>
+		</div>
+	</div>
+	<div id="table"></div>
+	<div class="vui-from-table">
+		<div class="vui-form-row">
+			<div class="vui-form-cell">
+				<label class="label">订单备注</label>
+				<input type="text" class="input" name="contact"  autocomplete="off" />
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+
+<script>
+$(function(){
+    vui.datagrid({
+        id:'table',
+        pagination:false,
+		rownum:true,
+        columns:[
+            {field:'name',title:'商品名称',width:100},
+            {field:'contact',title:'商品编码',width:100},
+            {field:'contactPhone',title:'库存数量',width:100},
+            {field:'contactPhone',title:'规格型号',width:100},
+            {field:'contactPhone',title:'单位',width:100},
+            {field:'contactPhone',title:'单价',width:100,edit:'input'},
+            {field:'contactPhone',title:'备注',width:100},
+            {title:'操作',width:100,formatter:function(row){
+                return '<a data-id="'+row.id+'" class="vui-opt vui-opt-edit">编辑</a><a data-id="'+row.id+'" class="vui-opt vui-opt-del">删除</a>';
+            }}
+        ]
+    });
+});
+
+    layer.ready(function(){
+        //layer.msg('很高兴一开场就见到你');
+    });
+
+
+    laydate.render({
+        elem: '#test1'
+    });
+
+</script>
+
+</body>
+</html>

@@ -6,23 +6,35 @@ vui.datagrid = function(options,id,params){
 	if( typeof(options) != 'object' ){
 		if( options =='reload' ){
             loadUrl(getTableId(id),1);
-		}
+		}else if( options =='loadData' ){
+            loadData(getTableId(id),params,1);
+        }
 		return;
 	}
 	
-	options = $.extend({page:1,limit:10},options);
+	options = $.extend({page:1,limit:10,pagination:true},options);
 	
 	var tableId = setOptions(options);
 	$(tableId).addClass('vui-table');
 	loadHead(options);
-	loadUrl(tableId);
+	if(options.url){
+        loadUrl(tableId);
+	}
 
 	function loadHead(options){
 		var columns = options.columns;
 		var headTr = $('<div class="vui-table-row vui-table-head"></div>');
+        if( options.rownum ){
+            headTr.append('<div class="vui-table-cell" style="width:20px;"></div>');
+		}
 		for (var i = 0; i < columns.length; i++) {
 			var column = columns[i];
-			headTr.append('<div class="vui-table-cell" style="width:'+column.width+'px;">'+column.title+'</div>');
+			if(column.edit){
+                headTr.append('<div class="vui-table-cell" style="width:'+column.width+'px;"><span style="color:blue;">'+column.title+'</span></div>');
+			}else{
+                headTr.append('<div class="vui-table-cell" style="width:'+column.width+'px;">'+column.title+'</div>');
+			}
+
 		}
 		$(tableId).append(headTr);
 	}
@@ -64,6 +76,9 @@ vui.datagrid = function(options,id,params){
 
 		$.each(rows,function(i,row){
             var rowTr = $('<div class="vui-table-row" type="body"></div>');
+            if( options.rownum ){
+                rowTr.append('<div class="vui-table-cell vui-table-rownum">'+(i+1)+'</div>');
+			}
             $.each(columns,function(j,column){
                 var value=null;
                 if(column.formatter){
@@ -105,12 +120,17 @@ vui.datagrid = function(options,id,params){
 			}
 		});
 		//1
-		
-		loadPage(tableId,options,data.total,currpage);
 
-		if(loadDataSuccess){
-            loadDataSuccess();
+		if( options.pagination ){
+            loadPage(tableId,options,data.total,currpage);
 		}
+
+		try{
+            if(loadDataSuccess){
+                loadDataSuccess();
+            }
+		}catch (e){}
+
 	}
 
 	function moveEnd(obj){

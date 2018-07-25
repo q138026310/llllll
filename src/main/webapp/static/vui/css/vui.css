@@ -118,6 +118,9 @@ img{
 .vui-table-head{
     background-color: #f2f2f2;
 }
+.vui-table-rownum{
+    background-color: #f2f2f2;
+}
 .vui-table .vui-table-row, .vui-table .vui-table-cell{
     border: 1px solid #e6e6e6;
     color: #666;
